@@ -5,7 +5,7 @@ Stonks Only Go Up is a platform that lets you keep up to date with your favorite
 ## Product Vision Statement
 ### Minimum Viable Product
  A platform where users can: 
- * Create an account
+* Create an account
 * Log in to their account
 * Follow particular stocks
 * See different tweets on stocks they follow
