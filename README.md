@@ -2,13 +2,27 @@
 ## Product Vision Statement
 Stonks Only Go Up is a platform that lets you keep up to date with your favorite stocks and discover what the hypest stocks are at any given moment. This app will be aimed at younger generations of individuals who are just starting to get into investing as well as for seasoned investors who want a new, innovative way to learn about stocks in this age of social media.
 
+Our vision is to be on the edge of this tidal wave of emerging reliance on social media for investment decisions and advice. With consistent effort and persistence, we shall exceed because Stonks, in fact, do ****only*** go up*.
+
 ### Minimum Viable Product
- A platform where users can: 
- * Create an account
+A platform where users can (required for MVP process): 
+* Create an account
+* Follow through a setup account process
 * Log in to their account
 * Follow particular stocks
-* See different tweets on stocks they follow
+* See their followed stocks
 * See what stocks are being talked about the most
+
+Our product has 3 critical parts. The first is the 'main' where the user is NOT logged in and is still awaiting signup or login information. The second is the 'setup guide' where the user has just created an account for signup and must now fill in their basic information so that we can not only accurately understand our client-base, but also suggest potential stonks that they might be interested in. The final, third part of our application is the 'Logged In' aspect that includes the user now being logged in and able to freely use the prime parts of our application such as the Stonk viewers.
+
+The 'Logged In' aspect of our application is where our app is really focused on since at that point we have the user logged in with his/her relevant data. Our MVP will show the process of a user being given the ability to follow stonks and, more critically, be given the ability to view stocks. The stock viewer will be given to show a stocks particular basic information such as name and price, with our innovative stonk-o-meter being an index of how popular that particular stock is on social media.
+
+These 3 critical parts of 'main', 'setup guide', and 'logged in' is the categories that we will use for our user stories as well with general needs to be done. The core requirements are listed above but additional 'nice' features to be added to the MVP include, but are not limited to:
+* Article banner
+* Settings
+* Mission
+* Graphical Representation of followed stocks
+* Dynamically changing stonk-o-meter index (able to give realtime feedback on meter rather than initial loadup)
 
 ## Core Team Members
 * Erol Bickici
