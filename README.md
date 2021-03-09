@@ -1,6 +1,6 @@
 # Stonks Only Go Up
 
-Stonks Only Go Up is a platform that lets you keep up to date with your favorite stocks and discover what the hypest stocks are at any given moment.
+Stonks Only Go Up is a platform that lets you keep up to date with your favorite stocks and discover what the hypest stocks are at any given moment. This app will be aimed at younger generations of individuals who are just starting to get into investing as well as for seasoned investors who want a new, innovative way to learn about stocks in this age of social media.
 
 ## Product Vision Statement
 ### Minimum Viable Product
