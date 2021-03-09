@@ -5,14 +5,9 @@ Stonks Only Go Up is a platform that lets you keep up to date with your favorite
 Our vision is to be on the edge of this tidal wave of emerging reliance on social media for investment decisions and advice. With consistent effort and persistence, we shall exceed because Stonks, in fact, do ****only*** go up*.
 
 ### Minimum Viable Product
-<<<<<<< HEAD
 A platform where users can (required for MVP process): 
 * Create an account
 * Follow through a setup account process
-=======
- A platform where users can: 
-* Create an account
->>>>>>> c8a75c6918252776797b50f94ac54b38d481df83
 * Log in to their account
 * Follow particular stocks
 * See their followed stocks
