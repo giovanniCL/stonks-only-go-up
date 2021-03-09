@@ -23,7 +23,11 @@ As college students ourselves, we saw a way of monetizing this new idea of capit
 For contributions to this project, please look at the following [CONTRIBUTING.md](./CONTRIBUTING.md). More information will be populated in this page over time.
 
 ## Building & Testing Project
+Building and testing project instructions with guide process TBD.
 
 ## Additional Links & Markdowns
+- For learning about [NPM](https://www.npmjs.com/)
+- For additional getting started with [React](https://reactjs.org/docs/getting-started.html)
 
 ## Miscellaneous
+N/A
