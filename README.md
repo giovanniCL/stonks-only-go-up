@@ -5,9 +5,14 @@ Stonks Only Go Up is a platform that lets you keep up to date with your favorite
 Our vision is to be on the edge of this tidal wave of emerging reliance on social media for investment decisions and advice. With consistent effort and persistence, we shall exceed because Stonks, in fact, do ****only*** go up*.
 
 ### Minimum Viable Product
+<<<<<<< HEAD
 A platform where users can (required for MVP process): 
 * Create an account
 * Follow through a setup account process
+=======
+ A platform where users can: 
+* Create an account
+>>>>>>> c8a75c6918252776797b50f94ac54b38d481df83
 * Log in to their account
 * Follow particular stocks
 * See their followed stocks
@@ -28,6 +33,8 @@ These 3 critical parts of 'main', 'setup guide', and 'logged in' is the categori
 * Erol Bickici
     - [Github](https://github.com/Partisi)
     - [Gitlab](https://gitlab.com/partisi)
+* Giovanni Ciccia
+    - [Github](https://github.com/giovanniCL)
 
 ## Our Stonk History
 Stonks Only Go Up has an interesting history behind it. Initially starting as a fun joke, it slowly morphed into a rather unique and very useful idea for a tool to address an untapped sector of a growing movement. This movement is includes young investors looking to get their hands dirty and start investing their money intelligently and diligently. With this trend, we realized that many people look towards social media for advice and guidance when it comes to investing. In recent history, we saw [tweets from Elon Musk that sent shares of his tweeted company skyrocket to all time highs, even when the company was incorrectly targeted as the center of his tweet](https://nypost.com/2021/01/12/signal-stock-surges-438-percent-after-elon-musk-tweet/#:~:text=The%20company's%20stock%2C%20traded%20over,about%20the%20apparent%20ticker%20confusion.). Another example includes that of a [reddit forum post called Wall Street Bets that sent shares of Gamestop to unprecendent highs that cost short sellers (people who bet against a company and its shares) of billions](https://www.theverge.com/22251427/reddit-gamestop-stock-short-wallstreetbets-robinhood-wall-street).
