@@ -28,6 +28,29 @@ If a team member is failing to deliver, team should reach out to member for expl
 
 Team should respond to help and solving conflicts within 12 hours in the slack chat in both direct messages and group chat.
 
+### Git Workflow
+Always pull the most recent version from GitHub to ensure you have the most up-to-date version of the working project.
+
+If it is a minor feature or bug fix (developer's best judgement used), then the developer would just commit and push to the main/master branch of the remote repository. If the feature or task is major, then the developer will make a new branch titled `someFeatureBranch` and then work directly off that. Details are as followed:
+
+If minor task:
+1. Pull from master/main
+2. Add code to local repo
+3. Make sure working project in local repo
+4. Pull from remote repo
+5. Push to master/main branch
+
+If major task:
+1. Pull from master/main
+2. Create new branch titled `someFeatureBranch` (this and rest will be in local repo)
+3. Checkout `someFeatureBranch`
+4. Add code to local repo
+5. Pull from remote repo
+6. Solve local merge conflicts (if needed)
+7. Commit merge
+8. Push to master/main branch
+9. Notify team via Slack
+
 ### Sprint Candence
 * Sprints will take 2 weeks to complete for balance of quick, efficient work and not cause overstress.
 
