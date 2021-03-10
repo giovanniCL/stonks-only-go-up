@@ -55,7 +55,8 @@ If major task:
 * Sprints will take 2 weeks to complete for balance of quick, efficient work and not cause overstress.
 
 ### Daily Standups
-* Tuesdays 3:00pm EST - 3:15pm EST
+* Monday: 3:15pm EST - 3:30pm EST
+* Wednesday 3:15pm EST - 3:30pm EST
 * Friday 3:00pm EST - 3:15pm EST
 
 We will meet at the previously listed times and days and if something does come up, we will let the other members know and plan accordingly. Also, will not cover for other members (honesty is the best policy). Any member who does not make progress after two standups in a row will be reported to management.
