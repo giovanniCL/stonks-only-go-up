@@ -1,25 +1,25 @@
-import logo from './logo.svg';
+// General Imports
 import './App.css';
+import { BrowserRouter, Switch, Route } from "react-router-dom"
 
-function App() {
+// Scenes & Pages (Should import all pages here)
+import TestComponent from "./Components/TestComponent"
+import SetupInitialPage from "./Components/Setup/SetupInitialPage"
+import SetupPersonalInfoPage from './Components/Setup/SetupPersonalInfoPage' // Not yet used
+
+// App Component
+// This is the MAIN component that should be treated 
+// as the parent of all components/pages within this app
+const App = () => {
+  console.log("App Component Mounted")
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edirrt <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={TestComponent} /> {/* Each PAGE should follow this format */}
+        <Route exact path="/setup/initial" component={SetupInitialPage} />
+        <Route exact path="/setup/personal-info" component={SetupPersonalInfoPage} />
+      </Switch>
+    </BrowserRouter>
+  )
 }
-
 export default App;
