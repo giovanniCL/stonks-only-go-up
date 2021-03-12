@@ -57,7 +57,7 @@ If major task:
 ### Daily Standups
 * Monday: 3:15pm EST - 3:30pm EST
 * Wednesday 3:15pm EST - 3:30pm EST
-* Friday 3:00pm EST - 3:15pm EST
+* Friday 3:15pm EST - 3:30pm EST
 
 We will meet at the previously listed times and days and if something does come up, we will let the other members know and plan accordingly. Also, will not cover for other members (honesty is the best policy). Any member who does not make progress after two standups in a row will be reported to management.
 
