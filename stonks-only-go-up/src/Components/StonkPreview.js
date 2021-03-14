@@ -13,6 +13,7 @@ const StonkPreview = (props) =>{
         else return "unhypestonk"
     }
 
+    //Fuctions for changing the class of the elements within the component to react to the hover action
     function hoverClass(){
         setNameClass("hoverClass")
         setStonkClass("hoverClass")
@@ -28,7 +29,7 @@ const StonkPreview = (props) =>{
 
     return (
         
-        <Link to = "single-stonk" style ={{textDecoration:"none"}} className= "container" 
+        <Link to = {`/single-stonk/${props.details.name}`} style ={{textDecoration:"none"}} className= "container" 
         onMouseEnter = {()=>hoverClass()} onMouseLeave = {()=>unHoverClass()}>
             <div className = {nameClass}>{props.details.name} </div>
             <div className= {stonkClass}>{props.details.stonkometer + "%"}</div>

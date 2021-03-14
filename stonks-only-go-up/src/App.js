@@ -21,7 +21,7 @@ const App = () => {
         <Route exact path="/setup/initial" component={SetupInitialPage} />
         <Route exact path="/setup/personal-info" component={SetupPersonalInfoPage} />
         <Route exact path="/stonk-preview-test" component={StonkPreviewTest} />
-        <Route exact path="/single-stonk" component={SingleStonk} />
+        <Route exact path="/single-stonk/:name" component={SingleStonk} />
       </Switch>
     </BrowserRouter>
   )
