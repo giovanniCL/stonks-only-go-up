@@ -1,22 +1,40 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {Link} from 'react-router-dom'
 import './StonkPreview.css'
 
 const StonkPreview = (props) =>{
-
+    const [nameClass, setNameClass] = useState("name")
+    const [stonkClass, setStonkClass] = useState(getStonkClass(props.details.stonkometer))
+    const [priceClass, setPriceClass] = useState("price")
     //This function receives a stonkometer score and returns the class for css styling
-    function stonkClass(stonkometer){
+    function getStonkClass(stonkometer){
         if(stonkometer > 75) return "hypestonk"
         else if(stonkometer >25) return "mehstonk"
         else return "unhypestonk"
     }
 
+    function hoverClass(){
+        setNameClass("hoverClass")
+        setStonkClass("hoverClass")
+        setPriceClass("hoverClass")
+
+    }
+
+    function unHoverClass(){
+        setNameClass("name")
+        setStonkClass(getStonkClass(props.details.stonkometer))
+        setPriceClass("price")
+    }
+
     return (
-        <Link to = "single-stonk" style ={{textDecoration:"none"}}className = "container">
-            <div className = "name">{props.details.name}</div>
-            <div className= {stonkClass(props.details.stonkometer)}>{props.details.stonkometer + "%"}</div>
-            <div className = "price">{props.details.price}</div>
+        
+        <Link to = "single-stonk" style ={{textDecoration:"none"}} className= "container" 
+        onMouseEnter = {()=>hoverClass()} onMouseLeave = {()=>unHoverClass()}>
+            <div className = {nameClass}>{props.details.name} </div>
+            <div className= {stonkClass}>{props.details.stonkometer + "%"}</div>
+            <div className = {priceClass}>{props.details.price}</div>
         </Link>
+       
     )
 }
 
