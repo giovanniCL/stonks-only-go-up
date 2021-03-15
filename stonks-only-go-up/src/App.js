@@ -6,6 +6,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom"
 import TestComponent from "./Components/TestComponent"
 import SetupInitialPage from "./Components/Setup/SetupInitialPage"
 import SetupPersonalInfoPage from './Components/Setup/SetupPersonalInfoPage' // Not yet used
+import LogInPage from './Components/Login/LogInPage';
 
 // App Component
 // This is the MAIN component that should be treated 
@@ -18,6 +19,7 @@ const App = () => {
         <Route exact path="/" component={TestComponent} /> {/* Each PAGE should follow this format */}
         <Route exact path="/setup/initial" component={SetupInitialPage} />
         <Route exact path="/setup/personal-info" component={SetupPersonalInfoPage} />
+        <Route exact path="/login/initial" component={LogInPage} />
       </Switch>
     </BrowserRouter>
   )

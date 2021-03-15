@@ -17,6 +17,7 @@ const TestComponent = (props) => {
             <p>The following is just a directory to easily go between pages:</p>
             <ul>
                 <button onClick={() => props.history.push('/setup/initial')}>Setup Initial Page</button>
+                <button onClick={() => props.history.push('/login/initial')}>Log In Page</button>
             </ul>
         </div>
     )
