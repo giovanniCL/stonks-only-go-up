@@ -1,9 +1,24 @@
 
+/* Dark blue: #0001B3
+White: #EBEBFA
+Blue Purple: #4041FF
+Dark Gold: #B89700
+Light Gold: #FFDD47 
+Font-family: https://fonts.google.com/specimen/Ubuntu?preview.text_type=custom#standard-styles
+*/
+
+@import url(https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap);
+h1{
+    color: #0001B3;
+}
+body{
+    font-family: 'Ubuntu', sans-serif;
+}
 .loginBox{
     
     position: relative;
     border-radius: 5px;
-    background-color: #f2f2f2;
+    background-color: #EBEBFA;
     margin-left: auto;
     margin-right: auto;
     top:15em;
