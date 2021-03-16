@@ -3,7 +3,7 @@
     width: 50%;
     text-align: center;
     margin-left: 20px;
-    background-color:grey;
+    background-color:  #4091ff;
 
 }
   
@@ -17,18 +17,18 @@
 }
 
 a:hover{
-    background-color: goldenrod;
+    background-color: #B89700;
     color:aliceblue;
 }
 
 
 .name{
-    color:blue;
+    color: darkblue;
 }
 
 
 .price{
-    color:goldenrod;
+    color: #FFDD47;
 }
 
 .hypestonk{
