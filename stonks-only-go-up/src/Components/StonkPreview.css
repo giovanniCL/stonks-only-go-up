@@ -6,13 +6,12 @@ body{
     display: flex;
     width: 50%;
     text-align: center;
-    margin-left: 20px;
     background-color:  #4091ff;
 
 }
   
 .container div{
-    border: 0.5px solid black;
+    border: 0.5px solid #B89700 ;
     width: 33.3%;
     text-align: center;
     padding-top: 10px;
@@ -21,7 +20,7 @@ body{
 }
 
 a:hover{
-    background-color: #B89700;
+    background-color: #FFDD47;
     color:aliceblue;
 }
 
@@ -47,5 +46,5 @@ a:hover{
 }
 
 .hoverClass{
-    color:white;
+    color: darkblue;
 }
