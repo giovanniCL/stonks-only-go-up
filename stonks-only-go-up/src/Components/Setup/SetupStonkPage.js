@@ -7,11 +7,11 @@ import { React } from "react"
 */
 const SetupStonkPage = (props) => {
     return (
-        <div>
-            <h1>Stonk Page</h1>
-            <div>
-                <button onClick={() => props.history.push('/setup/interest-suggest')}>Back</button>
-                <button onClick={() => props.history.push('/setup/profile-picture')}>Continue</button>
+        <div className="setup-page-wrapper">
+            <h1 className="setup-header">Stonk Page</h1>
+            <div className="setup-directory">
+                <button className="generic-path-button" onClick={() => props.history.push('/setup/interest-suggest')}>Back</button>
+                <button className="generic-path-button" onClick={() => props.history.push('/setup/profile-picture')}>Continue</button>
             </div>
         </div>
     )
