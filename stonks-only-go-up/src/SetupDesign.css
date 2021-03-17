@@ -1,0 +1,56 @@
+/* This is for the setup process page */
+.setup-page-wrapper {
+    background: #4041FF;
+    width: 100%;
+    max-width: 540px;
+    margin: 112px auto;
+    height: 400px;
+    padding: 6px 24px 24px; 
+    border-radius: 12px;
+    position: relative;
+  }
+  .setup-page-wrapper > .setup-header {
+    font-size: 48px;
+  }
+  .setup-page-wrapper > .setup-directory {
+    width: 100%;
+    display: inline-flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 24px;
+    left: 0;
+  }
+  .generic-path-button {
+    width: 180px;
+    height: 32px;
+    margin: 12px;
+    background: white;
+    border: 2px solid #FFDD47;
+    border-radius: 4px;
+  }
+  .setup-personal-info-inputs {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .setup-personal-info-inputs >input {
+    margin: 4px;
+    width: 320px;
+  }
+  .interest-list {
+    padding: 0;
+    list-style: none;
+    display: inline-flex;
+    position: relative;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .interest-list > .each-interest-item > .interest-bttn {
+    width: 120px;
+    margin-bottom: 8px;
+  }
+  .interest-selected {
+    background: #FFDD47;
+  }
