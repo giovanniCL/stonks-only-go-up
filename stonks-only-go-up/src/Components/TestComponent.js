@@ -17,7 +17,6 @@ const TestComponent = (props) => {
             <p>The following is just a directory to easily go between pages:</p>
             <ul>
                 <button onClick={() => props.history.push('/setup/initial')}>Setup Initial Page</button>
-                <button onClick={() => props.history.push('/stonk-preview-test')}>Stonk Preview Test Page</button>
                 <button onClick={() => props.history.push('/hype-stonks')}>Hype Stonks Page</button>
 
 

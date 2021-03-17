@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import StonkPreview from './StonkPreview'
 import StonksHeader from './StonksHeader'
+import Navbar from './Navbar'
 import './HypeStonks.css'
 
 const HypeStonks = (props) => {
@@ -19,10 +20,10 @@ const HypeStonks = (props) => {
     },[])
    
     return (
-        <>
-        <div><h2>NavBar goes here </h2> </div>
+        <>     
+        <div> <Navbar /> </div>
         <div className = "hype-content">
-            <h1>Hype Stonks</h1>
+            <h1 className>Hype Stonks</h1>
             <StonksHeader />
             {data.map((item) => (
             <StonkPreview key = {item.name} details = {item}/> 
