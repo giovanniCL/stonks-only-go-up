@@ -71,12 +71,26 @@
   background: #ffdd47;
 }
 
+#file-profile-picture-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
 .profile-picture-setup {
-  background: red;
-  width: 400px;
-  height: 400px;
+  background: #EBEBFA;
+  width: 140px;
+  height: 140px;
   display: inline-block;
   border-radius: 50%;
-
   object-fit: cover;
+}
+
+.profile-picture-upload-input {
+  background: #FFDD47;
+  padding: 4px;
+  margin-top: 8px;
+  border-radius: 4px;
+  width: 220px;
 }

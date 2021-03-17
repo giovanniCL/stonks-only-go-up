@@ -1,7 +1,7 @@
 // General Imports
 import { React, useEffect, useState } from "react"
 import axios from 'axios'
-import LordAndSaviorDefaultPicture from "../../Assets/LordAndSavior.png"
+import LordAndSaviorDefaultPicture from "../../Assets/LordAndSaviorProfile.png"
 // Setup Profile Picture Page
 /*
     This page is the FIFTH step of the setting up account
@@ -9,12 +9,14 @@ import LordAndSaviorDefaultPicture from "../../Assets/LordAndSavior.png"
 const SetupProfilePicturePage = (props) => {
     const [currentProfilePicture, setProfilePicture] = useState(null)
 
+    function onPictureChange(e) {
+        setProfilePicture(URL.createObjectURL(e.target.files[0]))
+    }
     return (
         <div className="setup-page-wrapper">
             <h1 className="setup-header">Profile Picture Page</h1>
             <p>Please upload a profile picture: </p>
-            <div>
-                <input type="file" />
+            <div id="file-profile-picture-wrapper">
                 <img
                     className="profile-picture-setup"
                     src={
@@ -23,6 +25,12 @@ const SetupProfilePicturePage = (props) => {
                             LordAndSaviorDefaultPicture
                     }
                     alt="no-profile"
+                />
+                <input
+                    className="profile-picture-upload-input"
+                    type="file"
+                    onChange={onPictureChange}
+                    accept="image/*"
                 />
             </div>
             <div className="setup-directory">
