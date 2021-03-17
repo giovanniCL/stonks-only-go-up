@@ -67,7 +67,16 @@ botton:hover{
   margin-left: 15px;
 }
 
-.Navbar .rightside {
+.Navbar .leftSide button{
+  display: none;
+  margin-left: 20px;
+}
+
+.Navbar .leftSide #hidden{
+  display: flex;
+}
+
+.Navbar .rightSide {
   flex: 50%;
   display: flex;
   align-items: center;
@@ -75,7 +84,7 @@ botton:hover{
   padding-right: 25px;
 }
 
-.rightside input{
+.rightSide input{
   width: 220px;
   height: 30px;
   border: none;
@@ -85,8 +94,46 @@ botton:hover{
   color: black;
 }
 
-.rightside button{
+.rightSide button{
   height: 32px;
   width: 70px;
   font-size: 16px;
+}
+
+@media only screen and (max-width: 750px){
+  .Navbar .leftSide .links{
+    font-size: 15px;
+  }
+}
+
+@media only screen and (max-width: 650px){
+  .Navbar .leftSide button{
+    display: flex;
+    height: 30px;
+    width: 40px;
+    font-size: 30px;
+    align-items: center;
+  }
+  .Navbar .leftSide .links{
+    display: none;
+  }
+
+  .Navbar .leftSide #hidden{
+    position: absolute;
+    left: 0px;
+    top: 80px;
+    max-height: 260px;
+    width: 100%;
+    background-color: #282c34;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .Navbar .leftSide #hidden a{
+    margin: 10px;
+    font-size: 25px;
+    
+
+  }
 }
