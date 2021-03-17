@@ -54,3 +54,19 @@
   .interest-selected {
     background: #FFDD47;
   }
+
+  .stonk-list {
+    padding: 0;
+    list-style: none;
+    display: inline-flex;
+    position: relative;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .stonk-list > .each-stonk-item > .stonk-bttn {
+    width: 120px;
+    margin-bottom: 8px;
+  }
+  .stonk-selected {
+    background: #FFDD47;
+  }
