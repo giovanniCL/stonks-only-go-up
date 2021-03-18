@@ -1,5 +1,5 @@
 import {React} from 'react'
-import "../signup.css"
+import "./signup.css"
 
 const SignUp = () => {
     return(
@@ -20,3 +20,5 @@ const SignUp = () => {
       </div>
     )
 }
+
+export default SignUp
