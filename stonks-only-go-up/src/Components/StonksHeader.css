@@ -1,0 +1,16 @@
+.stonks-header{
+    display: flex;
+    width: 50%;
+    text-align: center;
+    background-color:  #B89700;
+    border-radius: 25px;
+}
+
+.stonks-header div{
+    width: 33.3%;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-decoration: none;
+    color: white;
+}
