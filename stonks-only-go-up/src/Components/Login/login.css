@@ -11,24 +11,26 @@ Font-family: https://fonts.google.com/specimen/Ubuntu?preview.text_type=custom#s
 h1{
     color: #0001B3;
 }
+html, body, #app, #app>div {
+    height: 100%
+  }
 body{
     font-family: 'Ubuntu', sans-serif;
+    background-image: url(./stonkMeme.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    bottom: 0px;
 }
-.loginBox{
-    
-    position: relative;
-    border-radius: 5px;
-    background-color: #EBEBFA;
-    margin-left: auto;
-    margin-right: auto;
-    top:15em;
-    width: 13em;
-    text-align: center;
-    height: fit-content;
-    padding: 20px 0 30px 0;
-}
-.row:after {
-    display: flex;
-    justify-content: center;
 
-  }
+.loginBox{
+    position: absolute;
+    bottom: 50%;
+    left: 45%;
+    background-color: #EBEBFA;
+    width: min-content;
+    text-align: center;
+    height: 30%;
+    padding: 20px 5px 30px 5px;
+    
+}
