@@ -6,7 +6,15 @@ import { interestsList } from "../InterestsList"
     This page is the THIRD step of the setting up account
 */
 const SetupInterestPage = (props) => {
-    const [interestsSelected, selectInterest] = useState([])
+
+    const [interestsSelected, selectInterest] = useState(() => {
+        if (props.setupForm.interests.length === 0) {
+            return []
+        } else {
+            return props.setupForm.interests
+        }
+    })
+
     function interestClicked(eachInterest) {
         let interestsSelectedWorking = [...interestsSelected]
         let interestIndex = interestsSelectedWorking.indexOf(eachInterest)
@@ -38,8 +46,24 @@ const SetupInterestPage = (props) => {
                 })}
             </ul>
             <div className="setup-directory">
-                <button className="generic-path-button" onClick={() => props.history.push('/setup/personal-info')}>Back</button>
-                <button className="generic-path-button" onClick={() => props.history.push('/setup/stonk-suggest')}>Continue</button>
+                <button
+                    className="generic-path-button"
+                    onClick={() => {
+                        props.handleMainFormChange("interests", interestsSelected)
+                        props.history.push('/setup/personal-info')
+                    }}
+                >
+                    Back
+                </button>
+                <button
+                    className="generic-path-button"
+                    onClick={() => {
+                        props.handleMainFormChange("interests", interestsSelected)
+                        props.history.push('/setup/stonk-suggest')
+                    }}
+                >
+                    Continue
+                </button>
             </div>
         </div>
     )

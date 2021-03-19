@@ -1,21 +1,29 @@
 // General Imports
 import { React, useState } from "react"
+import { checkObjectNoProperties } from "../../FunctionBucket"
 
 // Setup Personal Info Page
 /*
     This page is the SECOND step of the setting up personal info.
 */
 const SetupPersonalInfoPage = (props) => {
-    const [inputPersonalForm, setPersonalForm] = useState({
-        personalName: "",
-        birthday: "",
-        gender: "",
-        location: "",
-        educationLevel: "",
+
+    const [inputPersonalForm, setPersonalForm] = useState(() => {
+        if (checkObjectNoProperties(props.setupForm.personalInfo)) {
+            return {
+                personalName: "",
+                birthday: "",
+                gender: "",
+                location: "",
+                educationLevel: "",
+            }
+        } else {
+            return props.setupForm.personalInfo
+        }
     })
 
     function handleInputChange(e) {
-        let inputPersonalFormWorking = {...inputPersonalForm}
+        let inputPersonalFormWorking = { ...inputPersonalForm }
         inputPersonalFormWorking[e.target.name] = e.target.value
         setPersonalForm(inputPersonalFormWorking)
     }
@@ -62,8 +70,24 @@ const SetupPersonalInfoPage = (props) => {
                 />
             </div>
             <div className="setup-directory">
-                <button className="generic-path-button" onClick={() => props.history.push('/setup/initial')}>Back</button>
-                <button className="generic-path-button" onClick={() => props.history.push('/setup/interest-suggest')}>Continue</button>
+                <button
+                    className="generic-path-button"
+                    onClick={() => {
+                        props.handleMainFormChange("personalInfo", inputPersonalForm)
+                        props.history.push('/setup/initial')
+                    }}
+                >
+                    Back
+                </button>
+                <button
+                    className="generic-path-button"
+                    onClick={() => {
+                        props.handleMainFormChange("personalInfo", inputPersonalForm)
+                        props.history.push('/setup/interest-suggest')
+                    }}
+                >
+                    Continue
+                </button>
             </div>
         </div>
     )

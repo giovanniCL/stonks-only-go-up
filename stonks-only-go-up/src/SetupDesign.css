@@ -5,10 +5,12 @@
   max-width: 540px;
   margin: 112px auto;
   height: 400px;
-  padding: 6px 24px 24px;
+  padding: 12px 24px 12px;
   border-radius: 12px;
+  overflow-y: scroll;
   position: relative;
 }
+
 .setup-page-wrapper > .setup-header {
   font-size: 48px;
 }
@@ -20,10 +22,16 @@
   bottom: 24px;
   left: 0;
 }
+#confirm-directory {
+  width: 100%;
+  display: inline-flex;
+  justify-content: center;
+  position: relative;
+}
 .generic-path-button {
   width: 180px;
   height: 32px;
-  margin: 12px;
+  margin: 12px 12px 0px;
   background: white;
   border: 2px solid #ffdd47;
   border-radius: 4px;
@@ -34,6 +42,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 0;
 }
 .setup-personal-info-inputs > input {
   margin: 4px;
@@ -79,7 +88,7 @@
 }
 
 .profile-picture-setup {
-  background: #EBEBFA;
+  background: #ebebfa;
   width: 140px;
   height: 140px;
   display: inline-block;
@@ -88,9 +97,84 @@
 }
 
 .profile-picture-upload-input {
-  background: #FFDD47;
+  background: #ffdd47;
   padding: 4px;
   margin-top: 8px;
   border-radius: 4px;
   width: 220px;
+}
+
+.confirm-personal-info,
+.confirm-interests,
+.confirm-stonks,
+.confirm-profile-picture {
+  position: relative;
+  padding: 0;
+  margin: 0;
+}
+
+.confirm-profile-picture {
+  height: 240px;
+}
+.confirm-personal-info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.confirm-personal-single {
+  display: inline-flex;
+  width: 320px;
+  height: 32px;
+  margin: auto;
+  align-items: center;
+}
+.confirm-personal-single > h6 {
+  width: 90px;
+  padding: 0;
+  margin: 0;
+}
+.confirm-personal-single > input {
+  width: 240px;
+}
+.no-confirm-input {
+  text-align: center;
+  color: lightgray;
+}
+.interest-list-confirm {
+  list-style: none;
+  padding: 0;
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+.interest-list-confirm > .each-interest-item-confirm {
+  background: lightsalmon;
+  padding: 4px 6px;
+  margin: 4px;
+  border-radius: 4px;
+}
+.stonk-list-confirm {
+  list-style: none;
+  padding: 0;
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+.stonk-list-confirm > .each-stonk-item-confirm {
+  background: goldenrod;
+  padding: 4px 6px;
+  margin: 4px;
+  border-radius: 4px;
+}
+.not-correct-edit-here {
+  background: none;
+  position: absolute;
+  top: 0px;
+  right: 0;
+  color: lightslategrey;
+  border: none;
+  font-size: 16px;
+}
+.not-correct-edit-here:hover {
+  cursor: pointer;
+  color: grey;
 }

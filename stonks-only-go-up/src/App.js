@@ -14,6 +14,8 @@ import SetupStonkPage from './Components/Setup/SetupStonkPage'
 import SetupProfilePicturePage from './Components/Setup/SetupProfilePicturePage'
 import SetupConfirmPage from './Components/Setup/SetupConfirmPage'
 
+import SetupRoute from "./Components/Setup/SetupRoute"
+
 // App Component
 // This is the MAIN component that should be treated 
 // as the parent of all components/pages within this app
@@ -24,12 +26,12 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={TestComponent} /> {/* Each PAGE should follow this format */}
         
-        <Route exact path="/setup/initial" component={SetupInitialPage} />
-        <Route exact path="/setup/personal-info" component={SetupPersonalInfoPage} />
-        <Route exact path="/setup/interest-suggest" component={SetupInterestPage} />
-        <Route exact path="/setup/stonk-suggest" component={SetupStonkPage} />
-        <Route exact path="/setup/profile-picture" component={SetupProfilePicturePage} />
-        <Route exact path="/setup/confirm" component={SetupConfirmPage} />
+        <SetupRoute exact path="/setup/initial" component={SetupInitialPage} />
+        <SetupRoute exact path="/setup/personal-info" component={SetupPersonalInfoPage} />
+        <SetupRoute exact path="/setup/interest-suggest" component={SetupInterestPage} />
+        <SetupRoute exact path="/setup/stonk-suggest" component={SetupStonkPage} />
+        <SetupRoute exact path="/setup/profile-picture" component={SetupProfilePicturePage} />
+        <SetupRoute exact path="/setup/confirm" component={SetupConfirmPage} />
 
         <Route exact path="/stonk-preview-test" component={StonkPreviewTest} />
         <Route exact path="/single-stonk/:name" component={SingleStonk} />

@@ -1,13 +1,18 @@
 // General Imports
-import { React, useEffect, useState } from "react"
-import axios from 'axios'
+import { React, useState } from "react"
 import LordAndSaviorDefaultPicture from "../../Assets/LordAndSaviorProfile.png"
 // Setup Profile Picture Page
 /*
     This page is the FIFTH step of the setting up account
 */
 const SetupProfilePicturePage = (props) => {
-    const [currentProfilePicture, setProfilePicture] = useState(null)
+    const [currentProfilePicture, setProfilePicture] = useState(() => {
+        if (!!props.setupForm.profilePicture) {
+            return props.setupForm.profilePicture
+        } else {
+            return LordAndSaviorDefaultPicture
+        }
+    })
 
     function onPictureChange(e) {
         setProfilePicture(URL.createObjectURL(e.target.files[0]))
@@ -19,11 +24,7 @@ const SetupProfilePicturePage = (props) => {
             <div id="file-profile-picture-wrapper">
                 <img
                     className="profile-picture-setup"
-                    src={
-                        !!currentProfilePicture ?
-                            currentProfilePicture :
-                            LordAndSaviorDefaultPicture
-                    }
+                    src={currentProfilePicture}
                     alt="no-profile"
                 />
                 <input
@@ -34,8 +35,22 @@ const SetupProfilePicturePage = (props) => {
                 />
             </div>
             <div className="setup-directory">
-                <button className="generic-path-button" onClick={() => props.history.push('/setup/stonk-suggest')}>Back</button>
-                <button className="generic-path-button" onClick={() => props.history.push('/setup/confirm')}>Continue</button>
+                <button
+                    className="generic-path-button"
+                    onClick={() => {
+                        props.handleMainFormChange("profilePicture", currentProfilePicture)
+                        props.history.push('/setup/stonk-suggest')
+                    }
+                    }>Back</button>
+                <button
+                    className="generic-path-button"
+                    onClick={() => {
+                        props.handleMainFormChange("profilePicture", currentProfilePicture)
+                        props.history.push('/setup/confirm')
+                    }}
+                >
+                    Continue
+                </button>
             </div>
         </div>
     )
