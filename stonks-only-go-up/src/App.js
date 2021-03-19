@@ -7,7 +7,6 @@ import TestComponent from "./Components/TestComponent"
 import SetupInitialPage from "./Components/Setup/SetupInitialPage"
 import SetupPersonalInfoPage from './Components/Setup/SetupPersonalInfoPage' // Not yet used
 import LogInPage from './Components/Login/LogInPage';
-import StonkPreviewTest from './Components/StonkPreviewTest';
 import SingleStonk from './Components/SingleStonk';
 import HypeStonks from './Components/HypeStonks'
 
@@ -24,7 +23,6 @@ function App () {
         <Route exact path="/setup/initial" component={SetupInitialPage} />
         <Route exact path="/setup/personal-info" component={SetupPersonalInfoPage} />
         <Route exact path="/login/initial" component={LogInPage} />
-        <Route exact path="/stonk-preview-test" component={StonkPreviewTest} />
         <Route exact path="/hype-stonks" component={HypeStonks} />
         <Route exact path="/single-stonk/:name" component={SingleStonk} />
       </Switch>
