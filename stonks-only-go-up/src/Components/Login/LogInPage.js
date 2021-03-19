@@ -10,10 +10,10 @@ import "../Login/login.css"
 const LogInPage = (props) => {
     return (
 
-        <div class = "loginBox">
+        <div className = "loginBox">
             <h1>Log In</h1>
 
-            <div class = "row">
+            <div className = "row">
                 <input type="text" name="username" placeholder="Username" required></input>
                 <input type="password" name="password" placeholder="Password" required></input>
                 <input type="submit" value="Login"></input>
