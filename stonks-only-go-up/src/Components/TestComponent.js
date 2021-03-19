@@ -18,6 +18,7 @@ const TestComponent = (props) => {
             <ul>
                 <button onClick={() => props.history.push('/setup/initial')}>Setup Initial Page</button>
                 <button onClick={() => props.history.push('/login/initial')}>Log In Page</button>
+                <button onClick={() => props.history.push('/stonk-preview-test')}>Stonk Preview Test Page</button>
             </ul>
         </div>
     )
