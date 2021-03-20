@@ -8,11 +8,11 @@ import { React } from "react"
 */
 const SetupInitialPage = (props) => {
     return (
-        <div>
-            <h1>Setup</h1>
+        <div className="setup-page-wrapper">
+            <h1 className="setup-header">Setup</h1>
             <p>Let's continue setting up your account with some basic information!</p>
-            <div>
-                <button onClick={() => props.history.push('/setup/personal-info')}>Begin Account Setup</button>
+            <div className="setup-directory">
+                <button className="generic-path-button" onClick={() => props.history.push('/setup/personal-info')}>Begin Account Setup</button>
             </div>
         </div>
     )

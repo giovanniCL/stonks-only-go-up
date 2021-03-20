@@ -1,0 +1,53 @@
+@import url(https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap);
+body{
+    font-family: 'Ubuntu', sans-serif;
+}
+.container {
+    display: flex;
+    width: 50%;
+    text-align: center;
+    background-color:  #4091ff;
+    border-radius: 10px;
+    margin-top: 7px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+}
+  
+.container div{
+    width: 33.3%;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-decoration: none;
+}
+
+a:hover{
+    background-color: #FFDD47;
+    color:aliceblue;
+}
+
+
+.name{
+    color: darkblue;
+}
+
+
+.price{
+    color: #FFDD47;
+}
+
+.hypestonk{
+    color:greenyellow;
+}
+.mehstonk{
+    color:yellow;
+}
+
+.unhypestonk{
+    color:red
+}
+
+.hoverClass{
+    color: darkblue;
+}
