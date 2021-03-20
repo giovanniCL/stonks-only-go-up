@@ -15,7 +15,6 @@ const LogInPage = (props) => {
         <div className = "loginBox">
             <div className = "loginH">Log In</div>
 
-<<<<<<< HEAD
             <input type="text" name="username" placeholder="Username" required></input>
             <input type="password" name="password" placeholder="Password" required></input>
             <input type="submit" value="Login"></input>
@@ -23,17 +22,6 @@ const LogInPage = (props) => {
             
             
         </div>
-=======
-        <div className = "loginBox">
-            <h1>Log In</h1>
-
-            <div className = "row">
-                <input type="text" name="username" placeholder="Username" required></input>
-                <input type="password" name="password" placeholder="Password" required></input>
-                <input type="submit" value="Login"></input>
-                <button>Forget Password</button>
-            </div>
->>>>>>> master
         </div>
     )
 }
