@@ -23,21 +23,20 @@ Font-family: https://fonts.google.com/specimen/Ubuntu?preview.text_type=custom#s
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    bottom: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .loginBox{
-    position: absolute;
-    bottom: 40%;
-    left: 40%;
     background-color: #EBEBFA;
+    text-align: center;
     width: min-content;
-    height: min-content;
     padding: 30px 100px 30px 100px;
     border-radius: 25px;
     display: flex;
     flex-flow: row wrap;
-    text-align: center;
+    justify-content: center;
     -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
     -moz-animation: fadein 2s; /* Firefox < 16 */
      -ms-animation: fadein 2s; /* Internet Explorer */
