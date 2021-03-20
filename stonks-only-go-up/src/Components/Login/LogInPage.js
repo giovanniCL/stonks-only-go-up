@@ -11,14 +11,16 @@ import "../Login/login.css"
 // <button onClick={() => props.history.push('/setup/personal-info')}>Begin Account Setup</button>
 const LogInPage = (props) => {
     return (
-        <div>
+        <div className = "loginBody">
         <div className = "loginBox">
-            <h1>Log In</h1>
+            <div className = "loginH">Log In</div>
 
             <input type="text" name="username" placeholder="Username" required></input>
             <input type="password" name="password" placeholder="Password" required></input>
             <input type="submit" value="Login"></input>
             <button>Forget Password</button>
+            
+            
         </div>
         </div>
     )
