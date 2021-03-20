@@ -4,7 +4,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom"
 
 // Scenes & Pages (Should import all pages here)
 import TestComponent from "./Components/TestComponent"
-import SignUp from './Components/SignUp'
+import SignUp from './Components/Signup/SignUp'
 import LogInPage from './Components/Login/LogInPage';
 import SingleStonk from './Components/SingleStonk';
 import HypeStonks from './Components/HypeStonks'
@@ -30,7 +30,7 @@ function App () {
       <Switch>
         <Route exact path="/" component={TestComponent} /> {/* Each PAGE should follow this format */}
 
-        <Route exact path="/signup" component={SignUp} />
+        <Route exact path="/Signup/SignUp" component={SignUp} />
         <SetupRoute exact path="/setup/initial" component={SetupInitialPage} />
         <SetupRoute exact path="/setup/personal-info" component={SetupPersonalInfoPage} />
         <SetupRoute exact path="/setup/interest-suggest" component={SetupInterestPage} />
