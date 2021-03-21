@@ -20,7 +20,7 @@ const TestComponent = (props) => {
                 <button onClick={() => props.history.push('/login/initial')}>Log In Page</button>
                 <button onClick={() => props.history.push('/hype-stonks')}>Hype Stonks Page</button>
                 <button onClick={() => props.history.push('/followed-stonks')}>Followed Stonks Page</button>
-                <button onClick={() => props.history.push('/Signup/SignUp')}>Sign Up Page</button>
+                <button onClick={() => props.history.push('/signup')}>Sign Up Page</button>
             </ul>
         </div>
     )
