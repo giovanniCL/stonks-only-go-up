@@ -4,7 +4,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom"
 
 // Scenes & Pages (Should import all pages here)
 import TestComponent from "./Components/TestComponent"
-import SignUp from './Components/SignUp'
+import SignUp from './Components/Signup/SignUp'
 import LogInPage from './Components/Login/LogInPage';
 import SingleStonk from './Components/SingleStonk';
 import HypeStonks from './Components/HypeStonks'
