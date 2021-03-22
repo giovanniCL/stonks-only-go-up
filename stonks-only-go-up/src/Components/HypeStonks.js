@@ -20,7 +20,7 @@ const HypeStonks = (props) => {
     },[])
    
     return (
-        <>     
+        <div className = "hype-div">     
         <div> <Navbar /> </div>
         <div className = "hype-content">
             <h1 className>Hype Stonks</h1>
@@ -29,7 +29,7 @@ const HypeStonks = (props) => {
             <StonkPreview key = {item.name} details = {item}/> 
             ))}
         </div>
-        </>
+        </div>
       
     )
 }

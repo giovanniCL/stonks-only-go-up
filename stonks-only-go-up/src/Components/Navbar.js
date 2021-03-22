@@ -16,7 +16,7 @@ function Navbar(){
                 <a href = '/followed-stonks'>Your Stonks</a>
                 <a href = '/hype-stonks'>Hype</a>
                 <a href = '#'>Settings</a>
-                <a href = '#'>Mission</a>
+                <a href = 'mission'>Mission</a>
                 <a href = '/signup'>Sign Up!</a>
             </div>
             <button onClick={()=>setShowLinks(!showLinks)}> <ImMenu3 /> </button>
