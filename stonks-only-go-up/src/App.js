@@ -10,6 +10,7 @@ import ResetPage from './Components/Reset/ResetPage';
 import SingleStonk from './Components/SingleStonk';
 import HypeStonks from './Components/HypeStonks'
 import FollowedStonks from './Components/FollowedStonks'
+import MissionPage from './Components/Mission/Mission'
 
 import SetupInitialPage from "./Components/Setup/SetupInitialPage"
 import SetupPersonalInfoPage from './Components/Setup/SetupPersonalInfoPage'
@@ -43,6 +44,8 @@ function App () {
         <Route exact path="/hype-stonks" component={HypeStonks} />
         <Route exact path="/followed-stonks" component={FollowedStonks} />
         <Route exact path="/single-stonk/:name" component={SingleStonk} />
+        <Route exact path="/mission" component={MissionPage} />
+
       </Switch>
     </BrowserRouter>
     </div>
