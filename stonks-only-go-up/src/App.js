@@ -6,6 +6,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom"
 import TestComponent from "./Components/TestComponent"
 import SignUp from './Components/Signup/SignUp'
 import LogInPage from './Components/Login/LogInPage';
+import ResetPage from './Components/Reset/ResetPage';
 import SingleStonk from './Components/SingleStonk';
 import HypeStonks from './Components/HypeStonks'
 import FollowedStonks from './Components/FollowedStonks'
@@ -38,6 +39,7 @@ function App () {
         <SetupRoute exact path="/setup/profile-picture" component={SetupProfilePicturePage} />
         <SetupRoute exact path="/setup/confirm" component={SetupConfirmPage} />
         <Route exact path="/login/initial" component={LogInPage} />
+        <Route exact path="/reset/initial" component={ResetPage} />
         <Route exact path="/hype-stonks" component={HypeStonks} />
         <Route exact path="/followed-stonks" component={FollowedStonks} />
         <Route exact path="/single-stonk/:name" component={SingleStonk} />
