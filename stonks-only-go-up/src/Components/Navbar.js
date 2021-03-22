@@ -13,10 +13,11 @@ function Navbar(){
         <div className = "leftSide">
             <div className = "links" id = {showLinks ? "hidden" : "" }>
                 <a href = '#'>Home</a>
-                <a href = '#'>Hype</a>
+                <a href = '/followed-stonks'>Your Stonks</a>
+                <a href = '/hype-stonks'>Hype</a>
                 <a href = '#'>Settings</a>
                 <a href = '#'>Mission</a>
-                <a href = '/setup/initial'>Sign Up!</a>
+                <a href = '/signup'>Sign Up!</a>
             </div>
             <button onClick={()=>setShowLinks(!showLinks)}> <ImMenu3 /> </button>
         </div>
