@@ -1,6 +1,7 @@
 .Mission {
     font-size: 30px;
     position: relative;
+    background-color: white;
 }
 
 img{
@@ -55,6 +56,8 @@ img{
     padding-top: 50px;
     align-items: center;
     left: 50%;
+    margin-left: 25%;
+    color: black;
     
 }
 
@@ -62,6 +65,7 @@ ul#TeamLinks{
     padding-top: 70px;
     list-style: none;
     align-items: flex-start;
+    margin-left:25%
     
 }
 ul#TeamLinks li{
