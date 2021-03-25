@@ -30,7 +30,7 @@ const SetupConfirmPage = (props) => {
                     <h6>Name: </h6><input value={props.setupForm.personalInfo.personalName} disabled={true} />
                 </div>
                 <div className="confirm-personal-single">
-                    <h6>Birthday: </h6><input value={props.setupForm.personalInfo.birthday} disabled={true} />
+                    <h6>Age: </h6><input value={props.setupForm.personalInfo.age} disabled={true} />
                 </div>
                 <div className="confirm-personal-single">
                     <h6>Gender: </h6><input value={props.setupForm.personalInfo.gender} disabled={true} />

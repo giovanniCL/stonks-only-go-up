@@ -1,5 +1,6 @@
 /* This is for the setup process page */
 
+/* <--- Main Setup Wrappers ---> */
 .setup-page-wrapper {
   height: 100vh;
   display: flex;
@@ -55,7 +56,6 @@
 }
 
 .setup-description-initial {
-
 }
 .setup-header {
   font-size: 32px;
@@ -64,6 +64,8 @@
   margin: 0;
   margin-bottom: 16px;
 }
+
+/* <--- Bottom Directory Forwad & Back ---> */
 .setup-directory {
   width: 100%;
   display: inline-flex;
@@ -106,6 +108,8 @@
 .back-setup-path-button:active {
   outline: none;
 }
+
+/* <--- Personal Info Upload ---> */
 .setup-personal-info-inputs {
   width: 320px;
   display: flex;
@@ -118,6 +122,8 @@
   margin: 4px;
   width: calc(100% - 24px);
 }
+
+/* <--- Interest Upload ---> */
 .interest-list {
   padding: 0;
   margin: 0;
@@ -155,6 +161,7 @@
   background: #f0d042;
 }
 
+/* <--- Stonk Suggest Uploads ---> */
 .stonk-list {
   padding: 0;
   margin: 0;
@@ -192,6 +199,7 @@
   background: rgb(204, 204, 252);
 }
 
+/* <--- Profile Picture Upload ---> */
 #file-profile-picture-wrapper {
   display: flex;
   justify-content: center;
@@ -210,20 +218,20 @@
 
 .profile-picture-upload-input {
   background: #ffdd47;
-  padding: 4px;
+  padding: 4px 12px 8px;
   margin-top: 8px;
   border-radius: 4px;
   width: 220px;
 }
 
+/* <--- Final Confirm Uploads & Checks ---> */
 .confirm-input-divider {
-  background: grey;
+  background: rgb(204, 202, 202);
   height: 1px;
   width: 100%;
   margin-top: 24px;
   margin-bottom: 24px;
 }
-
 .confirm-personal-info,
 .confirm-interests,
 .confirm-stonks,
@@ -232,13 +240,13 @@
   padding: 0;
   margin: 0;
   min-height: 120px;
+  overflow-y: scroll;
 }
 .confirm-info-title {
   margin: 0;
   padding: 0;
   margin-bottom: 12px;
 }
-
 .confirm-profile-picture {
   height: 240px;
 }
@@ -252,7 +260,7 @@
   display: inline-flex;
   width: 320px;
   height: 32px;
-  margin: auto;
+  margin: 4px auto;
   align-items: center;
 }
 .confirm-personal-single > h6 {
