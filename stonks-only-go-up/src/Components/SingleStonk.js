@@ -2,7 +2,8 @@ import React from 'react'
 import Navbar from './Navbar'
 import './SingleStonk.css'
 
-function SingleStonk(){
+
+function SingleStonk({ match }){
     return(
         <>
         <div><Navbar /></div>
@@ -12,7 +13,7 @@ function SingleStonk(){
 
         <div className = "singleStonk_top">
 
-        <h1> Placeholder_Name </h1>
+        <h1> {match.params.name}</h1>
         
 
         </div>
