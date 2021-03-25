@@ -11,7 +11,7 @@ const NotCorrectEdit = (props) => {
         <button
             className="not-correct-edit-here"
             onClick={() => { props.history.push(props.direction) }}
-        >Not correct? Edit here</button>
+        >Edit</button>
     )
 }
 const SetupConfirmPage = (props) => {
@@ -22,8 +22,9 @@ const SetupConfirmPage = (props) => {
         <div>
             <h1 className="setup-header">Confirm Page</h1>
             <p>Before finishing up your account creation, please confirm the following inputs are correct and accurate:</p>
+            <div className="confirm-input-divider" />
             <div className="confirm-personal-info">
-                <h4>Personal Information</h4>
+                <h4 className="confirm-info-title">Personal Info</h4>
                 <NotCorrectEdit history={props.history} direction="/setup/personal-info" />
                 <div className="confirm-personal-single">
                     <h6>Name: </h6><input value={props.setupForm.personalInfo.personalName} disabled={true} />
@@ -41,8 +42,9 @@ const SetupConfirmPage = (props) => {
                     <h6>Education Level: </h6><input value={props.setupForm.personalInfo.educationLevel} disabled={true} />
                 </div>
             </div>
+            <div className="confirm-input-divider" />
             <div className="confirm-interests">
-                <h4>Interests</h4>
+                <h4 className="confirm-info-title">Interests</h4>
                 <NotCorrectEdit history={props.history} direction="/setup/interest-suggest" />
                 {props.setupForm.interests.length === 0 ? (
                     <h6 className="no-confirm-input">No Interests Selected</h6>
@@ -58,8 +60,9 @@ const SetupConfirmPage = (props) => {
                     </ul>
                 )}
             </div>
+            <div className="confirm-input-divider" />
             <div className="confirm-stonks">
-                <h4>Stonks</h4>
+                <h4 className="confirm-info-title">Stonks</h4>
                 <NotCorrectEdit history={props.history} direction="/setup/stonk-suggest" />
                 {props.setupForm.stonks.length === 0 ? (
                     <h6 className="no-confirm-input">No Stonks Selected</h6>
@@ -75,8 +78,9 @@ const SetupConfirmPage = (props) => {
                     </ul>
                 )}
             </div>
+            <div className="confirm-input-divider" />
             <div className="confirm-profile-picture">
-                <h4>Profile Picture</h4>
+                <h4 className="confirm-info-title">Profile Picture</h4>
                 <NotCorrectEdit history={props.history} direction="/setup/profile-picture" />
                 <img
                     className="profile-picture-setup"
@@ -84,6 +88,7 @@ const SetupConfirmPage = (props) => {
                     alt="no-profile"
                 />
             </div>
+
             <div id="confirm-directory" className="setup-directory">
                 <button className="back-setup-path-button" onClick={() => props.history.push('/setup/profile-picture')}>Back</button>
                 <button className="go-setup-path-button" onClick={() => props.history.push('/')}>Finish Setup</button>

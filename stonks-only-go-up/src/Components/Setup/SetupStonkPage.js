@@ -53,7 +53,7 @@ const SetupStonkPage = (props) => {
                                 <button
                                     className={stonksSelected.includes(eachStonk) ?
                                         "stonk-bttn stonk-selected" :
-                                        "stonk-bttn"
+                                        "stonk-bttn stonk-not-selected"
                                     }
                                     onClick={() => stonkClicked(eachStonk)}>
                                     {eachStonk.stonk}

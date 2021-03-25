@@ -6,7 +6,7 @@
   justify-content: center;
 }
 .setup-main-above-info {
-  background:  white;
+  background: white;
   position: absolute;
   top: 0;
   left: 0;
@@ -14,7 +14,8 @@
   height: 112px;
   display: inline-flex;
   align-items: center;
-  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+    rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
 }
 .setup-main-name {
   padding: 0 32px;
@@ -66,7 +67,8 @@
   justify-content: center;
   position: relative;
 }
-.go-setup-path-button, .back-setup-path-button {
+.go-setup-path-button,
+.back-setup-path-button {
   margin: 12px 12px 0px;
   background: white;
   border: none;
@@ -89,7 +91,8 @@
   cursor: pointer;
   background: #cecbcb;
 }
-.go-setup-path-button:active, .back-setup-path-button:active {
+.go-setup-path-button:active,
+.back-setup-path-button:active {
   outline: none;
 }
 .setup-personal-info-inputs {
@@ -112,7 +115,7 @@
   position: relative;
   flex-wrap: wrap;
   justify-content: flex-start;
-  height: 320px;
+  max-height: 320px;
   overflow-y: scroll;
 }
 .interest-list > .each-interest-item > .interest-bttn {
@@ -127,34 +130,55 @@
 }
 .interest-not-selected {
   color: black;
-  background: rgb(190, 190, 190);
+  background: rgb(231, 231, 231);
 }
 .interest-not-selected:hover {
   cursor: pointer;
-  background: rgb(177, 176, 176);
+  background: rgb(224, 224, 224);
 }
 .interest-selected {
   background: #ffdd47;
 }
 .interest-selected:hover {
   cursor: pointer;
-  background: #e2c12f;
+  background: #f0d042;
 }
 
 .stonk-list {
   padding: 0;
+  margin: 0;
   list-style: none;
   display: inline-flex;
   position: relative;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
+  max-height: 320px;
+  overflow-y: scroll;
 }
 .stonk-list > .each-stonk-item > .stonk-bttn {
-  width: 120px;
-  margin-bottom: 8px;
+  margin: 0px 6px 12px;
+  border-radius: 4px;
+  font-family: "Ubuntu", sans-serif;
+  padding: 6px 10px;
+  border: none;
+}
+.stonk-list > .each-stonk-item > .stonk-bttn:focus {
+  outline: none;
+}
+.stonk-not-selected {
+  color: black;
+  background: rgb(231, 231, 231);
+}
+.stonk-not-selected:hover {
+  cursor: pointer;
+  background: rgb(224, 224, 224);
 }
 .stonk-selected {
-  background: #ffdd47;
+  background: rgb(187, 187, 255);
+}
+.stonk-selected:hover {
+  cursor: pointer;
+  background: rgb(204, 204, 252);
 }
 
 #file-profile-picture-wrapper {
@@ -181,6 +205,14 @@
   width: 220px;
 }
 
+.confirm-input-divider {
+  background: grey;
+  height: 1px;
+  width: 100%;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
 .confirm-personal-info,
 .confirm-interests,
 .confirm-stonks,
@@ -188,6 +220,12 @@
   position: relative;
   padding: 0;
   margin: 0;
+  min-height: 120px;
+}
+.confirm-info-title {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 12px;
 }
 
 .confirm-profile-picture {
@@ -207,7 +245,7 @@
   align-items: center;
 }
 .confirm-personal-single > h6 {
-  width: 90px;
+  width: 110px;
   padding: 0;
   margin: 0;
 }
@@ -217,39 +255,50 @@
 .no-confirm-input {
   text-align: center;
   color: lightgray;
+  padding-top: 12px;
 }
 .interest-list-confirm {
   list-style: none;
   padding: 0;
   display: inline-flex;
   flex-wrap: wrap;
+  margin: 0;
 }
 .interest-list-confirm > .each-interest-item-confirm {
-  background: lightsalmon;
-  padding: 4px 6px;
-  margin: 4px;
+  background: #ffdd47;
   border-radius: 4px;
+  margin: 0px 5px 10px;
+  border-radius: 4px;
+  font-family: "Ubuntu", sans-serif;
+  padding: 6px 10px;
+  border: none;
+  font-size: 14px;
 }
 .stonk-list-confirm {
   list-style: none;
   padding: 0;
   display: inline-flex;
   flex-wrap: wrap;
+  margin: 0;
 }
 .stonk-list-confirm > .each-stonk-item-confirm {
-  background: goldenrod;
-  padding: 4px 6px;
-  margin: 4px;
+  background: rgb(187, 187, 255);
   border-radius: 4px;
+  margin: 0px 5px 10px;
+  border-radius: 4px;
+  font-family: "Ubuntu", sans-serif;
+  padding: 6px 10px;
+  border: none;
+  font-size: 14px;
 }
 .not-correct-edit-here {
   background: none;
   position: absolute;
-  top: 0px;
+  top: 0;
   right: 0;
   color: lightslategrey;
   border: none;
-  font-size: 16px;
+  font-size: 14px;
 }
 .not-correct-edit-here:hover {
   cursor: pointer;
