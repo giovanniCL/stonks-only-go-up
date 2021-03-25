@@ -1,20 +1,54 @@
 /* This is for the setup process page */
+
 .setup-page-wrapper {
-  background: #4041ff;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+.setup-main-above-info {
+  background:  white;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  max-width: 540px;
-  margin: 112px auto;
-  height: 400px;
-  padding: 12px 24px 12px;
-  border-radius: 12px;
-  overflow-y: scroll;
-  position: relative;
+  height: 112px;
+  display: inline-flex;
+  align-items: center;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+}
+.setup-main-name {
+  padding: 0 32px;
 }
 
-.setup-page-wrapper > .setup-header {
-  font-size: 48px;
+.setup-inner-wrapper {
+  display: block;
+  width: 90%;
+  margin-top: 80px;
+  max-width: 540px;
+  height: 400px;
+  padding: 12px 24px 12px;
+  overflow-y: scroll;
+  position: relative;
+  background: white;
+  border-radius: 12px;
+  color: black;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 50px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -10px 30px 0px inset;
 }
-.setup-page-wrapper > .setup-directory {
+
+#top-bar-setup {
+  background: #ffdd47;
+  height: 12px;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.setup-header {
+  font-size: 32px;
+}
+.setup-directory {
   width: 100%;
   display: inline-flex;
   justify-content: center;
@@ -28,13 +62,31 @@
   justify-content: center;
   position: relative;
 }
-.generic-path-button {
-  width: 180px;
-  height: 32px;
+.go-setup-path-button, .back-setup-path-button {
   margin: 12px 12px 0px;
   background: white;
-  border: 2px solid #ffdd47;
+  border: none;
   border-radius: 4px;
+  padding: 6px 36px;
+  border: 1px solid grey;
+  min-width: 120px;
+}
+.go-setup-path-button {
+  background: #ffdd47;
+}
+.go-setup-path-button:hover {
+  cursor: pointer;
+  background: #eece42;
+}
+.back-setup-path-button {
+  background: #dbdbdb;
+}
+.back-setup-path-button:hover {
+  cursor: pointer;
+  background: #cecbcb;
+}
+.go-setup-path-button:active, .back-setup-path-button:active {
+  outline: none;
 }
 .setup-personal-info-inputs {
   width: 100%;
@@ -54,14 +106,29 @@
   display: inline-flex;
   position: relative;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 .interest-list > .each-interest-item > .interest-bttn {
-  width: 120px;
-  margin-bottom: 8px;
+  margin: 0px 4px 8px;
+  border-radius: 4px;
+  font-family: "Ubuntu", sans-serif;
+  padding: 6px 10px;
+}
+.interest-list > .each-interest-item > .interest-bttn:focus {
+  outline: none;
+}
+.interest-not-selected {
+  color: black;
+  background: rgb(190, 190, 190);
+  border: 1px solid lightslategray;
 }
 .interest-selected {
   background: #ffdd47;
+  border: 1px solid lightslategray;
+}
+.interest-not-selected:hover, .interest-selected:hover {
+  cursor: pointer;
+  background: #fff3bd;
 }
 
 .stonk-list {

@@ -29,12 +29,13 @@ const SetupPersonalInfoPage = (props) => {
     }
 
     return (
-        <div className="setup-page-wrapper">
+        <div>
             <h1 className="setup-header">Personal Info Page</h1>
             <p>Please input your personal information:</p>
             <div className="setup-personal-info-inputs">
                 <input
                     name="personalName"
+                    autoComplete="off"
                     value={inputPersonalForm.personalName}
                     onChange={handleInputChange}
                     placeholder="Personal Name"
@@ -42,6 +43,7 @@ const SetupPersonalInfoPage = (props) => {
                 />
                 <input
                     name="birthday"
+                    autoComplete="off"
                     value={inputPersonalForm.birthday}
                     onChange={handleInputChange}
                     placeholder="Birthday"
@@ -49,6 +51,7 @@ const SetupPersonalInfoPage = (props) => {
                 />
                 <input
                     name="gender"
+                    autoComplete="off"
                     value={inputPersonalForm.gender}
                     onChange={handleInputChange}
                     placeholder="Gender"
@@ -56,6 +59,7 @@ const SetupPersonalInfoPage = (props) => {
                 />
                 <input
                     name="location"
+                    autoComplete="off"
                     value={inputPersonalForm.location}
                     onChange={handleInputChange}
                     placeholder="Location"
@@ -63,6 +67,7 @@ const SetupPersonalInfoPage = (props) => {
                 />
                 <input
                     name="educationLevel"
+                    autoComplete="off"
                     value={inputPersonalForm.educationLevel}
                     onChange={handleInputChange}
                     placeholder="Education Level"
@@ -71,7 +76,7 @@ const SetupPersonalInfoPage = (props) => {
             </div>
             <div className="setup-directory">
                 <button
-                    className="generic-path-button"
+                    className="back-setup-path-button"
                     onClick={() => {
                         props.handleMainFormChange("personalInfo", inputPersonalForm)
                         props.history.push('/setup/initial')
@@ -80,7 +85,7 @@ const SetupPersonalInfoPage = (props) => {
                     Back
                 </button>
                 <button
-                    className="generic-path-button"
+                    className="go-setup-path-button"
                     onClick={() => {
                         props.handleMainFormChange("personalInfo", inputPersonalForm)
                         props.history.push('/setup/interest-suggest')

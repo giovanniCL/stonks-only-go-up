@@ -15,7 +15,7 @@ const SetupRoute = ({ component: RouteComponent, ...rest }) => {
 
     function handleMainFormChange(key, value) {
         console.log(key, value)
-        const setupFormWorking = {...setupForm}
+        const setupFormWorking = { ...setupForm }
         setupFormWorking[key] = value
         changeSetupForm(setupFormWorking)
     }
@@ -24,11 +24,19 @@ const SetupRoute = ({ component: RouteComponent, ...rest }) => {
         <Route
             {...rest}
             render={routeProps =>
-                <RouteComponent
-                    {...routeProps}
-                    setupForm={setupForm}
-                    handleMainFormChange={handleMainFormChange}
-                />
+                <section className="setup-page-wrapper">
+                    <div className="setup-main-above-info">
+                        <h1 className="setup-main-name">Stonks Only Go Up</h1>
+                    </div>
+                    <div className="setup-inner-wrapper">
+                        <div id="top-bar-setup" />
+                        <RouteComponent
+                            {...routeProps}
+                            setupForm={setupForm}
+                            handleMainFormChange={handleMainFormChange}
+                        />
+                    </div>
+                </section>
             }
         />
     )

@@ -19,7 +19,7 @@ const SetupConfirmPage = (props) => {
     console.log(props.setupForm)
 
     return (
-        <div className="setup-page-wrapper">
+        <div>
             <h1 className="setup-header">Confirm Page</h1>
             <p>Before finishing up your account creation, please confirm the following inputs are correct and accurate:</p>
             <div className="confirm-personal-info">
@@ -85,8 +85,8 @@ const SetupConfirmPage = (props) => {
                 />
             </div>
             <div id="confirm-directory" className="setup-directory">
-                <button className="generic-path-button" onClick={() => props.history.push('/setup/profile-picture')}>Back</button>
-                <button className="generic-path-button" onClick={() => props.history.push('/')}>Finish Setup</button>
+                <button className="back-setup-path-button" onClick={() => props.history.push('/setup/profile-picture')}>Back</button>
+                <button className="go-setup-path-button" onClick={() => props.history.push('/')}>Finish Setup</button>
             </div>
         </div >
     )

@@ -18,7 +18,7 @@ const SetupProfilePicturePage = (props) => {
         setProfilePicture(URL.createObjectURL(e.target.files[0]))
     }
     return (
-        <div className="setup-page-wrapper">
+        <div>
             <h1 className="setup-header">Profile Picture Page</h1>
             <p>Please upload a profile picture: </p>
             <div id="file-profile-picture-wrapper">
@@ -36,14 +36,14 @@ const SetupProfilePicturePage = (props) => {
             </div>
             <div className="setup-directory">
                 <button
-                    className="generic-path-button"
+                    className="back-setup-path-button"
                     onClick={() => {
                         props.handleMainFormChange("profilePicture", currentProfilePicture)
                         props.history.push('/setup/stonk-suggest')
                     }
                     }>Back</button>
                 <button
-                    className="generic-path-button"
+                    className="go-setup-path-button"
                     onClick={() => {
                         props.handleMainFormChange("profilePicture", currentProfilePicture)
                         props.history.push('/setup/confirm')

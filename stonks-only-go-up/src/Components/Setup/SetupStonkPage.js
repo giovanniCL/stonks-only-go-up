@@ -40,7 +40,7 @@ const SetupStonkPage = (props) => {
     }, [])
 
     return (
-        <div className="setup-page-wrapper">
+        <div>
             <h1 className="setup-header">Stonk Page</h1>
             <p>Please select the following stonks you wish to start following:</p>
             {stonkFullList.length === 0 ? (
@@ -65,7 +65,7 @@ const SetupStonkPage = (props) => {
             )}
             <div className="setup-directory">
                 <button
-                    className="generic-path-button"
+                    className="back-setup-path-button"
                     onClick={() => {
                         props.handleMainFormChange("stonks", stonksSelected)
                         props.history.push('/setup/interest-suggest')
@@ -74,7 +74,7 @@ const SetupStonkPage = (props) => {
                     Back
                 </button>
                 <button
-                    className="generic-path-button"
+                    className="go-setup-path-button"
                     onClick={() => {
                         props.handleMainFormChange("stonks", stonksSelected)
                         props.history.push('/setup/profile-picture')
