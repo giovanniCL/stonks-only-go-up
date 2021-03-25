@@ -1,6 +1,6 @@
 // General Imports
 import { React, useState } from "react"
-import { interestsList } from "../InterestsList"
+import { interestsList } from "../Lists/InterestsList"
 // Setup Interest Page
 /*
     This page is the THIRD step of the setting up account

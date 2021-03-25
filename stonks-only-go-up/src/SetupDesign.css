@@ -107,16 +107,16 @@
   outline: none;
 }
 .setup-personal-info-inputs {
-  width: 100%;
+  width: 320px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0;
+  margin: 0 auto;
 }
 .setup-personal-info-inputs > input {
   margin: 4px;
-  width: 320px;
+  width: calc(100% - 24px);
 }
 .interest-list {
   padding: 0;
