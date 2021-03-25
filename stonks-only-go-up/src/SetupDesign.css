@@ -46,6 +46,17 @@
   left: 0;
 }
 
+#setup-initial-icon {
+  width: 100%;
+}
+.link-redirect-setup:hover {
+  background: none;
+  color: darkblue;
+}
+
+.setup-description-initial {
+
+}
 .setup-header {
   font-size: 32px;
 }
