@@ -30,7 +30,7 @@ function App () {
       <Switch>
         <Route exact path="/" component={TestComponent} /> {/* Each PAGE should follow this format */}
 
-        <Route exact path="/Signup/SignUp" component={SignUp} />
+        <Route exact path="/Signup/" component={SignUp} />
         <SetupRoute exact path="/setup/initial" component={SetupInitialPage} />
         <SetupRoute exact path="/setup/personal-info" component={SetupPersonalInfoPage} />
         <SetupRoute exact path="/setup/interest-suggest" component={SetupInterestPage} />

@@ -4,7 +4,7 @@ import './SingleStonk.css'
 
 function SingleStonk(){
     return(
-        <h1> HEllo!!!!!!</h1>
+        <div><Navbar /></div>
     )
 }
 
