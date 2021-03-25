@@ -42,7 +42,7 @@ const SetupStonkPage = (props) => {
     return (
         <div>
             <h1 className="setup-header">Stonk Page</h1>
-            <p>Please select the following stonks you wish to start following:</p>
+            <p className="setup-description">Please select the following stonks you wish to start following:</p>
             {stonkFullList.length === 0 ? (
                 <p>Loading...</p>
             ) : (

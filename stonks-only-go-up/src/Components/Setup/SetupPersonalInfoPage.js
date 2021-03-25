@@ -31,7 +31,7 @@ const SetupPersonalInfoPage = (props) => {
     return (
         <div>
             <h1 className="setup-header">Personal Info Page</h1>
-            <p>Please input your personal information:</p>
+            <p className="setup-description">Please input your personal information:</p>
             <div className="setup-personal-info-inputs">
                 <input
                     name="personalName"

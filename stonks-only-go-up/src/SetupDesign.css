@@ -25,7 +25,7 @@
   width: 90%;
   margin-top: 80px;
   max-width: 540px;
-  height: 400px;
+  height: 500px;
   padding: 12px 24px 12px;
   overflow-y: scroll;
   position: relative;
@@ -47,6 +47,10 @@
 
 .setup-header {
   font-size: 32px;
+}
+.setup-description {
+  margin: 0;
+  margin-bottom: 16px;
 }
 .setup-directory {
   width: 100%;
@@ -102,17 +106,21 @@
 }
 .interest-list {
   padding: 0;
+  margin: 0;
   list-style: none;
   display: inline-flex;
   position: relative;
   flex-wrap: wrap;
   justify-content: flex-start;
+  height: 320px;
+  overflow-y: scroll;
 }
 .interest-list > .each-interest-item > .interest-bttn {
-  margin: 0px 4px 8px;
+  margin: 0px 6px 12px;
   border-radius: 4px;
   font-family: "Ubuntu", sans-serif;
   padding: 6px 10px;
+  border: none;
 }
 .interest-list > .each-interest-item > .interest-bttn:focus {
   outline: none;
@@ -120,15 +128,17 @@
 .interest-not-selected {
   color: black;
   background: rgb(190, 190, 190);
-  border: 1px solid lightslategray;
+}
+.interest-not-selected:hover {
+  cursor: pointer;
+  background: rgb(177, 176, 176);
 }
 .interest-selected {
   background: #ffdd47;
-  border: 1px solid lightslategray;
 }
-.interest-not-selected:hover, .interest-selected:hover {
+.interest-selected:hover {
   cursor: pointer;
-  background: #fff3bd;
+  background: #e2c12f;
 }
 
 .stonk-list {

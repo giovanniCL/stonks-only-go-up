@@ -10,7 +10,7 @@ const SetupInitialPage = (props) => {
     return (
         <div>
             <h1 className="setup-header">Setup</h1>
-            <p>Let's continue setting up your account with some basic information!</p>
+            <p className="setup-description">Let's continue setting up your account with some basic information!</p>
             <div className="setup-directory">
                 <button className="go-setup-path-button" onClick={() => props.history.push('/setup/personal-info')}>Begin Account Setup</button>
             </div>

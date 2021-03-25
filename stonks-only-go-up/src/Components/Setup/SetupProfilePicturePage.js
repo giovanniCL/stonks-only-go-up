@@ -20,7 +20,7 @@ const SetupProfilePicturePage = (props) => {
     return (
         <div>
             <h1 className="setup-header">Profile Picture Page</h1>
-            <p>Please upload a profile picture: </p>
+            <p className="setup-description">Please upload a profile picture: </p>
             <div id="file-profile-picture-wrapper">
                 <img
                     className="profile-picture-setup"

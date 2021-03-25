@@ -28,7 +28,7 @@ const SetupInterestPage = (props) => {
     return (
         <div>
             <h1 className="setup-header">Interest Page</h1>
-            <p>Select the following interests that you enjoy the most:</p>
+            <p className="setup-description">Select the following interests that you enjoy the most:</p>
             <ul className="interest-list">
                 {interestsList.map((eachInterest, eachInterestIndex) => {
                     return (
