@@ -29,6 +29,13 @@
 .App-link {
   color: #61dafb;
 }
+body{
+  font-family: 'Ubuntu', sans-serif;
+  background-color: darkblue;
+  color: white;
+
+}
+
 
 @keyframes App-logo-spin {
   from {
@@ -136,6 +143,5 @@ botton:hover{
     margin: 10px;
     font-size: 25px;
     
-
   }
 }

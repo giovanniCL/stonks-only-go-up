@@ -6,9 +6,11 @@ import { BrowserRouter, Switch, Route } from "react-router-dom"
 import TestComponent from "./Components/TestComponent"
 import SignUp from './Components/Signup/SignUp'
 import LogInPage from './Components/Login/LogInPage';
+import ResetPage from './Components/Reset/ResetPage';
 import SingleStonk from './Components/SingleStonk';
 import HypeStonks from './Components/HypeStonks'
 import FollowedStonks from './Components/FollowedStonks'
+import MissionPage from './Components/Mission/Mission'
 
 import SetupInitialPage from "./Components/Setup/SetupInitialPage"
 import SetupPersonalInfoPage from './Components/Setup/SetupPersonalInfoPage'
@@ -30,7 +32,7 @@ function App () {
       <Switch>
         <Route exact path="/" component={TestComponent} /> {/* Each PAGE should follow this format */}
 
-        <Route exact path="/Signup/" component={SignUp} />
+        <Route exact path="/signup" component={SignUp} />
         <SetupRoute exact path="/setup/initial" component={SetupInitialPage} />
         <SetupRoute exact path="/setup/personal-info" component={SetupPersonalInfoPage} />
         <SetupRoute exact path="/setup/interest-suggest" component={SetupInterestPage} />
@@ -38,9 +40,12 @@ function App () {
         <SetupRoute exact path="/setup/profile-picture" component={SetupProfilePicturePage} />
         <SetupRoute exact path="/setup/confirm" component={SetupConfirmPage} />
         <Route exact path="/login/initial" component={LogInPage} />
+        <Route exact path="/reset/initial" component={ResetPage} />
         <Route exact path="/hype-stonks" component={HypeStonks} />
         <Route exact path="/followed-stonks" component={FollowedStonks} />
         <Route exact path="/single-stonk/:name" component={SingleStonk} />
+        <Route exact path="/mission" component={MissionPage} />
+
       </Switch>
     </BrowserRouter>
     </div>
