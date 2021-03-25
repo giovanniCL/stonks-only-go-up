@@ -1,0 +1,37 @@
+@import url(https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap);
+
+
+
+.singleStonk_graph{
+
+    position: center;
+    width: 775px;
+    height: 500px;
+    margin: 20px auto;
+    background: #000
+
+}
+
+.singleStonk_top{
+    position: relative;
+    width: 750px;
+    margin: 20px auto;
+}
+
+.singleStonk_top h1 {
+    text-align: center;
+}
+
+.singleStonk_bottom{
+    position: relative;
+    width: 750px;
+    margin: 20px auto;
+}
+
+#price{
+    display: inline-block;
+    margin-right: 600px;
+}
+#volume{
+    display: inline-block;
+}

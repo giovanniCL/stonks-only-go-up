@@ -4,7 +4,34 @@ import './SingleStonk.css'
 
 function SingleStonk(){
     return(
+        <>
         <div><Navbar /></div>
+
+    
+
+
+        <div className = "singleStonk_top">
+
+        <h1> Placeholder_Name </h1>
+        
+
+        </div>
+
+        <div className = "singleStonk_graph"></div>
+
+        <div className = "singleStonk_bottom">
+        <h2 id = "price">Price: </h2>
+        <h2 id = "volume">Volume: </h2>
+
+
+        </div>
+
+
+
+
+
+        
+        </>
     )
 }
 
