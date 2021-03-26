@@ -1,0 +1,53 @@
+@import url(https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap);
+
+
+.signUpBody {
+  position: absolute;
+  height: 91.78%;
+  width: 100%;
+  background-image: url(./stonkMeme.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+
+}
+
+
+.signUpBox h1{
+  font-size: 50px;
+  color: #0001B3;
+  margin-bottom: 50px;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.signUpBox{
+  
+  text-align: center;
+  width: min-content;
+  justify-content: center;
+  background-color: #EBEBFA;
+  font-family: 'Ubuntu', sans-serif;
+  -webkit-animation: fadein 2s; /* Safari, Chrome and Opera */
+  -moz-animation: fadein 2s; /* Firefox < 16*/
+  -ms-animation: fadein 2s; /* IE */
+  -o-animation: fadein 2s;/*Opera <12.1*/
+  animation: fadein 2s;
+  padding: 30px 100px 30px 100px;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+.signUpBox > *{
+  font-family: 'Ubuntu', sans-serif;
+  padding: 10px;
+  margin: 10px;
+  flex: 1 100%;
+}
+
+
+
+

@@ -56,6 +56,13 @@ input:focus {
 .App-link {
   color: #61dafb;
 }
+body{
+  font-family: 'Ubuntu', sans-serif;
+  background-color: darkblue;
+  color: white;
+
+}
+
 
 @keyframes App-logo-spin {
   from {
