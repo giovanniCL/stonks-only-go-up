@@ -1,6 +1,11 @@
 // General Imports
 import { React, useState } from "react"
 import { checkObjectNoProperties } from "../../FunctionBucket"
+import { genderList } from "../Lists/GenderList"
+import { educationLevelList } from "../Lists/EducationLevelList"
+import { ageList } from "../Lists/AgeList"
+import { reactSelectInputTheme, reactSelectInputStyles } from "../InlineDesignElements"
+import Select from 'react-select';
 
 // Setup Personal Info Page
 /*
@@ -12,7 +17,7 @@ const SetupPersonalInfoPage = (props) => {
         if (checkObjectNoProperties(props.setupForm.personalInfo)) {
             return {
                 personalName: "",
-                birthday: "",
+                age: "",
                 gender: "",
                 location: "",
                 educationLevel: "",
@@ -28,50 +33,67 @@ const SetupPersonalInfoPage = (props) => {
         setPersonalForm(inputPersonalFormWorking)
     }
 
+    function handleDropdownChange(key, value) {
+        let inputPersonalFormWorking = { ...inputPersonalForm }
+        inputPersonalFormWorking[key] = value.value
+        setPersonalForm(inputPersonalFormWorking)
+    }
+
     return (
-        <div className="setup-page-wrapper">
+        <div>
             <h1 className="setup-header">Personal Info Page</h1>
-            <p>Please input your personal information:</p>
+            <p className="setup-description">Please input your personal information:</p>
             <div className="setup-personal-info-inputs">
                 <input
                     name="personalName"
+                    autoComplete="off"
                     value={inputPersonalForm.personalName}
                     onChange={handleInputChange}
                     placeholder="Personal Name"
                     type="text"
                 />
-                <input
-                    name="birthday"
-                    value={inputPersonalForm.birthday}
-                    onChange={handleInputChange}
-                    placeholder="Birthday"
-                    type="text"
+                <Select
+                    className="react-select-input"
+                    theme={reactSelectInputTheme}
+                    onChange={(value) => handleDropdownChange("age", value)}
+                    value={!!inputPersonalForm.age && { label: inputPersonalForm.age, value: inputPersonalForm.age }}
+                    styles={reactSelectInputStyles}
+                    placeholder="Age"
+                    maxMenuHeight={160}
+                    options={ageList.map(ageRange => { return { label: ageRange, value: ageRange } })}
                 />
-                <input
-                    name="gender"
-                    value={inputPersonalForm.gender}
-                    onChange={handleInputChange}
+                <Select
+                    className="react-select-input"
+                    theme={reactSelectInputTheme}
+                    onChange={(value) => handleDropdownChange("gender", value)}
+                    value={!!inputPersonalForm.gender && { label: inputPersonalForm.gender, value: inputPersonalForm.gender }}
+                    styles={reactSelectInputStyles}
                     placeholder="Gender"
-                    type="text"
+                    maxMenuHeight={160}
+                    options={genderList.map(gender => { return { label: gender, value: gender } })}
                 />
                 <input
                     name="location"
+                    autoComplete="off"
                     value={inputPersonalForm.location}
                     onChange={handleInputChange}
                     placeholder="Location"
                     type="text"
                 />
-                <input
-                    name="educationLevel"
-                    value={inputPersonalForm.educationLevel}
-                    onChange={handleInputChange}
+                <Select
+                    className="react-select-input"
+                    theme={reactSelectInputTheme}
+                    onChange={(value) => handleDropdownChange("educationLevel", value)}
+                    value={!!inputPersonalForm.educationLevel && { label: inputPersonalForm.educationLevel, value: inputPersonalForm.educationLevel }}
+                    styles={reactSelectInputStyles}
                     placeholder="Education Level"
-                    type="text"
+                    maxMenuHeight={160}
+                    options={educationLevelList.map(level => { return { label: level, value: level } })}
                 />
             </div>
             <div className="setup-directory">
                 <button
-                    className="generic-path-button"
+                    className="back-setup-path-button"
                     onClick={() => {
                         props.handleMainFormChange("personalInfo", inputPersonalForm)
                         props.history.push('/setup/initial')
@@ -80,7 +102,7 @@ const SetupPersonalInfoPage = (props) => {
                     Back
                 </button>
                 <button
-                    className="generic-path-button"
+                    className="go-setup-path-button"
                     onClick={() => {
                         props.handleMainFormChange("personalInfo", inputPersonalForm)
                         props.history.push('/setup/interest-suggest')
