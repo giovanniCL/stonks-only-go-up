@@ -8,14 +8,10 @@ function SingleStonk({ match }){
         <>
         <div><Navbar /></div>
 
-    
-
-
         <div className = "singleStonk_top">
 
         <h1> {match.params.name}</h1>
         
-
         </div>
 
         <div className = "singleStonk_graph"></div>
@@ -26,11 +22,6 @@ function SingleStonk({ match }){
 
 
         </div>
-
-
-
-
-
         
         </>
     )

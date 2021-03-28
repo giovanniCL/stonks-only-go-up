@@ -17,7 +17,7 @@ const LogInPage = (props) => {
 
             <input type="text" name="username" placeholder="Username" required></input>
             <input type="password" name="password" placeholder="Password" required></input>
-            <input type="submit" value="Login"></input>
+            <input type="submit" value="Login" onClick={() => props.history.push('/dashboard')}></input>
             <button onClick={() => props.history.push('/reset/initial')}>Forget Password</button>
             
             
