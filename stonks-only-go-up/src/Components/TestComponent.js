@@ -22,6 +22,7 @@ const TestComponent = (props) => {
                 <button onClick={() => props.history.push('/followed-stonks')}>Followed Stonks Page</button>
                 <button onClick={() => props.history.push('/single-stonk/:name')}> Single Stonk Viewer</button>
                 <button onClick={() => props.history.push('/signup')}>Sign Up Page</button>
+                <button onClick={() => props.history.push('/dashboard')}>Dashboard</button>
 
             </ul>
         </div>
