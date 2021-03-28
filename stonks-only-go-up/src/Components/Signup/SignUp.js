@@ -2,7 +2,7 @@ import {React} from 'react'
 import "./signup.css"
 import Navbar from '../Navbar'
 
-const SignUp = () => {
+const SignUp = (props) => {
     return(
         <>
         <div> <Navbar /> </div>
@@ -21,7 +21,7 @@ const SignUp = () => {
          <input type = "text" className = "password" name ="password" placeholder = "Password"></input>
          <input type = "text" className= "password" name ="confirmPassword" placeholder = "Confirm Password"></input>
 
-         <button>Create Account</button>
+         <button onClick={() => props.history.push('/setup/initial')}>Create Account</button>
       </div>
       </div>
       </>
