@@ -1,17 +1,5 @@
 @import url(https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap);
 
-
-
-.singleStonk_graph{
-
-    position: center;
-    width: 775px;
-    height: 500px;
-    margin: 20px auto;
-    background: #000
-
-}
-
 .singleStonk_top{
     position: relative;
     width: 750px;
