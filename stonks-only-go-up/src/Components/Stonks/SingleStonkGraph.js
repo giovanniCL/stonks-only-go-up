@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from "axios"
 import { Line } from 'react-chartjs-2';
+import {niceTimestampFormat} from "../../FunctionBucket"
 
 function SingleStonkGraph(props) {
 
@@ -59,14 +60,11 @@ function SingleStonkGraph(props) {
                 let timeSeriesRawData = stonkData.data[`Time Series (${time})`]
                 let graphYDataRaw = []
                 let graphXDataRaw = []
-                console.log(stonkData)
-                if (!!stonkData.data.Note) {
-
-                    throw Error(stonkData.data.note)
+                if (!!stonkData.data.Note) { // if api calls be wildin
+                    throw Error(stonkData.data.Note)
                 }
                 Object.keys(timeSeriesRawData).forEach((eachTimeSeriesData) => {
-                    let pointTimestamp = eachTimeSeriesData
-                    console.log(typeof(pointTimestamp))
+                    let pointTimestamp = niceTimestampFormat(eachTimeSeriesData)
                     let pointPriceOpening = timeSeriesRawData[eachTimeSeriesData]['1. open']
                     graphYDataRaw.push(pointPriceOpening)
                     graphXDataRaw.push(pointTimestamp)
@@ -122,7 +120,6 @@ function SingleStonkGraph(props) {
                             </li>
                         )
                     })}
-
                 </ul>
             </div>
             {currentGraphYData.length !== 0 ?
