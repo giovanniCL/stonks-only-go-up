@@ -3,9 +3,11 @@ import axios from "axios"
 import { Line } from 'react-chartjs-2';
 
 function SingleStonkGraph(props) {
-    console.log(props)
 
     let stonkTicker = props.ticker
+
+    // Error Handling for Graph API
+    const [graphicalError, setGraphicalError] = useState(false)
 
     // For the duration of the graph
     const timeSeriesOptions = [
@@ -40,39 +42,65 @@ function SingleStonkGraph(props) {
     const [currentGraphYData, setCurrentGraphYData] = useState([])
     const [currentGraphXData, setCurrentGraphXData] = useState([])
 
+    const [dailyTimeseriesYData, setDailyTimeseriesYData] = useState([])
+    const [dailyTimeseriesXData, setDailyTimeseriesXData] = useState([])
+
     const key = "T4WHPV41IANODLYQ" // API Key
+    const key2 = "UE3XAM9RCAF6ONBQ" // shhhh
 
     // for 5 min inteervals today https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=demo
 
     useEffect(() => {
-        async function getGraphData() {
+        const intraDayStonkData = `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${stonkTicker}&interval=5min&apikey=${key}`
+        const dailyStonkData = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${stonkTicker}&apikey=${key2}`
+        async function getGraphData(apiCall, time) {
             try {
-                let stonkData = await axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${stonkTicker}&apikey=${key}`)
-                let timeSeriesRawData = stonkData.data['Time Series (Daily)']
+                let stonkData = await axios.get(apiCall)
+                let timeSeriesRawData = stonkData.data[`Time Series (${time})`]
                 let graphYDataRaw = []
                 let graphXDataRaw = []
+                console.log(stonkData)
+                if (!!stonkData.data.Note) {
+
+                    throw Error(stonkData.data.note)
+                }
                 Object.keys(timeSeriesRawData).forEach((eachTimeSeriesData) => {
                     let pointTimestamp = eachTimeSeriesData
+                    console.log(typeof(pointTimestamp))
                     let pointPriceOpening = timeSeriesRawData[eachTimeSeriesData]['1. open']
                     graphYDataRaw.push(pointPriceOpening)
                     graphXDataRaw.push(pointTimestamp)
-
                 })
                 graphYDataRaw = graphYDataRaw.reverse()
                 graphXDataRaw = graphXDataRaw.reverse()
 
-                setMasterGraphYData(graphYDataRaw)
-                setMasterGraphXData(graphXDataRaw)
+                if (time === "Daily") {
+                    setMasterGraphYData(graphYDataRaw)
+                    setMasterGraphXData(graphXDataRaw)
 
-                setCurrentGraphYData([...graphYDataRaw])
-                setCurrentGraphXData([...graphXDataRaw])
-            } catch (error) { console.log(error) }
+                    setCurrentGraphYData([...graphYDataRaw])
+                    setCurrentGraphXData([...graphXDataRaw])
+                } else if (time === "5min") {
+                    console.log('intraday')
+                    setDailyTimeseriesYData([...graphYDataRaw])
+                    setDailyTimeseriesXData([...graphXDataRaw])
+                }
+
+            } catch (error) { console.log(error); setGraphicalError(true) }
         }
-        getGraphData()
-    }, [])
+        getGraphData(dailyStonkData, "Daily")
+        getGraphData(intraDayStonkData, "5min")
+    }, [stonkTicker])
 
+    if (graphicalError) {
+        return (
+            <section id="graph-wrapper">
+                <h3>There was a problem retrieving graphical data, please try again later.</h3>
+            </section>
+        )
+    }
     return (
-        <div id="graph-wrapper">
+        <section id="graph-wrapper">
             <div className="top-graph-time-directory">
                 <ul className="top-graph-time-inner-list">
                     {timeSeriesOptions.map((timeSir, timeSeriesIndex) => {
@@ -80,7 +108,14 @@ function SingleStonkGraph(props) {
                             <li key={timeSeriesIndex}>
                                 <button
                                     className={currentTimeSeries === timeSir.label ? "selected-time-series" : ""}
-                                    onClick={() => handleTimeSeriesClick(timeSir)}
+                                    onClick={() => {
+                                        if (timeSir.label === "24 Hours") {
+                                            setTimeSeries(timeSir)
+                                        } else {
+                                            handleTimeSeriesClick(timeSir)
+                                        }
+                                        
+                                    }}
                                 >
                                     {timeSir.label}
                                 </button>
@@ -90,19 +125,18 @@ function SingleStonkGraph(props) {
 
                 </ul>
             </div>
-            {currentGraphYData.length !== 0 &&
+            {currentGraphYData.length !== 0 ?
                 (
                     <div>
                         <Line
                             id="graph-wrapper"
                             legend={{
                                 display: false,
-
                             }}
                             data={{
-                                labels: currentGraphXData,
+                                labels: currentTimeSeries.label === "24 Hours" ? dailyTimeseriesXData : currentGraphXData,
                                 datasets: [{
-                                    data: currentGraphYData,
+                                    data: currentTimeSeries.label === "24 Hours" ? dailyTimeseriesYData : currentGraphYData,
                                     borderColor: 'rgba(0,0,0,1)',
                                     borderWidth: 0,
                                     fill: true,
@@ -131,7 +165,6 @@ function SingleStonkGraph(props) {
                                 },
                                 scales: {
                                     xAxes: [{
-
                                         display: true,
                                         ticks: { fontColor: 'white' },
                                         scaleLabel: {
@@ -152,12 +185,15 @@ function SingleStonkGraph(props) {
                                         }
                                     }]
                                 }
-
                             }}
                         />
                     </div>
+                ) : (
+                    <div>
+                        <h3>Loading...</h3>
+                    </div>
                 )}
-        </div>
+        </section>
     )
 }
 export default SingleStonkGraph
