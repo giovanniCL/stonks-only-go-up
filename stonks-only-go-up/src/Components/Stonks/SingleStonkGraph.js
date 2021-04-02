@@ -166,7 +166,7 @@ function SingleStonkGraph(props) {
                                         ticks: { fontColor: 'white' },
                                         scaleLabel: {
                                             display: true,
-                                            labelString: 'Date',
+                                            labelString: currentTimeSeries.label === "24 Hours" ? "Time" : 'Date',
                                             fontColor: 'white',
                                             fontStyle: 'bold'
                                         },
