@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import StonkPreview from './StonkPreview'
 import StonksHeader from './StonksHeader'
-import Navbar from './Navbar'
+import Navbar from '../Navbar'
 import './HypeStonks.css'
 
 const FollowedStonks = (props) => {

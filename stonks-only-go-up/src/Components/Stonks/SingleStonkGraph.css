@@ -1,0 +1,39 @@
+/* <--- Single Stonk Graph ---> */
+
+.stonk-graph-outer-wrapper {
+    width: 100%;
+    display: inline-flex;
+    justify-content: center;
+}
+#graph-wrapper {
+    background-color:  #1f17a7;
+    width: 80%;
+    position: relative;
+    padding-bottom: 6px;
+}
+
+.top-graph-time-directory {
+    padding: 0 12px;
+    background: rgb(219, 219, 219);
+}
+.top-graph-time-inner-list {
+    list-style: none;
+    padding: 0;
+    display: inline-flex;
+    justify-content: flex-start;
+}
+.top-graph-time-inner-list  > li {
+    margin: 0 4px;
+}
+.top-graph-time-inner-list  > li > button {
+    border: 1px solid black;
+    padding: 4px 12px;
+    border: none;
+}
+.top-graph-time-inner-list  > li > button:hover {
+    background: gold;
+    cursor: pointer;
+}
+.top-graph-time-inner-list  > li > button:focus {
+    outline: none;
+}

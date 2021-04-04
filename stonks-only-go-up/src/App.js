@@ -7,9 +7,11 @@ import TestComponent from "./Components/TestComponent"
 import SignUp from './Components/Signup/SignUp'
 import LogInPage from './Components/Login/LogInPage';
 import ResetPage from './Components/Reset/ResetPage';
-import SingleStonk from './Components/SingleStonk';
-import HypeStonks from './Components/HypeStonks'
-import FollowedStonks from './Components/FollowedStonks'
+
+import SingleStonk from './Components/Stonks/SingleStonk';
+import HypeStonks from './Components/Stonks/HypeStonks'
+import FollowedStonks from './Components/Stonks/FollowedStonks'
+
 import MissionPage from './Components/Mission/Mission'
 import Dashboard from './Components/Dashboard'
 
