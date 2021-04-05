@@ -16,6 +16,15 @@ app.use(express.static('public'))
 //ROUTES GO HERE
 app.get('/', (req,res)=>{
 })
+app.get('/login', (req, res) => {
+    //Nothing here yet
+    //waiting for account database
+})
+
+app.get('/reset', (req, res) => {
+    //Nothing here yet
+    //waiting for account database
+})
 
 app.get('/signup', (req, res) => {
     //Nothing here yet, not even sure if we will need it.
@@ -47,8 +56,6 @@ app.get('/dashboard', cors(), async (req,res) => {
     let response = await axios("https://my.api.mockaroo.com/stonks.json?key=7d2830f0")
     res.json(response.data)
 })
-
-
 
 app.get('/hype', cors(), async (req,res) => {
     let response = await axios("https://my.api.mockaroo.com/stonks.json?key=7d2830f0")
