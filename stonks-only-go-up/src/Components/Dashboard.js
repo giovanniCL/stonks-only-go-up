@@ -1,11 +1,9 @@
 import Navbar from './Navbar'
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
-import StonkPreview from './StonkPreview'
-import StonksHeader from './StonksHeader'
+import StonkPreview from './Stonks/StonkPreview'
+import StonksHeader from './Stonks/StonksHeader'
 import './Dashboard.css'
-
-
 
 const Dashboard = (props) =>{
 
