@@ -30,6 +30,13 @@ app.get('/signup', (req, res) => {
     //Nothing here yet, not even sure if we will need it.
 })
 
+app.get('/setup/confirm', cors(), async (req,res) => {
+    // More of a 'get confirmation data'
+    // Should also be a post request to send the final account data to the db (still obviously not configured)
+    //console.log("setup/confirm test")
+    res.json("hello!")
+})
+
 app.get('/single-stonk/:name', (req, res) => {
 
     var stonkName = req.params.name;
