@@ -8,11 +8,12 @@ import './HypeStonks.css'
 const FollowedStonks = (props) => {
 
     const [data, setData] = useState([])
+    const [user, setUser] = useState(["some-user"])
 
     useEffect(()=>{
         async function fetchData(){
             //call to a mock api, we can change this later when we make the back-end
-            let response = await axios("http://localhost:8080/followed")
+            let response = await axios(`http://localhost:8080/followed/${user}`)
             setData(response.data)
         }
         fetchData()
