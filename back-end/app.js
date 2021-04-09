@@ -1,6 +1,8 @@
 const axios = require('axios')
 const express = require("express")
 const cors = require('cors')
+const mongoose = require('mongoose')
+
 const app = express()
 
 const finnhub = require('finnhub')
@@ -8,6 +10,14 @@ const api_key = finnhub.ApiClient.instance.authentications['api_key'];
 api_key.apiKey = "c1l3joa37fko6in4vvcg";
 const finnhubClient = new finnhub.DefaultApi();
 
+mongoose.connect('mongodb+srv://stonk_guy:3g3a20Sol4KP1bZd@cluster0.j7v6m.mongodb.net/stonks-only-go-up?retryWrites=true&w=majority', 
+{useNewUrlParser: true, useUnifiedTopology: true})
+
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+    console.log("connected to the stonk database")
+})
 
 
 app.use(express.static('public'))
@@ -41,9 +51,8 @@ app.get('/single-stonk/:name', (req, res) => {
 
     var stonkName = req.params.name;
     stonkName = stonkName.toUpperCase(); 
-    let stonk
     finnhubClient.quote(stonkName, (error, data, response) => {
-        stonk = data
+        let stonk = data
         const stonkData = {
 
             "stonkName" : stonkName, 
