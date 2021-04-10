@@ -20,6 +20,10 @@ const User= mongoose.model('User',{
     password:{
         type: String,
         required: true
+    },
+    followed:{
+        type: [String]
+
     }
 })
 
