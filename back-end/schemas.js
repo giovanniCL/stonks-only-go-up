@@ -56,4 +56,28 @@ const Stonk = mongoose.model('Stonk',{
     }
 })
 
-module.exports = {User, Stonk}
+const Tweet = mongoose.model('Tweet',{
+    id:{
+        type: String,
+        required: true
+    },
+    username:{
+        type: String,
+        required: true
+    },
+    content:{
+        type: String,
+        required: true
+    },
+    likes:{
+        type: Number,
+        required: true
+    },
+    retweets:{
+        type: Number,
+        required: true
+    }
+
+})
+
+module.exports = {User, Stonk, Tweet}

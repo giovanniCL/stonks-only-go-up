@@ -2,7 +2,7 @@ const axios = require('axios')
 const express = require("express")
 const cors = require('cors')
 const mongoose = require('mongoose')
-const {User, Stonk} = require('./schemas')
+const {User, Stonk, Tweet} = require('./schemas')
 
 const app = express()
 
@@ -91,6 +91,18 @@ app.get('/user-schema-test',(req,res)=>{
         password : "PASSWORD"
     })
     newUser.save().then(()=>res.send(`${newUser.username} saved to database`))
+})
+
+//This endpoint is only for testing tweet schema
+app.get('/tweet-schema-test',(req,res)=>{
+    const newTweet = new Tweet({
+        id: 'TWEET',
+        username : "stonk_guy_420",
+        content: "Hello World",
+        likes: 10,
+        retweets: 5
+    })
+    newTweet.save().then(()=>res.send(`${newTweet.id} saved to database`))
 })
 
 app.get('/dashboard', cors(), async (req,res) => {
