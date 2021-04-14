@@ -6,6 +6,11 @@ const app = express()
 const finnhub = require('finnhub')
 const api_key = finnhub.ApiClient.instance.authentications['api_key'];
 const finnhubClient = new finnhub.DefaultApi();
+var db = require('./db');
+
+var UserController = require('./user/UserController');
+app.use('/users', UserController);
+
 
 
 api_key.apiKey = "c1l3joa37fko6in4vvcg";

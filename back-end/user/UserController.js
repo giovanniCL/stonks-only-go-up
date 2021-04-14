@@ -1,13 +1,16 @@
 var express = require('express');
 var router = express.Router();
 var bodyParser = require("body-parser");
-router.use(express.urlencoded({extended: true}));
+
+
 router.use(express.json());
-var User = requre('./User');
+router.use(express.urlencoded({extended: true}));
 
 var VerifyToken = require('auth/VerifyToken');
+var User = requre('./User');
+
 //creating new user
-router.post('/',funtion (req,res) {
+router.post('/', function(req,res){
     User.create({
         first_name: req.body.first_name,
         last_name: req.body.last_name,
@@ -46,8 +49,8 @@ router.delete('/:id', function (req,res){
 })
 
 //updates a single user in database
-router.put('/:id,', /*VerifyToken,*/ function(req, res){
-    User.findByIdAndUpdate(req.params.id, req.body, {new: true}, funciton(err, user){
+router.put('/:id', VerifyToken, function(req, res){
+    User.findByIdAndUpdate(req.params.id, req.body, {new: true}, function(err, user){
         if(err) return res.status(500).send("There was a problem updating the user.")
         res.status.send(user)
     })
