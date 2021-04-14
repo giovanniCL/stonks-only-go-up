@@ -1,25 +1,113 @@
 @import url(https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap);
 
-.singleStonk_top{
+.top-single-stonk-viewer-wrapper {
+    width: 100%;
+    margin-top: 32px;
+    text-align: center;
     position: relative;
-    width: 750px;
-    margin: 20px auto;
+    height: 64px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
 }
-
+.go-back-single-bttn {
+    position: absolute;
+    left: 10%;
+    height: 32px;
+    top: 16px;
+}
+.go-back-single-bttn:hover {
+    cursor: pointer;
+}
 .singleStonk_top h1 {
     text-align: center;
 }
 
-.singleStonk_bottom{
+.singleStonk_bottom {
     position: relative;
     width: 750px;
     margin: 20px auto;
 }
 
-#price{
+#price {
     display: inline-block;
     margin-right: 600px;
 }
-#volume{
+#volume {
     display: inline-block;
+}
+
+#single-stonk-bottom-half {
+    border-top: 2px solid rgb(52, 52, 104);
+    margin: 24px 10% 24px;
+    border-bottom: 2px solid rgb(52, 52, 104);
+}
+
+.stonk-extra-company-info {
+    list-style: none;
+    padding: 0;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: calc(100% - 12px);
+    height: 120px;
+}
+.stonk-extra-company-info > .each-stonk-ci {
+    width: 25%;
+    height: 50%;
+    display: inline-flex;
+    justify-content: space-between;
+    border-right: 1px solid rgb(21, 21, 122);
+    border-left: 1px solid rgb(21, 21, 122);
+    color: rgba(255, 255, 255, 0.808);
+}
+.each-stonk-ci:nth-child(1),
+.each-stonk-ci:nth-child(2) {
+    border-left: 2px solid rgb(21, 21, 122);
+}
+.each-stonk-ci:nth-child(7),
+.each-stonk-ci:nth-child(8) {
+    border-right: 2px solid rgb(21, 21, 122);
+}
+.stonk-info-tag,
+.stonk-info-value {
+    font-size: 16px;
+    padding: 0px 12px;
+}
+
+#stonk-o-meter-hype-bar-single-viewer {
+    width: 100%;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#stonk-o-meter-hype-bar-single-viewer > .stonk-meter-header {
+}
+#stonk-o-meter-hype-bar-single-viewer > .stonk-meter {
+    width: 60%;
+    background: gold;
+    border-radius: 12px;
+    height: 12px;
+}
+
+#follow-unfollow-button-single-viewer {
+    width: 240px;
+    float: right;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    height: 64px;
+    background: rgb(52, 52, 104);
+    border: none;
+    border-radius: 12px;
+    color: rgba(255, 255, 255, 0.808);
+    font-size: 18px;
+}
+#follow-unfollow-button-single-viewer:hover {
+    cursor: pointer;
+    filter: brightness(95%)
+}
+#follow-unfollow-button-single-viewer:focus {
+    outline: none;
 }

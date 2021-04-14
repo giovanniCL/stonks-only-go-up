@@ -93,12 +93,16 @@ function SingleStonkGraph(props) {
     if (graphicalError) {
         return (
             <section id="graph-wrapper">
-                <h3>There was a problem retrieving graphical data, please try again later.</h3>
+                <h3 className="empty-graph-header">There was a problem retrieving graphical data, please try again later.</h3>
             </section>
         )
     }
     return (
         <section id="graph-wrapper">
+            <div className="upper-graph-header">
+                <h4 className="left-upper-graph-subheader">{props.stonkName}</h4>
+                <h4 className="right-upper-graph-subheader">{props.ticker}</h4>
+            </div>
             <div className="top-graph-time-directory">
                 <ul className="top-graph-time-inner-list">
                     {timeSeriesOptions.map((timeSir, timeSeriesIndex) => {
@@ -149,7 +153,6 @@ function SingleStonkGraph(props) {
                                 title: {
                                     fontColor: 'white',
                                     display: true,
-                                    text: `${stonkTicker} Stonk History Price`,
                                 },
 
                                 tooltips: {

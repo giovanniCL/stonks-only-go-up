@@ -6,10 +6,34 @@
     justify-content: center;
 }
 #graph-wrapper {
-    background-color:  #1f17a7;
+    background-color: rgb(21, 21, 122);
     width: 80%;
     position: relative;
     padding-bottom: 6px;
+    min-width: 480px;
+}
+.empty-graph-header {
+    text-align: center;
+    position: absolute;
+    top: 40%;
+    width: 80%;
+    left: 10%;
+}
+.upper-graph-header {
+    background: white;
+    margin: 0;
+    display: inline-flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.upper-graph-header > .left-upper-graph-subheader,
+.right-upper-graph-subheader {
+    font-size: 32px;
+    margin: 0;
+    padding: 4px 24px;
+    font-weight: bold;
+    font-family: "Ubuntu", sans-serif;
+    color: black;
 }
 
 .top-graph-time-directory {
@@ -22,18 +46,18 @@
     display: inline-flex;
     justify-content: flex-start;
 }
-.top-graph-time-inner-list  > li {
+.top-graph-time-inner-list > li {
     margin: 0 4px;
 }
-.top-graph-time-inner-list  > li > button {
+.top-graph-time-inner-list > li > button {
     border: 1px solid black;
     padding: 4px 12px;
     border: none;
 }
-.top-graph-time-inner-list  > li > button:hover {
+.top-graph-time-inner-list > li > button:hover {
     background: gold;
     cursor: pointer;
 }
-.top-graph-time-inner-list  > li > button:focus {
+.top-graph-time-inner-list > li > button:focus {
     outline: none;
 }
