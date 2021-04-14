@@ -16,9 +16,20 @@
     left: 10%;
     height: 32px;
     top: 16px;
+    background: white;
+    border: none;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    padding-right: 12px;
+    color: rgba(29, 28, 28, 0.808);
 }
 .go-back-single-bttn:hover {
     cursor: pointer;
+    filter: brightness(90%);
+}
+.go-back-single-bttn:focus {
+    outline: none;
 }
 .singleStonk_top h1 {
     text-align: center;
@@ -52,7 +63,7 @@
     justify-content: flex-start;
     flex-wrap: wrap;
     width: calc(100% - 12px);
-    height: 120px;
+    height: 70px;
 }
 .stonk-extra-company-info > .each-stonk-ci {
     width: 25%;
@@ -84,12 +95,14 @@
     align-items: center;
 }
 #stonk-o-meter-hype-bar-single-viewer > .stonk-meter-header {
+    color: rgba(255, 255, 255, 0.808);
 }
 #stonk-o-meter-hype-bar-single-viewer > .stonk-meter {
     width: 60%;
-    background: gold;
+    background: #492772;
+    padding: 4px;
     border-radius: 12px;
-    height: 12px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 
 #follow-unfollow-button-single-viewer {
@@ -106,7 +119,7 @@
 }
 #follow-unfollow-button-single-viewer:hover {
     cursor: pointer;
-    filter: brightness(95%)
+    filter: brightness(95%);
 }
 #follow-unfollow-button-single-viewer:focus {
     outline: none;

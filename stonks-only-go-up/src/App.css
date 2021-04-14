@@ -1,5 +1,6 @@
 @import "SetupDesign.css";
 @import "./Components/Stonks/SingleStonkGraph.css";
+@import "./Components/HypeMeter.css";
 
 @import url(https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap);
 body {

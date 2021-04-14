@@ -2,6 +2,8 @@ import React from 'react'
 import SingleStonkGraph from "./SingleStonkGraph"
 import Navbar from '../Navbar'
 import './SingleStonk.css'
+import { ArrowLeft } from 'react-feather'
+import HypeMeter from "../HypeMeter"
 
 function SingleStonk(props) {
     console.log(props)
@@ -28,7 +30,11 @@ function SingleStonk(props) {
             <article id="single-stonk-viewer-page">
                 <div className="top-single-stonk-viewer-wrapper">
                     <h1>Single Stonk Viewer</h1>
-                    <button className="go-back-single-bttn" onClick={() => { console.log("go back") }}>Back to Main Viewer</button>
+                    <button className="go-back-single-bttn" onClick={() => {
+                        props.history.goBack()
+                    }}>
+                        <ArrowLeft className="back-single-icon" />Back to Main Viewer
+                        </button>
                 </div>
                 <div className="stonk-graph-outer-wrapper">
                     <SingleStonkGraph
@@ -50,7 +56,7 @@ function SingleStonk(props) {
                     <div id="stonk-o-meter-hype-bar-single-viewer">
                         <h4 className="stonk-meter-header">Stonk-O-Meter Hype Score</h4>
                         <div className="stonk-meter">
-
+                            <HypeMeter score={89}/>
                         </div>
                     </div>
                     <button id="follow-unfollow-button-single-viewer">Follow</button>

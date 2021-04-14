@@ -189,9 +189,9 @@ function SingleStonkGraph(props) {
                         />
                     </div>
                 ) : (
-                    <div>
-                        <h3>Loading...</h3>
-                    </div>
+                    <section id="graph-wrapper">
+                        <h3 className="empty-graph-header">Loading...</h3>
+                    </section>
                 )}
         </section>
     )
