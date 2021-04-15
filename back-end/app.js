@@ -1,3 +1,4 @@
+require('dotenv').config()
 const axios = require('axios')
 const express = require("express")
 const cors = require('cors')
@@ -8,11 +9,10 @@ const app = express()
 
 const finnhub = require('finnhub')
 const api_key = finnhub.ApiClient.instance.authentications['api_key'];
-api_key.apiKey = "c1l3joa37fko6in4vvcg";
+api_key.apiKey = process.env.FINNHUB_KEY;
 const finnhubClient = new finnhub.DefaultApi();
 
-mongoose.connect('mongodb+srv://stonk_guy:3g3a20Sol4KP1bZd@cluster0.j7v6m.mongodb.net/stonks-only-go-up?retryWrites=true&w=majority', 
-{useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(process.env.DB, {useNewUrlParser: true, useUnifiedTopology: true})
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
