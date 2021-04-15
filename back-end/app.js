@@ -2,6 +2,7 @@ const axios = require('axios')
 const express = require("express")
 const cors = require('cors')
 const mongoose = require('mongoose')
+const {User, Stonk, Tweet} = require('./schemas')
 
 const app = express()
 
@@ -61,11 +62,47 @@ app.get('/single-stonk/:name', (req, res) => {
             "lowPrice" : stonk.l,
             "currentPrice" : stonk.c
         }
+
         res.send(stonkData);
     });
     
+})
 
 
+//This endpoint is only for testing the stonk schema
+app.get('/stonk-schema-test',(req,res)=>{
+    const newStonk = new Stonk({
+        symbol: "TEST",
+        openPrice : 10,
+        highPrice : 100,
+        lowPrice : 0,
+        currentPrice : 50
+    })
+    newStonk.save().then(()=>res.send(`${newStonk.symbol} saved to database`))
+})
+
+//This endpoint is only for testing the user schema
+app.get('/user-schema-test',(req,res)=>{
+    const newUser = new User({
+        firstname: "Stonk",
+        lastname : "Guy",
+        username : "stonk_guy_420",
+        email : "stonkguy420@gmail.com",
+        password : "PASSWORD"
+    })
+    newUser.save().then(()=>res.send(`${newUser.username} saved to database`))
+})
+
+//This endpoint is only for testing tweet schema
+app.get('/tweet-schema-test',(req,res)=>{
+    const newTweet = new Tweet({
+        id: 'TWEET',
+        username : "stonk_guy_420",
+        content: "Hello World",
+        likes: 10,
+        retweets: 5
+    })
+    newTweet.save().then(()=>res.send(`${newTweet.id} saved to database`))
 })
 
 app.get('/dashboard', cors(), async (req,res) => {
