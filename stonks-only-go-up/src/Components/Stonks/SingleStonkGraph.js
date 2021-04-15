@@ -47,13 +47,12 @@ function SingleStonkGraph(props) {
     const [dailyTimeseriesXData, setDailyTimeseriesXData] = useState([])
 
     const key = "T4WHPV41IANODLYQ" // API Key
-    const key2 = "UE3XAM9RCAF6ONBQ" // shhhh
 
     // for 5 min inteervals today https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=demo
 
     useEffect(() => {
         const intraDayStonkData = `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${stonkTicker}&interval=5min&apikey=${key}`
-        const dailyStonkData = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${stonkTicker}&apikey=${key2}`
+        const dailyStonkData = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${stonkTicker}&apikey=${key}`
         async function getGraphData(apiCall, time) {
             try {
                 let stonkData = await axios.get(apiCall)

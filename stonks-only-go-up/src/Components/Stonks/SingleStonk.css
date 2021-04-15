@@ -77,7 +77,7 @@
     height: 70px;
 }
 .stonk-extra-company-info > .each-stonk-ci {
-    width: 25%;
+    width: 20%;
     height: 50%;
     display: inline-flex;
     justify-content: space-between;
@@ -135,10 +135,38 @@
 #follow-unfollow-button-single-viewer:focus {
     outline: none;
 }
-
 .bad-stonk-info {
     color: red;
 }
 .good-stonk-info {
     color: green;
+}
+.stonk-top-from-bottom-half {
+    border-bottom: 2px solid rgb(52, 52, 104);
+}
+.stonk-top-from-bottom-half > .stonk-name-bottom {
+    font-size: 24px;
+}
+.stonk-top-from-bottom-half > .stonk-description-bottom {
+    letter-spacing: .5px;
+    line-height: 20px;
+}
+.stonk-table-info {
+    width: 50%;
+    margin-bottom: 32px;
+}
+.stonk-table-info > .each-stonk-table-row {
+    height: 48px;
+}
+.each-stonk-table-row-start {
+    font-weight: bold;
+}
+.each-stonk-table-row > .each-stonk-table-row-start, .each-stonk-table-row-end {
+    border-top: 1px solid rgb(21, 21, 122);
+}
+.each-stonk-table-row-end > a {
+    color: rgb(148, 222, 247);
+}
+.each-stonk-table-row-end > a:hover {
+    background: none;
 }

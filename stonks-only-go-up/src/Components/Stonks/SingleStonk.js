@@ -11,47 +11,62 @@ function SingleStonk(props) {
     const tickerSymbol = "TSLA"
 
     const [loadingStonkData, setLoadingStonkData] = useState(true)
-    useEffect(() => {
+    useEffect(async () => {
         const finnhubAPI = 'c1rp9kaad3ifb04k9aa0'
         //const finnhubAPI2 = 'sandbox_c1rp9kaad3ifb04k9aag'
         async function grabCompanyInfo() {
             const companyDataCall = `https://finnhub.io/api/v1/stock/profile2?symbol=${tickerSymbol}&token=${finnhubAPI}`
             try {
                 let rawStonkBasicData = await axios.get(companyDataCall)
-                const parsedBasicData = {
-                    website: rawStonkBasicData.data.weburl,
-                    name: rawStonkBasicData.data.name,
-                    logo: rawStonkBasicData.data.logo,
-                    exchange: rawStonkBasicData.data.exchange,
-                    country: rawStonkBasicData.data.country,
-                }
-                setCompanyInfo(parsedBasicData)
+
+                companyInfo["website"] = rawStonkBasicData.data.weburl
+                companyInfo["name"] = rawStonkBasicData.data.name
+                companyInfo["logo"] = rawStonkBasicData.data.logo
+                companyInfo["exchange"] = rawStonkBasicData.data.exchange
+                companyInfo["country"] = rawStonkBasicData.data.country
 
                 stonkQuote["Market Cap"] = rawStonkBasicData.data.marketCapitalization
                 stonkQuote["Shares Outstanding"] = rawStonkBasicData.data.shareOutstanding
-                await grabCompanyQuote()
-            } catch (error) { console.log(error); setLoadingStonkData(false) }
+                setCompanyInfo({ ...companyInfo })
+                setStonkQuote({ ...stonkQuote })
+            } catch (error) { console.log(error) }
         }
         async function grabCompanyQuote() {
             const quoteCall = `https://finnhub.io/api/v1/quote?symbol=${tickerSymbol}&token=${finnhubAPI}`
             try {
                 let rawStonkQuote = await axios.get(quoteCall)
-                console.log(rawStonkQuote.data)
                 stonkQuote["Price"] = rawStonkQuote.data.c
                 stonkQuote["High"] = rawStonkQuote.data.h
                 stonkQuote["Low"] = rawStonkQuote.data.l
                 stonkQuote["Open"] = rawStonkQuote.data.o
                 stonkQuote["Previous Close"] = rawStonkQuote.data.pc
                 setStonkQuote({ ...stonkQuote })
-                setLoadingStonkData(false)
-
-            } catch (error) { console.log(error); setLoadingStonkData(false) }
+            } catch (error) { console.log(error) }
         }
-        grabCompanyInfo()
+        async function grabCompanyAdditionalData() {
+            const additionalCompanyData = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${tickerSymbol}&apikey=T4WHPV41IANODLYQ`
+            try {
+                let rawAdditionalCompany = await axios.get(additionalCompanyData)
+                companyInfo["description"] = rawAdditionalCompany.data.Description
+                companyInfo["industry"] = rawAdditionalCompany.data.Industry
+                stonkQuote["EPS"] = rawAdditionalCompany.data.EPS
+                stonkQuote["Dividend Yield"] = rawAdditionalCompany.data.DividendYield + "%"
+                stonkQuote["Dividend Per Share"] = rawAdditionalCompany.data.DividendPerShare
+                setCompanyInfo({ ...companyInfo })
+                setStonkQuote({ ...stonkQuote })
+            } catch (error) { console.log(error) }
+        }
+        let grabCompanyInfoPromise = grabCompanyInfo()
+        let grabCompanyQuotePromise = grabCompanyQuote()
+        let grabCompanyAdditionalPromise = grabCompanyAdditionalData()
+        await Promise.all([grabCompanyInfoPromise, grabCompanyQuotePromise, grabCompanyAdditionalPromise])
+        setLoadingStonkData(false)
     }, [])
 
     const [companyInfo, setCompanyInfo] = useState({
         name: "",
+        description: "",
+        industry: "",
         country: "",
         website: "",
         logo: "",
@@ -66,9 +81,14 @@ function SingleStonk(props) {
         "Previous Close": '--',
         "Market Cap": '--',
         "Shares Outstanding": '--',
+        "EPS": "--",
+        "Dividend Yield": "--",
     })
 
     const [hypeScore, setHypeScore] = useState(89)
+
+    console.log(companyInfo)
+    console.log(stonkQuote)
     return (
         <>
             <Navbar />
@@ -94,21 +114,27 @@ function SingleStonk(props) {
                             />
                         </div>
                         <section id="single-stonk-bottom-half">
-                            <div>
-                                <h2>{companyInfo.name}</h2>
-                                <div>
-                                    <h5>Country:</h5>
-                                    <p>{companyInfo.country}</p>
-                                </div>
-                                <div>
-                                    <h5>Exchange</h5>
-                                    <p>{companyInfo.exchange}</p>
-                                </div>
-                                <div>
-                                    <h5>Website:</h5>
-                                    <a href={companyInfo.website} target="_blank">{companyInfo.website}</a>
-                                </div>
-
+                            <div className="stonk-top-from-bottom-half">
+                                <h2 className="stonk-name-bottom">{companyInfo.name}</h2>
+                                <p className="stonk-description-bottom">{companyInfo.description}</p>
+                                <table className="stonk-table-info">
+                                    <tr className="each-stonk-table-row">
+                                        <td className="each-stonk-table-row-start">Industry</td>
+                                        <td className="each-stonk-table-row-end">{companyInfo.industry}</td>
+                                    </tr>
+                                    <tr className="each-stonk-table-row">
+                                        <td className="each-stonk-table-row-start">Country</td>
+                                        <td className="each-stonk-table-row-end">{companyInfo.country}</td>
+                                    </tr>
+                                    <tr className="each-stonk-table-row">
+                                        <td className="each-stonk-table-row-start">Exchange</td>
+                                        <td className="each-stonk-table-row-end">{companyInfo.exchange}</td>
+                                    </tr>
+                                    <tr className="each-stonk-table-row">
+                                        <td className="each-stonk-table-row-start">Website</td>
+                                        <td className="each-stonk-table-row-end"><a href={companyInfo.website} target="_blank">{companyInfo.website}</a></td>
+                                    </tr>
+                                </table>
                             </div>
                             <ul className="stonk-extra-company-info">
                                 {Object.keys(stonkQuote).map((eachSpecificStonkInfo, stonkInfoIndex) => {
