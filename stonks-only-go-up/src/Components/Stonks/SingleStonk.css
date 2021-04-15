@@ -1,5 +1,16 @@
 @import url(https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap);
 
+#loading-full-empty-single-stonk {
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    top: 45%;
+}
+
+#loading-full-empty-single-stonk > .basic-loading-header {
+    text-align: center;
+    width: 100%;
+}
 .top-single-stonk-viewer-wrapper {
     width: 100%;
     margin-top: 32px;
@@ -123,4 +134,11 @@
 }
 #follow-unfollow-button-single-viewer:focus {
     outline: none;
+}
+
+.bad-stonk-info {
+    color: red;
+}
+.good-stonk-info {
+    color: green;
 }
