@@ -25,8 +25,8 @@ function SingleStonk(props) {
                 companyInfo["exchange"] = rawStonkBasicData.data.exchange
                 companyInfo["country"] = rawStonkBasicData.data.country
 
-                stonkQuote["Market Cap"] = rawStonkBasicData.data.marketCapitalization
-                stonkQuote["Shares Outstanding"] = rawStonkBasicData.data.shareOutstanding
+                stonkQuote["Market Cap."] = rawStonkBasicData.data.marketCapitalization
+                stonkQuote["Shares Out."] = rawStonkBasicData.data.shareOutstanding
                 setCompanyInfo({ ...companyInfo })
                 setStonkQuote({ ...stonkQuote })
             } catch (error) { console.log(error) }
@@ -75,14 +75,15 @@ function SingleStonk(props) {
 
     const [stonkQuote, setStonkQuote] = useState({
         "Price": '--',
+        "EPS": "--",
         "High": '--',
         "Low": '--',
         "Open": '--',
         "Previous Close": '--',
-        "Market Cap": '--',
-        "Shares Outstanding": '--',
-        "EPS": "--",
+        "Market Cap.": '--',
+        "Shares Out.": '--',
         "Dividend Yield": "--",
+        "Dividend Per Share": "--",
     })
 
     const [hypeScore, setHypeScore] = useState(89)
@@ -118,29 +119,31 @@ function SingleStonk(props) {
                                 <h2 className="stonk-name-bottom">{companyInfo.name}</h2>
                                 <p className="stonk-description-bottom">{companyInfo.description}</p>
                                 <table className="stonk-table-info">
-                                    <tr className="each-stonk-table-row">
-                                        <td className="each-stonk-table-row-start">Industry</td>
-                                        <td className="each-stonk-table-row-end">{companyInfo.industry}</td>
-                                    </tr>
-                                    <tr className="each-stonk-table-row">
-                                        <td className="each-stonk-table-row-start">Country</td>
-                                        <td className="each-stonk-table-row-end">{companyInfo.country}</td>
-                                    </tr>
-                                    <tr className="each-stonk-table-row">
-                                        <td className="each-stonk-table-row-start">Exchange</td>
-                                        <td className="each-stonk-table-row-end">{companyInfo.exchange}</td>
-                                    </tr>
-                                    <tr className="each-stonk-table-row">
-                                        <td className="each-stonk-table-row-start">Website</td>
-                                        <td className="each-stonk-table-row-end"><a href={companyInfo.website} target="_blank">{companyInfo.website}</a></td>
-                                    </tr>
+                                    <tbody>
+                                        <tr className="each-stonk-table-row">
+                                            <td className="each-stonk-table-row-start">Industry</td>
+                                            <td className="each-stonk-table-row-end">{companyInfo.industry}</td>
+                                        </tr>
+                                        <tr className="each-stonk-table-row">
+                                            <td className="each-stonk-table-row-start">Country</td>
+                                            <td className="each-stonk-table-row-end">{companyInfo.country}</td>
+                                        </tr>
+                                        <tr className="each-stonk-table-row">
+                                            <td className="each-stonk-table-row-start">Exchange</td>
+                                            <td className="each-stonk-table-row-end">{companyInfo.exchange}</td>
+                                        </tr>
+                                        <tr className="each-stonk-table-row">
+                                            <td className="each-stonk-table-row-start">Website</td>
+                                            <td className="each-stonk-table-row-end"><a href={companyInfo.website} target="_blank">{companyInfo.website}</a></td>
+                                        </tr>
+                                    </tbody>
                                 </table>
                             </div>
                             <ul className="stonk-extra-company-info">
                                 {Object.keys(stonkQuote).map((eachSpecificStonkInfo, stonkInfoIndex) => {
                                     return (
                                         <li className="each-stonk-ci" key={stonkInfoIndex}>
-                                            <h2 className="stonk-info-tag">{eachSpecificStonkInfo}: </h2>
+                                            <h2 className="stonk-info-tag">{eachSpecificStonkInfo}</h2>
                                             <h2 className="stonk-info-value">{stonkQuote[eachSpecificStonkInfo]}</h2>
                                         </li>
                                     )

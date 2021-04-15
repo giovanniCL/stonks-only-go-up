@@ -87,11 +87,11 @@
 }
 .each-stonk-ci:nth-child(1),
 .each-stonk-ci:nth-child(2) {
-    border-left: 2px solid rgb(21, 21, 122);
+    border: none;
 }
-.each-stonk-ci:nth-child(7),
-.each-stonk-ci:nth-child(8) {
-    border-right: 2px solid rgb(21, 21, 122);
+.each-stonk-ci:nth-child(9),
+.each-stonk-ci:nth-child(10) {
+    border: none;
 }
 .stonk-info-tag,
 .stonk-info-value {
@@ -148,20 +148,21 @@
     font-size: 24px;
 }
 .stonk-top-from-bottom-half > .stonk-description-bottom {
-    letter-spacing: .5px;
+    letter-spacing: 0.5px;
     line-height: 20px;
 }
 .stonk-table-info {
     width: 50%;
     margin-bottom: 32px;
 }
-.stonk-table-info > .each-stonk-table-row {
-    height: 48px;
+.each-stonk-table-row {
+    height: 32px;
 }
 .each-stonk-table-row-start {
     font-weight: bold;
 }
-.each-stonk-table-row > .each-stonk-table-row-start, .each-stonk-table-row-end {
+.each-stonk-table-row > .each-stonk-table-row-start,
+.each-stonk-table-row-end {
     border-top: 1px solid rgb(21, 21, 122);
 }
 .each-stonk-table-row-end > a {
@@ -169,4 +170,63 @@
 }
 .each-stonk-table-row-end > a:hover {
     background: none;
+}
+
+@media only screen and (max-width: 1400px) {
+    .stonk-extra-company-info > .each-stonk-ci {
+        width: 50%;
+        height: 20%;
+    }
+    .stonk-extra-company-info {
+        height: 180px;
+    }
+    .each-stonk-ci:nth-child(1),
+    .each-stonk-ci:nth-child(2),
+    .each-stonk-ci:nth-child(3),
+    .each-stonk-ci:nth-child(4),
+    .each-stonk-ci:nth-child(5) {
+        border-left: none;
+    }
+    .each-stonk-ci:nth-child(6),
+    .each-stonk-ci:nth-child(7),
+    .each-stonk-ci:nth-child(8),
+    .each-stonk-ci:nth-child(9),
+    .each-stonk-ci:nth-child(10) {
+        border-right: none;
+    }
+    .stonk-table-info {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .stonk-extra-company-info > .each-stonk-ci {
+        width: 100%;
+        height: 10%;
+    }
+    .stonk-extra-company-info {
+        height: 280px;
+    }
+    .each-stonk-ci:nth-child(1n) {
+        border: none;
+    }
+    #stonk-o-meter-hype-bar-single-viewer {
+        display: block;
+        margin-bottom: 12px;
+    }
+    #stonk-o-meter-hype-bar-single-viewer > .stonk-meter-header {
+        width: 100%;
+        text-align: center;
+        display: block;
+        margin-bottom: 6px;
+    }
+    #stonk-o-meter-hype-bar-single-viewer > .stonk-meter {
+        width: 100%;
+        display: block;
+        background: #492772;
+        padding: 4px;
+        border-radius: 12px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    }
+    
 }
