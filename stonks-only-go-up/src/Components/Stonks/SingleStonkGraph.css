@@ -10,8 +10,13 @@
     width: 80%;
     position: relative;
     padding-bottom: 6px;
-    min-width: 480px;
+}
+#empty-graph-wrapper {
     min-height: 400px;
+    background-color: rgb(21, 21, 122);
+    width: 80%;
+    position: relative;
+    padding-bottom: 6px;
 }
 .empty-graph-header {
     text-align: center;
@@ -20,6 +25,7 @@
     top: 50%;
     width: 80%;
     left: 10%;
+    
 }
 .upper-graph-header {
     background: white;

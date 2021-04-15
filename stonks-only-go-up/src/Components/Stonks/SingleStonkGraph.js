@@ -7,6 +7,8 @@ function SingleStonkGraph(props) {
 
     let stonkTicker = props.ticker
 
+    const [loadingGraph, setLoadingGraph] = useState(true)
+
     // Error Handling for Graph API
     const [graphicalError, setGraphicalError] = useState(false)
 
@@ -24,6 +26,7 @@ function SingleStonkGraph(props) {
 
     function handleTimeSeriesClick(newSeries) {
         setTimeSeries(newSeries)
+        console.log("run")
 
         let cutNumberFrom = masterGraphYData.length - newSeries.daysConvert // Doesnt matter if y or x
         let cutNumberTo = masterGraphYData.length
@@ -32,8 +35,24 @@ function SingleStonkGraph(props) {
             cutNumberFrom = 0
         }
 
-        setCurrentGraphYData([...masterGraphYData].splice(cutNumberFrom, cutNumberTo))
-        setCurrentGraphXData([...masterGraphXData].splice(cutNumberFrom, cutNumberTo))
+        let tempCurrentGraphYData = [...masterGraphYData].splice(cutNumberFrom, cutNumberTo)
+        let tempCurrentGraphXData = [...masterGraphXData].splice(cutNumberFrom, cutNumberTo)
+
+        if (tempCurrentGraphXData.length > 50) {
+            tempCurrentGraphXData = [...tempCurrentGraphXData].filter(function (value, index) {
+                return (index + 1) % 3 != 0;
+            });
+        }
+        if (tempCurrentGraphYData.length > 50) {
+            console.log(tempCurrentGraphYData)
+            tempCurrentGraphYData = [...tempCurrentGraphYData].filter(function (value, index) {
+                return (index + 1) % 3 != 0;
+            })
+            console.log(tempCurrentGraphYData)
+        }
+
+        setCurrentGraphYData(tempCurrentGraphYData)
+        setCurrentGraphXData(tempCurrentGraphXData)
     }
 
     // The main data we fetch, since we dont want to keep refetching
@@ -50,13 +69,14 @@ function SingleStonkGraph(props) {
 
     // for 5 min inteervals today https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=demo
 
-    useEffect(() => {
+    useEffect(async () => {
         const intraDayStonkData = `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${stonkTicker}&interval=5min&apikey=${key}`
         const dailyStonkData = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${stonkTicker}&apikey=${key}`
         async function getGraphData(apiCall, time) {
             try {
                 let stonkData = await axios.get(apiCall)
                 let timeSeriesRawData = stonkData.data[`Time Series (${time})`]
+                console.log(stonkData.data)
                 let graphYDataRaw = []
                 let graphXDataRaw = []
                 if (!!stonkData.data.Note) { // if api calls be wildin
@@ -84,12 +104,16 @@ function SingleStonkGraph(props) {
 
             } catch (error) { console.log(error); setGraphicalError(true) }
         }
-        getGraphData(dailyStonkData, "Daily")
-        getGraphData(intraDayStonkData, "5min")
+
+        const dailyStonkPromise = getGraphData(dailyStonkData, "Daily")
+        const intradayStonkPromise = getGraphData(intraDayStonkData, "5min")
+        await Promise.all([dailyStonkPromise, intradayStonkPromise])
+        setLoadingGraph(false)
     }, [stonkTicker])
 
+    console.log(dailyTimeseriesYData)
     return (
-        <section id="graph-wrapper">
+        <section id={graphicalError || loadingGraph ? "empty-graph-wrapper" : "graph-wrapper"}>
             <div className="upper-graph-header">
                 <div className="left-upper-graph">
                     <img className="left-upper-graph-logo" src={props.logo} alt="" />
@@ -101,98 +125,105 @@ function SingleStonkGraph(props) {
                 <h3 className="empty-graph-header">There was a problem retrieving graphical data, please try again later.</h3>
             ) : (
                     <>
-                        <div className="top-graph-time-directory">
-                            <ul className="top-graph-time-inner-list">
-                                {timeSeriesOptions.map((timeSir, timeSeriesIndex) => {
-                                    return (
-                                        <li key={timeSeriesIndex}>
-                                            <button
-                                                className={currentTimeSeries === timeSir.label ? "selected-time-series" : ""}
-                                                onClick={() => {
-                                                    if (timeSir.label === "24 Hours") {
-                                                        setTimeSeries(timeSir)
-                                                    } else {
-                                                        handleTimeSeriesClick(timeSir)
-                                                    }
-
-                                                }}
-                                            >
-                                                {timeSir.label}
-                                            </button>
-                                        </li>
-                                    )
-                                })}
-                            </ul>
-                        </div>
                         {currentGraphYData.length !== 0 ?
                             (
-                                <div>
-                                    <Line
-                                        id="graph-wrapper"
-                                        legend={{
-                                            display: false,
-                                        }}
-                                        data={{
-                                            labels: currentTimeSeries.label === "24 Hours" ? dailyTimeseriesXData : currentGraphXData,
-                                            datasets: [{
-                                                data: currentTimeSeries.label === "24 Hours" ? dailyTimeseriesYData : currentGraphYData,
-                                                borderColor: '#7926ff',
-                                                borderWidth: 4,
-                                                fill: false,
-                                                lineTension: 0,
-                                                backgroundColor: '#7926ff',
-                                                pointRadius: 0,
-                                                pointHitRadius: 5,
-                                                pointBorderColor: 'black',
-                                                pointHoverBorderColor: 'black',
-                                            }]
-                                        }}
-                                        options={{
-                                            title: {
-                                                fontColor: 'white',
-                                                display: true,
-                                            },
+                                <>
+                                    <div className="top-graph-time-directory">
+                                        <ul className="top-graph-time-inner-list">
+                                            {timeSeriesOptions.map((timeSir, timeSeriesIndex) => {
+                                                return (
+                                                    <li key={timeSeriesIndex}>
+                                                        <button
+                                                            className={currentTimeSeries === timeSir.label ? "selected-time-series" : ""}
+                                                            onClick={() => {
+                                                                if (timeSir.label === "24 Hours") {
+                                                                    setTimeSeries(timeSir)
 
-                                            tooltips: {
-                                                mode: 'index',
-                                                intersect: false
-                                            },
-                                            hover: {
-                                                mode: 'index',
-                                                intersect: false,
-                                            },
-                                            scales: {
-                                                xAxes: [{
-                                                    display: true,
-                                                    ticks: { fontColor: 'white' },
-                                                    scaleLabel: {
-                                                        display: true,
-                                                        labelString: currentTimeSeries.label === "24 Hours" ? "Time" : 'Date',
-                                                        fontColor: 'white',
-                                                        fontStyle: 'bold'
-                                                    },
-                                                }],
-                                                yAxes: [{
-                                                    display: true,
-                                                    ticks: { fontColor: 'white' },
-                                                    scaleLabel: {
-                                                        display: true,
-                                                        labelString: 'Price (USD $)',
-                                                        fontColor: 'white',
-                                                        fontStyle: 'bold'
-                                                    }
+
+                                                                } else {
+                                                                    handleTimeSeriesClick(timeSir)
+                                                                }
+
+                                                            }}
+                                                        >
+                                                            {timeSir.label}
+                                                        </button>
+                                                    </li>
+                                                )
+                                            })}
+                                        </ul>
+                                    </div>
+
+                                    {console.log(currentTimeSeries.label)}
+
+                                    <div>
+                                        <Line
+                                            id="graph-wrapper"
+                                            legend={{
+                                                display: false,
+                                            }}
+                                            data={{
+                                                labels: currentTimeSeries.label === "24 Hours" ? dailyTimeseriesXData : currentGraphXData,
+                                                datasets: [{
+                                                    data: currentTimeSeries.label === "24 Hours" ? dailyTimeseriesYData : currentGraphYData,
+                                                    borderColor: '#7926ff',
+                                                    borderWidth: 4,
+                                                    fill: false,
+                                                    lineTension: 0,
+                                                    backgroundColor: '#7926ff',
+                                                    pointRadius: 0,
+                                                    pointHitRadius: 5,
+                                                    pointBorderColor: 'black',
+                                                    pointHoverBorderColor: 'black',
                                                 }]
-                                            }
-                                        }}
-                                    />
-                                </div>
+                                            }}
+                                            options={{
+                                                title: {
+                                                    fontColor: 'white',
+                                                    display: true,
+                                                },
+
+                                                tooltips: {
+                                                    mode: 'index',
+                                                    intersect: false
+                                                },
+                                                hover: {
+                                                    mode: 'index',
+                                                    intersect: false,
+                                                },
+                                                scales: {
+                                                    xAxes: [{
+                                                        display: true,
+                                                        ticks: { fontColor: 'white' },
+                                                        scaleLabel: {
+                                                            display: true,
+                                                            labelString: currentTimeSeries.label === "24 Hours" ? "Time" : 'Date',
+                                                            fontColor: 'white',
+                                                            fontStyle: 'bold'
+                                                        },
+                                                    }],
+                                                    yAxes: [{
+                                                        display: true,
+                                                        ticks: { fontColor: 'white' },
+                                                        scaleLabel: {
+                                                            display: true,
+                                                            labelString: 'Price (USD $)',
+                                                            fontColor: 'white',
+                                                            fontStyle: 'bold'
+                                                        }
+                                                    }]
+                                                }
+                                            }}
+                                        />
+                                    </div>
+                                </>
                             ) : (
                                 <h3 className="empty-graph-header">Loading...</h3>
                             )}
                     </>
                 )}
 
-        </section>
+        </ section>
     )
 }
 export default SingleStonkGraph

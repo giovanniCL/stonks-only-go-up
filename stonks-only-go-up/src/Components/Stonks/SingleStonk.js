@@ -8,7 +8,7 @@ import axios from "axios"
 
 function SingleStonk(props) {
     // Note. ticker should be passed down from props.match.params.name
-    const tickerSymbol = "TSLA"
+    const tickerSymbol = "SBUX"
 
     const [loadingStonkData, setLoadingStonkData] = useState(true)
     useEffect(async () => {
@@ -100,7 +100,7 @@ function SingleStonk(props) {
             ) : (
                     <article id="single-stonk-viewer-page">
                         <div className="top-single-stonk-viewer-wrapper">
-                            <h1>Single Stonk Viewer</h1>
+           
                             <button className="go-back-single-bttn" onClick={() => {
                                 props.history.goBack()
                             }}>
