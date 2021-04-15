@@ -88,8 +88,6 @@ function SingleStonk(props) {
 
     const [hypeScore, setHypeScore] = useState(89)
 
-    console.log(companyInfo)
-    console.log(stonkQuote)
     return (
         <>
             <Navbar />
@@ -100,7 +98,6 @@ function SingleStonk(props) {
             ) : (
                     <article id="single-stonk-viewer-page">
                         <div className="top-single-stonk-viewer-wrapper">
-           
                             <button className="go-back-single-bttn" onClick={() => {
                                 props.history.goBack()
                             }}>

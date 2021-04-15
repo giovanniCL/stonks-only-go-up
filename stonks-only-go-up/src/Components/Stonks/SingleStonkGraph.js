@@ -14,19 +14,18 @@ function SingleStonkGraph(props) {
 
     // For the duration of the graph
     const timeSeriesOptions = [
-        { label: "1 Year", daysConvert: "365" },
-        { label: "6 Months", daysConvert: "132" },
-        { label: "3 Months", daysConvert: "66" },
-        { label: "1 Month", daysConvert: "22" },
-        { label: "1 Week", daysConvert: "7" },
-        { label: "24 Hours", daysConvert: "1" },
+        { label: "1Y", daysConvert: "255" },
+        { label: "6M", daysConvert: "132" },
+        { label: "3M", daysConvert: "66" },
+        { label: "1M", daysConvert: "22" },
+        { label: "1W", daysConvert: "7" },
+        { label: "1D", daysConvert: "1" },
     ]
 
     const [currentTimeSeries, setTimeSeries] = useState(timeSeriesOptions[timeSeriesOptions.length - 1])
 
     function handleTimeSeriesClick(newSeries) {
         setTimeSeries(newSeries)
-        console.log("run")
 
         let cutNumberFrom = masterGraphYData.length - newSeries.daysConvert // Doesnt matter if y or x
         let cutNumberTo = masterGraphYData.length
@@ -44,11 +43,9 @@ function SingleStonkGraph(props) {
             });
         }
         if (tempCurrentGraphYData.length > 50) {
-            console.log(tempCurrentGraphYData)
             tempCurrentGraphYData = [...tempCurrentGraphYData].filter(function (value, index) {
                 return (index + 1) % 3 != 0;
             })
-            console.log(tempCurrentGraphYData)
         }
 
         setCurrentGraphYData(tempCurrentGraphYData)
@@ -67,16 +64,13 @@ function SingleStonkGraph(props) {
 
     const key = "T4WHPV41IANODLYQ" // API Key
 
-    // for 5 min inteervals today https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=demo
-
     useEffect(async () => {
         const intraDayStonkData = `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${stonkTicker}&interval=5min&apikey=${key}`
-        const dailyStonkData = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${stonkTicker}&apikey=${key}`
+        const dailyStonkData = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${stonkTicker}&outputsize=full&apikey=${key}`
         async function getGraphData(apiCall, time) {
             try {
                 let stonkData = await axios.get(apiCall)
                 let timeSeriesRawData = stonkData.data[`Time Series (${time})`]
-                console.log(stonkData.data)
                 let graphYDataRaw = []
                 let graphXDataRaw = []
                 if (!!stonkData.data.Note) { // if api calls be wildin
@@ -94,24 +88,23 @@ function SingleStonkGraph(props) {
                 if (time === "Daily") {
                     setMasterGraphYData(graphYDataRaw)
                     setMasterGraphXData(graphXDataRaw)
-
                     setCurrentGraphYData([...graphYDataRaw])
                     setCurrentGraphXData([...graphXDataRaw])
+                    getGraphData(intraDayStonkData, "5min")
                 } else if (time === "5min") {
-                    setDailyTimeseriesYData([...graphYDataRaw])
-                    setDailyTimeseriesXData([...graphXDataRaw])
+                    const startTimeIndex = graphXDataRaw.findIndex(o => o ===  "09:30")
+                    const endTimeIndex = graphXDataRaw.findIndex(o => o === "4:00")
+                    setDailyTimeseriesYData([...graphYDataRaw.slice(startTimeIndex, endTimeIndex + 1)])
+                    setDailyTimeseriesXData([...graphXDataRaw.slice(startTimeIndex, endTimeIndex + 1)])
+                    setLoadingGraph(false)
                 }
-
             } catch (error) { console.log(error); setGraphicalError(true) }
         }
-
-        const dailyStonkPromise = getGraphData(dailyStonkData, "Daily")
-        const intradayStonkPromise = getGraphData(intraDayStonkData, "5min")
-        await Promise.all([dailyStonkPromise, intradayStonkPromise])
-        setLoadingGraph(false)
+        getGraphData(dailyStonkData, "Daily")
+       
+        
     }, [stonkTicker])
 
-    console.log(dailyTimeseriesYData)
     return (
         <section id={graphicalError || loadingGraph ? "empty-graph-wrapper" : "graph-wrapper"}>
             <div className="upper-graph-header">
@@ -136,14 +129,11 @@ function SingleStonkGraph(props) {
                                                         <button
                                                             className={currentTimeSeries === timeSir.label ? "selected-time-series" : ""}
                                                             onClick={() => {
-                                                                if (timeSir.label === "24 Hours") {
+                                                                if (timeSir.label === "1D") {
                                                                     setTimeSeries(timeSir)
-
-
                                                                 } else {
                                                                     handleTimeSeriesClick(timeSir)
                                                                 }
-
                                                             }}
                                                         >
                                                             {timeSir.label}
@@ -153,9 +143,6 @@ function SingleStonkGraph(props) {
                                             })}
                                         </ul>
                                     </div>
-
-                                    {console.log(currentTimeSeries.label)}
-
                                     <div>
                                         <Line
                                             id="graph-wrapper"
@@ -163,9 +150,9 @@ function SingleStonkGraph(props) {
                                                 display: false,
                                             }}
                                             data={{
-                                                labels: currentTimeSeries.label === "24 Hours" ? dailyTimeseriesXData : currentGraphXData,
+                                                labels: currentTimeSeries.label === "1D" ? dailyTimeseriesXData : currentGraphXData,
                                                 datasets: [{
-                                                    data: currentTimeSeries.label === "24 Hours" ? dailyTimeseriesYData : currentGraphYData,
+                                                    data: currentTimeSeries.label === "1D" ? dailyTimeseriesYData : currentGraphYData,
                                                     borderColor: '#7926ff',
                                                     borderWidth: 4,
                                                     fill: false,
