@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from "axios"
 import { Line } from 'react-chartjs-2';
-import {niceTimestampFormat} from "../../FunctionBucket"
+import { niceTimestampFormat } from "../../FunctionBucket"
 
 function SingleStonkGraph(props) {
 
@@ -116,7 +116,7 @@ function SingleStonkGraph(props) {
                                         } else {
                                             handleTimeSeriesClick(timeSir)
                                         }
-                                        
+
                                     }}
                                 >
                                     {timeSir.label}
@@ -138,12 +138,12 @@ function SingleStonkGraph(props) {
                                 labels: currentTimeSeries.label === "24 Hours" ? dailyTimeseriesXData : currentGraphXData,
                                 datasets: [{
                                     data: currentTimeSeries.label === "24 Hours" ? dailyTimeseriesYData : currentGraphYData,
-                                    borderColor: 'rgba(0,0,0,1)',
-                                    borderWidth: 0,
-                                    fill: true,
+                                    borderColor: '#7926ff',
+                                    borderWidth: 4,
+                                    fill: false,
                                     lineTension: 0,
-                                    backgroundColor: '#fff382',
-                                    pointRadius: 2,
+                                    backgroundColor: '#7926ff',
+                                    pointRadius: 0,
                                     pointHitRadius: 5,
                                     pointBorderColor: 'black',
                                     pointHoverBorderColor: 'black',
@@ -189,9 +189,7 @@ function SingleStonkGraph(props) {
                         />
                     </div>
                 ) : (
-                    <section id="graph-wrapper">
-                        <h3 className="empty-graph-header">Loading...</h3>
-                    </section>
+                    <h3 className="empty-graph-header">Loading...</h3>
                 )}
         </section>
     )

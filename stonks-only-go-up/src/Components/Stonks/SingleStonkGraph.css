@@ -15,8 +15,9 @@
 }
 .empty-graph-header {
     text-align: center;
+    margin: 0;
     position: absolute;
-    top: 40%;
+    top: 50%;
     width: 80%;
     left: 10%;
 }
