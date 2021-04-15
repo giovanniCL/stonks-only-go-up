@@ -1,0 +1,22 @@
+#hype-meter-wrapper {
+    height: 20px;
+    width: 100%;
+    background-color: #e0e0de;
+    border-radius: 42px;
+}
+
+#hyper-meter-inner {
+    height: 100%;
+    background: linear-gradient(90deg, rgba(232, 9, 28, 1) 0%, rgba(111, 3, 252, 1) 100%);
+    border-radius: 42px;
+    text-align: right;
+    transition: width 3s ease-in-out;
+}
+
+#hype-score {
+    padding-top: 4px;
+    padding-right: 6px;
+    margin: 0;
+    font-size: 12px;
+    font-weight: bold;
+}

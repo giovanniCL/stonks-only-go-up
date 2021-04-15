@@ -1,5 +1,6 @@
 @import "SetupDesign.css";
 @import "./Components/Stonks/SingleStonkGraph.css";
+@import "./Components/HypeMeter.css";
 
 @import url(https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap);
 body {
@@ -59,7 +60,7 @@ input:focus {
 }
 body{
   font-family: 'Ubuntu', sans-serif;
-  background-color: darkblue;
+  background-color: rgb(2, 2, 87);
   color: white;
 
 }
