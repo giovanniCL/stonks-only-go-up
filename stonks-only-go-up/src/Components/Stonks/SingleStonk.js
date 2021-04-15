@@ -9,11 +9,12 @@ import axios from "axios"
 function SingleStonk(props) {
     // Note. ticker should be passed down from props.match.params.name
     const tickerSymbol = "SBUX"
+    console.log(props)
 
     const [loadingStonkData, setLoadingStonkData] = useState(true)
     useEffect(async () => {
+        
         const finnhubAPI = 'c1rp9kaad3ifb04k9aa0'
-        //const finnhubAPI2 = 'sandbox_c1rp9kaad3ifb04k9aag'
         async function grabCompanyInfo() {
             const companyDataCall = `https://finnhub.io/api/v1/stock/profile2?symbol=${tickerSymbol}&token=${finnhubAPI}`
             try {
