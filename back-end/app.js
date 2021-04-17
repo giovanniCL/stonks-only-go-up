@@ -3,6 +3,8 @@ const express = require("express")
 const cors = require('cors')
 const mongoose = require('mongoose')
 const {User, Stonk, Tweet} = require('./schemas')
+const bodyParser = require('body-parser');
+
 
 const app = express()
 
@@ -20,13 +22,17 @@ db.once('open', function() {
     console.log("connected to the stonk database")
 })
 
-
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'))
+app.use(express.json())
 app.use(cors())
+
 
 //ROUTES GO HERE
 app.get('/', (req,res)=>{
+    
 })
+
 app.get('/login', (req, res) => {
     //Nothing here yet
     //waiting for account database
@@ -69,6 +75,29 @@ app.get('/single-stonk/:name', (req, res) => {
 })
 
 
+//add user information to mongodb
+app.post('/add-user',(req,res)=>{
+    console.log(req.body.firstName)
+    if(req.body.password != req.body.confirmPassword){
+        console.log("confirm does not match")
+    }else{
+        const newUser = new User({
+            firstname: req.body.firstName,
+            lastname : req.body.lastName,
+            username : req.body.userName,
+            email : req.body.email,
+            password : req.body.password
+        })
+        newUser.save()
+            .then((result) => { 
+                res.send(result)
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+    }
+})
+
 //This endpoint is only for testing the stonk schema
 app.get('/stonk-schema-test',(req,res)=>{
     const newStonk = new Stonk({
@@ -83,9 +112,10 @@ app.get('/stonk-schema-test',(req,res)=>{
 
 //This endpoint is only for testing the user schema
 app.get('/user-schema-test',(req,res)=>{
+
     const newUser = new User({
         firstname: "Stonk",
-        lastname : "Guy",
+        lastname : "Guy2",
         username : "stonk_guy_420",
         email : "stonkguy420@gmail.com",
         password : "PASSWORD"
