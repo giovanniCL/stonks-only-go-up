@@ -3,7 +3,9 @@ const axios = require('axios')
 const express = require("express")
 const cors = require('cors')
 const mongoose = require('mongoose')
-const {User, Stonk, Tweet} = require('./schemas')
+const {Stonk, Tweet} = require('./schemas')
+var User = require('./user/User');
+
 
 const app = express()
 
@@ -11,10 +13,17 @@ const finnhub = require('finnhub')
 const api_key = finnhub.ApiClient.instance.authentications['api_key'];
 api_key.apiKey = process.env.FINNHUB_KEY;
 const finnhubClient = new finnhub.DefaultApi();
+var db = require('./db');
+
+var UserController = require('./user/UserController');
+app.use('/users', UserController);
+var AuthController = require('./auth/AuthController');
+app.use('/api/auth', AuthController);
+
 
 mongoose.connect(process.env.DB, {useNewUrlParser: true, useUnifiedTopology: true})
 
-const db = mongoose.connection;
+db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
     console.log("connected to the stonk database")
