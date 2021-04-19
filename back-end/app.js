@@ -2,7 +2,9 @@ const axios = require('axios')
 const express = require("express")
 const cors = require('cors')
 const mongoose = require('mongoose')
-const {User, Stonk, Tweet} = require('./schemas')
+const {Stonk, Tweet} = require('./schemas')
+var User = require('./user/User');
+
 
 const app = express()
 

@@ -12,7 +12,7 @@ var config = require('../config');
 var VerifyToken = require('./VerifyToken');
 
 router.post('/login', function(req, res) {
-
+    //console.log(req.body)
     User.findOne({ user_name: req.body.user_name }, function (err, user) {
       if (err) return res.status(500).send('Error on the server.');
       if (!user) return res.status(404).send('No user found.');
@@ -26,7 +26,7 @@ router.post('/login', function(req, res) {
       var token = jwt.sign({ id: user._id }, config.secret, {
         expiresIn: 86400 // expires in 24 hours
       });
-  a
+  
       // return the information including token as JSON
       res.status(200).send({ auth: true, token: token });
     });
@@ -38,8 +38,8 @@ router.post('/login', function(req, res) {
   });
   
   router.post('/register', function(req, res) {
-  
-    var hashedPassword = bcrypt.hashSync(req.body.password, 8);
+    const salt = bcrypt.genSaltSync(8)
+    var hashedPassword = bcrypt.hashSync(req.body.password, salt);
   
     User.create({
       first_name : req.body.first_name,

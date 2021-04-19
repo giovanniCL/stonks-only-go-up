@@ -13,7 +13,7 @@ const FollowedStonks = (props) => {
     useEffect(()=>{
         async function fetchData(){
             //call to a mock api, we can change this later when we make the back-end
-            let response = await axios(`http://localhost:8080/followed/${user}`)
+            let response = await axios(`http://localhost:3000/followed/${user}`)
             setData(response.data)
         }
         fetchData()
