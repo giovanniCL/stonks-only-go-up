@@ -69,7 +69,7 @@ app.get('/single-stonk/:name', (req, res) => {
     var stonkName = req.params.name;
     stonkName = stonkName.toUpperCase();
 
-    const query = {symbl: }
+    const query = {symbol: stonkName}
 
     var stonkInDatabase;
     const stonkData = {
@@ -84,7 +84,7 @@ app.get('/single-stonk/:name', (req, res) => {
     }
     
 
-    Stonk.findOne({'name': stonkName}, 'name', function (err, stonk){
+    stonks.findOne(query, function (err, stonk){
         if(stonk != null ){
             stonkInDatabase = true;
             stonkData.symbol = stonk.symbol;
