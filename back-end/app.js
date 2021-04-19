@@ -13,12 +13,14 @@ var db = require('./db');
 
 var UserController = require('./user/UserController');
 app.use('/users', UserController);
+var AuthController = require('./auth/AuthController');
+app.use('/api/auth', AuthController);
 
 
 mongoose.connect('mongodb+srv://stonk_guy:3g3a20Sol4KP1bZd@cluster0.j7v6m.mongodb.net/stonks-only-go-up?retryWrites=true&w=majority', 
 {useNewUrlParser: true, useUnifiedTopology: true})
 
-const db = mongoose.connection;
+db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
     console.log("connected to the stonk database")

@@ -6,11 +6,11 @@ var bodyParser = require("body-parser");
 router.use(express.json());
 router.use(express.urlencoded({extended: true}));
 
-var VerifyToken = require('auth/VerifyToken');
-var User = requre('./User');
+var VerifyToken = require('../auth/VerifyToken');
+var User = require('./User');
 
 //creating new user
-router.post('/', function(req,res){
+router.post('/register', function(req,res){
     User.create({
         first_name: req.body.first_name,
         last_name: req.body.last_name,

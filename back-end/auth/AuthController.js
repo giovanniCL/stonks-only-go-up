@@ -13,7 +13,7 @@ var VerifyToken = require('./VerifyToken');
 
 router.post('/login', function(req, res) {
 
-    User.findOne({ email: req.body.email }, function (err, user) {
+    User.findOne({ user_name: req.body.user_name }, function (err, user) {
       if (err) return res.status(500).send('Error on the server.');
       if (!user) return res.status(404).send('No user found.');
       
@@ -26,7 +26,7 @@ router.post('/login', function(req, res) {
       var token = jwt.sign({ id: user._id }, config.secret, {
         expiresIn: 86400 // expires in 24 hours
       });
-  
+  a
       // return the information including token as JSON
       res.status(200).send({ auth: true, token: token });
     });
@@ -50,10 +50,9 @@ router.post('/login', function(req, res) {
     }, 
     function (err, user) {
       if (err) return res.status(500).send("There was a problem registering the user`.");
-  
       // if user is registered without errors
       // create a token
-      var token = jwt.sign({ id: user._id }, config.secret, {
+        var token = jwt.sign({ id: user._id }, config.secret, {
         expiresIn: 86400 // expires in 24 hours
       });
   
@@ -61,15 +60,22 @@ router.post('/login', function(req, res) {
     });
   
   });
-  
-  router.get('/me', VerifyToken, function(req, res, next) {
-  
-    User.findById(req.userId, { password: 0 }, function (err, user) {
-      if (err) return res.status(500).send("There was a problem finding the user.");
-      if (!user) return res.status(404).send("No user found.");
-      res.status(200).send(user);
+
+  router.get('/me', function(req, res) {
+    var token = req.headers['x-access-token'];
+    if (!token) return res.status(401).send({ auth: false, message: 'No token provided.' });
+    
+    jwt.verify(token, config.secret, function(err, decoded) {
+      if (err) return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
+      
+      User.findById(decoded.id, { password: 0 }, function (err, user) {
+        if (err) return res.status(500).send("There was a problem finding the user.");
+        if (!user) return res.status(404).send("No user found.");
+        
+        res.status(200).send(user);
+      });
     });
-  
   });
+
   
   module.exports = router;
