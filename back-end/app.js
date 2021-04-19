@@ -1,22 +1,29 @@
+require('dotenv').config()
 const axios = require('axios')
 const express = require("express")
 const cors = require('cors')
 const mongoose = require('mongoose')
-const {User, Stonk, Tweet} = require('./schemas')
-const bodyParser = require('body-parser');
+const {Stonk, Tweet} = require('./schemas')
+var User = require('./user/User');
 
 
 const app = express()
 
 const finnhub = require('finnhub')
 const api_key = finnhub.ApiClient.instance.authentications['api_key'];
-api_key.apiKey = "c1l3joa37fko6in4vvcg";
+api_key.apiKey = process.env.FINNHUB_KEY;
 const finnhubClient = new finnhub.DefaultApi();
+var db = require('./db');
 
-mongoose.connect('mongodb+srv://stonk_guy:3g3a20Sol4KP1bZd@cluster0.j7v6m.mongodb.net/stonks-only-go-up?retryWrites=true&w=majority', 
-{useNewUrlParser: true, useUnifiedTopology: true})
+var UserController = require('./user/UserController');
+app.use('/users', UserController);
+var AuthController = require('./auth/AuthController');
+app.use('/api/auth', AuthController);
 
-const db = mongoose.connection;
+
+mongoose.connect(process.env.DB, {useNewUrlParser: true, useUnifiedTopology: true})
+
+db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
     console.log("connected to the stonk database")

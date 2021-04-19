@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from "axios"
 import { Line } from 'react-chartjs-2';
 import { niceTimestampFormat } from "../../FunctionBucket"
+require('dotenv').config()
 
 function SingleStonkGraph(props) {
 
@@ -62,7 +63,7 @@ function SingleStonkGraph(props) {
     const [dailyTimeseriesYData, setDailyTimeseriesYData] = useState([])
     const [dailyTimeseriesXData, setDailyTimeseriesXData] = useState([])
 
-    const key = "T4WHPV41IANODLYQ" // API Key
+    const key = process.env.GRAPH_KEY // API Key
 
     useEffect(async () => {
         const intraDayStonkData = `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${stonkTicker}&interval=5min&apikey=${key}`
