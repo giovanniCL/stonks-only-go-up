@@ -29,7 +29,7 @@ db.once('open', function() {
     console.log("connected to the stonk database")
 })
 
-app.use(bodyParser.urlencoded({ extended: false }));
+//app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'))
 app.use(express.json())
 app.use(cors())
