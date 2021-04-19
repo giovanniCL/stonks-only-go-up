@@ -3,8 +3,11 @@ const axios = require('axios')
 const express = require("express")
 const cors = require('cors')
 const mongoose = require('mongoose')
+const UserController = require('./user/UserController');
+const AuthController = require('./auth/AuthController');
+const FollowController = require('./follow/FollowController')
 const {Stonk, Tweet} = require('./schemas')
-var User = require('./user/User');
+const User = require('./user/User');
 
 
 const app = express()
@@ -13,26 +16,15 @@ const finnhub = require('finnhub')
 const api_key = finnhub.ApiClient.instance.authentications['api_key'];
 api_key.apiKey = process.env.FINNHUB_KEY;
 const finnhubClient = new finnhub.DefaultApi();
-var db = require('./db');
+const db = require('./db');
 
-var UserController = require('./user/UserController');
-app.use('/users', UserController);
-var AuthController = require('./auth/AuthController');
-app.use('/api/auth', AuthController);
-
-
-mongoose.connect(process.env.DB, {useNewUrlParser: true, useUnifiedTopology: true})
-
-db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-    console.log("connected to the stonk database")
-})
-
-//app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors())
 app.use(express.static('public'))
 app.use(express.json())
-app.use(cors())
+app.use('/users', UserController);
+app.use('/api/auth', AuthController);
+app.use('/follow',FollowController)
+
 
 
 //ROUTES GO HERE
@@ -121,13 +113,13 @@ app.get('/stonk-schema-test',(req,res)=>{
 app.get('/user-schema-test',(req,res)=>{
 
     const newUser = new User({
-        firstname: "Stonk",
-        lastname : "Guy2",
-        username : "stonk_guy_420",
+        first_name: "Stonk",
+        last_name : "Guy2",
+        user_name : "stonk_guy_420",
         email : "stonkguy420@gmail.com",
         password : "PASSWORD"
     })
-    newUser.save().then(()=>res.send(`${newUser.username} saved to database`))
+    newUser.save().then(()=>res.send(`${newUser.user_name} saved to database`))
 })
 
 //This endpoint is only for testing tweet schema
@@ -151,10 +143,6 @@ app.get('/hype', async (req,res) => {
     res.json(response.data)
 })
 
-app.get('/followed/:user', async (req,res) => {
-    let response = await axios("https://my.api.mockaroo.com/stonks.json?key=7d2830f0")
-    response.data[0].user = req.params.user//attaching user to first object for testing purposes for now
-    res.json(response.data)
-})
+
 //
 module.exports = app
