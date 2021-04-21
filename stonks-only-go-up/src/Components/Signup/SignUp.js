@@ -16,7 +16,7 @@ const SignUp = (props) => {
         <h1>
         Sign Up
         </h1>
-        <form action="/add-user" method="post">
+        <form action="http://localhost:8080/add-user" method="post">
 
             <input type = "text" name ="firstName" placeholder = "First Name" required></input>
             <input type = "text" name ="lastName" placeholder = "Last Name" required></input>
