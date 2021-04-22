@@ -17,7 +17,7 @@ function SingleStonk(props) {
     const [auth, setAuth] = useState()
     const [following, setFollowing] = useState(false)
     useEffect(async()=>{
-        let authentication = await axios.post('http://localhost:3000/api/auth/login',{
+        let authentication = await axios.post('http://localhost:8080/api/auth/login',{
             user_name : "Stonk_Guy_420",
             password : "PASSWORD"
         })
@@ -27,7 +27,7 @@ function SingleStonk(props) {
 
     useEffect(async () => {
         if(!auth) return
-        let user = await axios.get('http://localhost:3000/api/auth/me',{
+        let user = await axios.get('http://localhost:8080/api/auth/me',{
             headers:{
                 "x-access-token" : auth
             }
@@ -36,7 +36,7 @@ function SingleStonk(props) {
     },[auth])
 
     async function follow_unfollow(){
-        await axios.get(`http://localhost:3000/follow/${tickerSymbol}`,{
+        await axios.get(`http://localhost:8080/follow/${tickerSymbol}`,{
             headers:{
             "x-access-token" : auth
             }

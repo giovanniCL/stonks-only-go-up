@@ -14,7 +14,7 @@ router.get('/stonks', async (req,res) => {
 router.get('/:stonk', async (req, res) => {
     let token = req.headers["x-access-token"]
     if(!token) return res.send("No token provided")
-    let response = await axios.get('http://localhost:3000/api/auth/me',{
+    let response = await axios.get('http://localhost:8080/api/auth/me',{
         headers: {
             "x-access-token": token
         }
