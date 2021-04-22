@@ -4,6 +4,7 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 const {User, Stonk, Tweet} = require('./schemas')
 const bodyParser = require('body-parser');
+const bcrypt = require('bcryptjs');
 
 
 const app = express()
@@ -77,6 +78,8 @@ app.get('/single-stonk/:name', (req, res) => {
 
 //add user information to mongodb
 app.post('/add-user',(req,res)=>{
+    const salt = bcrypt.genSaltSync(8)
+    var hashedPassword = bcrypt.hashSync(req.body.password, salt);
     console.log(req.body.firstName)
     if(req.body.password != req.body.confirmPassword){
         console.log("confirm does not match")
@@ -86,7 +89,7 @@ app.post('/add-user',(req,res)=>{
             lastname : req.body.lastName,
             username : req.body.userName,
             email : req.body.email,
-            password : req.body.password
+            password : hashedPassword
         })
         newUser.save()
             .then((result) => { 
