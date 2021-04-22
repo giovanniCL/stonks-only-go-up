@@ -90,7 +90,9 @@ app.post('/add-user',(req,res)=>{
         })
         newUser.save()
             .then((result) => { 
-                res.send(result)
+                console.log(result);
+                res.redirect("http://localhost:3000/setup/initial")
+
         })
         .catch((err) => {
             console.log(err);

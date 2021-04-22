@@ -3,10 +3,6 @@ import "./signup.css"
 import Navbar from '../Navbar'
 
 const SignUp = (props) => {
-    let handleLogin = (event) => {
-        event.preventDefault();
-        props.history.push('/setup/initial')
-      }
     return(
         <>
         <div> <Navbar /> </div>
@@ -25,11 +21,9 @@ const SignUp = (props) => {
 
             <input 
             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-            type = "text" className = "password" name ="password" placeholder = "Password" required></input>
-            <input type = "text" className= "password" name ="confirmPassword" placeholder = "Confirm Password" required></input>
-            
-            <button onSubmit={(event) => {event.preventDefault();props.history.push('/setup/initial');}} >Create Account</button>
-            {/* onClick={() => props.history.push('/setup/initial')} */}
+            type = "password" className = "password" name ="password" placeholder = "Password" required></input>
+            <input type = "password" className= "password" name ="confirmPassword" placeholder = "Confirm Password" required></input>
+            <button onSubmit={(event) => {event.preventDefault();}} >Create Account</button>
          </form>
       </div>
       </div>
