@@ -52,60 +52,17 @@ function SingleStonk(props) {
         setFollowing(!following)
     }
 
-
     useEffect(() => {
-        const finnhubAPI = 'T4WHPV41IANODLYQ'
-        async function grabCompanyInfo() {
-            const companyDataCall = `https://finnhub.io/api/v1/stock/profile2?symbol=${tickerSymbol}&token=${finnhubAPI}`
-            try {
-                let rawStonkBasicData = await axios.get(companyDataCall)
 
-                companyInfo["website"] = rawStonkBasicData.data.weburl
-                companyInfo["name"] = rawStonkBasicData.data.name
-                companyInfo["logo"] = rawStonkBasicData.data.logo
-                companyInfo["exchange"] = rawStonkBasicData.data.exchange
-                companyInfo["country"] = rawStonkBasicData.data.country
-
-                stonkQuote["Market Cap."] = rawStonkBasicData.data.marketCapitalization
-                stonkQuote["Shares Out."] = rawStonkBasicData.data.shareOutstanding
-                setCompanyInfo({ ...companyInfo })
-                setStonkQuote({ ...stonkQuote })
-            } catch (error) { console.log(error) }
-        }
-        async function grabCompanyQuote() {
-            const quoteCall = `https://finnhub.io/api/v1/quote?symbol=${tickerSymbol}&token=${finnhubAPI}`
-            try {
-                let rawStonkQuote = await axios.get(quoteCall)
-                stonkQuote["Price"] = rawStonkQuote.data.c
-                stonkQuote["High"] = rawStonkQuote.data.h
-                stonkQuote["Low"] = rawStonkQuote.data.l
-                stonkQuote["Open"] = rawStonkQuote.data.o
-                stonkQuote["Previous Close"] = rawStonkQuote.data.pc
-                setStonkQuote({ ...stonkQuote })
-            } catch (error) { console.log(error) }
-        }
-        async function grabCompanyAdditionalData() {
-            const additionalCompanyData = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${tickerSymbol}&apikey=T4WHPV41IANODLYQ`
-            try {
-                let rawAdditionalCompany = await axios.get(additionalCompanyData)
-                companyInfo["description"] = rawAdditionalCompany.data.Description
-                companyInfo["industry"] = rawAdditionalCompany.data.Industry
-                stonkQuote["EPS"] = rawAdditionalCompany.data.EPS
-                stonkQuote["Dividend Yield"] = rawAdditionalCompany.data.DividendYield + "%"
-                stonkQuote["Dividend Per Share"] = rawAdditionalCompany.data.DividendPerShare
-                setCompanyInfo({ ...companyInfo })
-                setStonkQuote({ ...stonkQuote })
-            } catch (error) { console.log(error) }
-        }
-        async function finalizeStonkData(promiseList) {
-            console.log(promiseList)
-            await Promise.all(promiseList)
+        async function grabFullStonkData() {
+            let expressRes = await axios.post('/single-stonk/:name', { ticker: "SBUX" })
+            console.log(expressRes)
+            console.log("execution time... ", expressRes.data.executionTime)
+            setCompanyInfo(expressRes.data.companyInfo)
+            setStonkQuote(expressRes.data.stonkQuote)
             setLoadingStonkData(false)
         }
-        let grabCompanyInfoPromise = grabCompanyInfo()
-        let grabCompanyQuotePromise = grabCompanyQuote()
-        let grabCompanyAdditionalPromise = grabCompanyAdditionalData()
-        finalizeStonkData([grabCompanyInfoPromise, grabCompanyQuotePromise, grabCompanyAdditionalPromise])
+        grabFullStonkData()
     }, [])
 
     const [companyInfo, setCompanyInfo] = useState({

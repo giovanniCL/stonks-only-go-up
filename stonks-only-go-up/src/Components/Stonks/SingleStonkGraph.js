@@ -64,8 +64,7 @@ function SingleStonkGraph(props) {
     const [dailyTimeseriesYData, setDailyTimeseriesYData] = useState([])
     const [dailyTimeseriesXData, setDailyTimeseriesXData] = useState([])
 
-    //const key = process.env.GRAPH_KEY // API Key
-    const key = "T4WHPV41IANODLYQ"
+    const key = process.env.REACT_APP_ALPHA_VANTAGE_KEY
 
     useEffect(() => {
         console.log("running time")
