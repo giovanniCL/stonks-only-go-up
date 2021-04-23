@@ -83,6 +83,7 @@ app.post('/add-user',(req,res)=>{
     console.log(req.body.firstName)
     if(req.body.password != req.body.confirmPassword){
         console.log("confirm does not match")
+        res.send('<script>alert("Your confirmation password does not match"); window.location.href = "http://localhost:3000/signup"; </script>');
     }else{
         const newUser = new User({
             firstname: req.body.firstName,
