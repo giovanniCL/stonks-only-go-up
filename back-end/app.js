@@ -26,6 +26,7 @@ app.use('/api/auth', AuthController);
 app.use('/follow',FollowController)
 
 
+require('./stonk/singleStonk')(app);
 
 //ROUTES GO HERE
 app.get('/', (req,res)=>{
@@ -53,25 +54,7 @@ app.get('/setup/confirm', cors(), async (req,res) => {
     res.json("hello!")
 })
 
-app.get('/single-stonk/:name', (req, res) => {
 
-    var stonkName = req.params.name;
-    stonkName = stonkName.toUpperCase(); 
-    finnhubClient.quote(stonkName, (error, data, response) => {
-        let stonk = data
-        const stonkData = {
-
-            "stonkName" : stonkName, 
-            "openPrice" : stonk.o,
-            "highPrice" : stonk.h,
-            "lowPrice" : stonk.l,
-            "currentPrice" : stonk.c
-        }
-
-        res.send(stonkData);
-    });
-    
-})
 
 
 //add user information to mongodb
