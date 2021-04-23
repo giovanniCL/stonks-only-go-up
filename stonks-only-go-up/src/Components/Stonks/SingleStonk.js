@@ -16,38 +16,45 @@ function SingleStonk(props) {
     //SIGNING IN USER TO TEST FOLLOW BUTTON
     const [auth, setAuth] = useState()
     const [following, setFollowing] = useState(false)
-    useEffect(async()=>{
-        let authentication = await axios.post('http://localhost:8080/api/auth/login',{
-            user_name : "Stonk_Guy_420",
-            password : "PASSWORD"
-        })
-        setAuth(authentication.data.token)
 
-    },[])
+    /*
+    useEffect(() => {
+        async function authPost() {
+            let authentication = await axios.post('http://localhost:8080/api/auth/login', {
+                user_name: "Stonk_Guy_420",
+                password: "PASSWORD"
+            })
+            setAuth(authentication.data.token)
+        }
+        authPost()
+    }, [])
 
-    useEffect(async () => {
-        if(!auth) return
-        let user = await axios.get('http://localhost:8080/api/auth/me',{
-            headers:{
-                "x-access-token" : auth
-            }
-        })
-        setFollowing(user.data.followed ? user.data.followed.includes(tickerSymbol) : false)
-    },[auth])
+    useEffect(() => {
+        async function authHeaders() {
+            if (!auth) return
+            let user = await axios.get('http://localhost:8080/api/auth/me', {
+                headers: {
+                    "x-access-token": auth
+                }
+            })
+            setFollowing(user.data.followed ? user.data.followed.includes(tickerSymbol) : false)
+        }
+        authHeaders()
+    }, [auth])
+ */
 
-    async function follow_unfollow(){
-        await axios.get(`http://localhost:8080/follow/${tickerSymbol}`,{
-            headers:{
-            "x-access-token" : auth
+    async function follow_unfollow() {
+        await axios.get(`http://localhost:8080/follow/${tickerSymbol}`, {
+            headers: {
+                "x-access-token": auth
             }
         })
         setFollowing(!following)
     }
 
 
-    useEffect(async () => {
-        
-        const finnhubAPI = 'c1rp9kaad3ifb04k9aa0'
+    useEffect(() => {
+        const finnhubAPI = 'T4WHPV41IANODLYQ'
         async function grabCompanyInfo() {
             const companyDataCall = `https://finnhub.io/api/v1/stock/profile2?symbol=${tickerSymbol}&token=${finnhubAPI}`
             try {
@@ -90,11 +97,15 @@ function SingleStonk(props) {
                 setStonkQuote({ ...stonkQuote })
             } catch (error) { console.log(error) }
         }
+        async function finalizeStonkData(promiseList) {
+            console.log(promiseList)
+            await Promise.all(promiseList)
+            setLoadingStonkData(false)
+        }
         let grabCompanyInfoPromise = grabCompanyInfo()
         let grabCompanyQuotePromise = grabCompanyQuote()
         let grabCompanyAdditionalPromise = grabCompanyAdditionalData()
-        await Promise.all([grabCompanyInfoPromise, grabCompanyQuotePromise, grabCompanyAdditionalPromise])
-        setLoadingStonkData(false)
+        finalizeStonkData([grabCompanyInfoPromise, grabCompanyQuotePromise, grabCompanyAdditionalPromise])
     }, [])
 
     const [companyInfo, setCompanyInfo] = useState({
@@ -130,67 +141,67 @@ function SingleStonk(props) {
                     <h2 className="basic-loading-header">Loading...</h2>
                 </div>
             ) : (
-                    <article id="single-stonk-viewer-page">
-                        <div className="top-single-stonk-viewer-wrapper">
-                            <button className="go-back-single-bttn" onClick={() => {
-                                props.history.goBack()
-                            }}>
-                                <ArrowLeft className="back-single-icon" />Back to Main Viewer
+                <article id="single-stonk-viewer-page">
+                    <div className="top-single-stonk-viewer-wrapper">
+                        <button className="go-back-single-bttn" onClick={() => {
+                            props.history.goBack()
+                        }}>
+                            <ArrowLeft className="back-single-icon" />Back to Main Viewer
                         </button>
+                    </div>
+                    <div className="stonk-graph-outer-wrapper">
+                        <SingleStonkGraph
+                            stonkName={companyInfo.name}
+                            logo={companyInfo.logo}
+                            ticker={tickerSymbol}
+                        />
+                    </div>
+                    <section id="single-stonk-bottom-half">
+                        <div className="stonk-top-from-bottom-half">
+                            <h2 className="stonk-name-bottom">{companyInfo.name}</h2>
+                            <p className="stonk-description-bottom">{companyInfo.description}</p>
+                            <table className="stonk-table-info">
+                                <tbody>
+                                    <tr className="each-stonk-table-row">
+                                        <td className="each-stonk-table-row-start">Industry</td>
+                                        <td className="each-stonk-table-row-end">{companyInfo.industry}</td>
+                                    </tr>
+                                    <tr className="each-stonk-table-row">
+                                        <td className="each-stonk-table-row-start">Country</td>
+                                        <td className="each-stonk-table-row-end">{companyInfo.country}</td>
+                                    </tr>
+                                    <tr className="each-stonk-table-row">
+                                        <td className="each-stonk-table-row-start">Exchange</td>
+                                        <td className="each-stonk-table-row-end">{companyInfo.exchange}</td>
+                                    </tr>
+                                    <tr className="each-stonk-table-row">
+                                        <td className="each-stonk-table-row-start">Website</td>
+                                        <td className="each-stonk-table-row-end"><a href={companyInfo.website} target="_blank">{companyInfo.website}</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <div className="stonk-graph-outer-wrapper">
-                            <SingleStonkGraph
-                                stonkName={companyInfo.name}
-                                logo={companyInfo.logo}
-                                ticker={tickerSymbol}
-                            />
+                        <ul className="stonk-extra-company-info">
+                            {Object.keys(stonkQuote).map((eachSpecificStonkInfo, stonkInfoIndex) => {
+                                return (
+                                    <li className="each-stonk-ci" key={stonkInfoIndex}>
+                                        <h2 className="stonk-info-tag">{eachSpecificStonkInfo}</h2>
+                                        <h2 className="stonk-info-value">{stonkQuote[eachSpecificStonkInfo]}</h2>
+                                    </li>
+                                )
+                            })}
+                        </ul>
+                        <div id="stonk-o-meter-hype-bar-single-viewer">
+                            <h4 className="stonk-meter-header">Stonk-O-Meter Hype Score</h4>
+                            <div className="stonk-meter">
+                                <HypeMeter score={hypeScore} />
+                            </div>
                         </div>
-                        <section id="single-stonk-bottom-half">
-                            <div className="stonk-top-from-bottom-half">
-                                <h2 className="stonk-name-bottom">{companyInfo.name}</h2>
-                                <p className="stonk-description-bottom">{companyInfo.description}</p>
-                                <table className="stonk-table-info">
-                                    <tbody>
-                                        <tr className="each-stonk-table-row">
-                                            <td className="each-stonk-table-row-start">Industry</td>
-                                            <td className="each-stonk-table-row-end">{companyInfo.industry}</td>
-                                        </tr>
-                                        <tr className="each-stonk-table-row">
-                                            <td className="each-stonk-table-row-start">Country</td>
-                                            <td className="each-stonk-table-row-end">{companyInfo.country}</td>
-                                        </tr>
-                                        <tr className="each-stonk-table-row">
-                                            <td className="each-stonk-table-row-start">Exchange</td>
-                                            <td className="each-stonk-table-row-end">{companyInfo.exchange}</td>
-                                        </tr>
-                                        <tr className="each-stonk-table-row">
-                                            <td className="each-stonk-table-row-start">Website</td>
-                                            <td className="each-stonk-table-row-end"><a href={companyInfo.website} target="_blank">{companyInfo.website}</a></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <ul className="stonk-extra-company-info">
-                                {Object.keys(stonkQuote).map((eachSpecificStonkInfo, stonkInfoIndex) => {
-                                    return (
-                                        <li className="each-stonk-ci" key={stonkInfoIndex}>
-                                            <h2 className="stonk-info-tag">{eachSpecificStonkInfo}</h2>
-                                            <h2 className="stonk-info-value">{stonkQuote[eachSpecificStonkInfo]}</h2>
-                                        </li>
-                                    )
-                                })}
-                            </ul>
-                            <div id="stonk-o-meter-hype-bar-single-viewer">
-                                <h4 className="stonk-meter-header">Stonk-O-Meter Hype Score</h4>
-                                <div className="stonk-meter">
-                                    <HypeMeter score={hypeScore} />
-                                </div>
-                            </div>
-                            <button id="follow-unfollow-button-single-viewer" onClick = {()=>follow_unfollow()}>{following ? "Unfollow" : "Follow"}</button> 
-                        </section>
+                        <button id="follow-unfollow-button-single-viewer" onClick={() => follow_unfollow()}>{following ? "Unfollow" : "Follow"}</button>
+                    </section>
 
-                    </article>
-                )}
+                </article>
+            )}
 
 
         </>
