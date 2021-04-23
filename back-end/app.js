@@ -78,7 +78,12 @@ app.get('/single-stonk/:name', (req, res) => {
 
 //add user information to mongodb
 app.post('/add-user',(req,res)=>{
-    const salt = bcrypt.genSaltSync(8)
+    User.findOne({email:req.body.email}).then(user=>{
+        if(user){
+            console.log("email already exists")
+            res.send('<script>alert("This email already has already been registered"); window.location.href = "http://localhost:3000/signup"; </script>');
+        }else{
+            const salt = bcrypt.genSaltSync(8)
     var hashedPassword = bcrypt.hashSync(req.body.password, salt);
     console.log(req.body.firstName)
     if(req.body.password != req.body.confirmPassword){
@@ -102,6 +107,9 @@ app.post('/add-user',(req,res)=>{
             console.log(err);
         })
     }
+        }
+    })
+    
 })
 
 //This endpoint is only for testing the stonk schema
