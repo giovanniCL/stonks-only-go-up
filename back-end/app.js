@@ -140,10 +140,6 @@ app.get('/dashboard', cors(), async (req,res) => {
     let response = await axios("https://my.api.mockaroo.com/stonks.json?key=7d2830f0")
     res.json(response.data)
 })
-app.get('/hype', async (req,res) => {
-    let response = await axios("https://my.api.mockaroo.com/stonks.json?key=7d2830f0")
-    res.json(response.data)
-})
 
 
 //

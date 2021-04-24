@@ -69,7 +69,16 @@ router.get('/update', async (req, res) => {
         res.send(stonk_count)
        
     })
+})
 
+router.get('/stonks', (req, res) =>{
+    
+    Stonk.find({},(err, stonks)=>{
+        stonks.sort((a,b)=> a.stonkometer < b.stonkometer ? 1 :-1)
+        let hypest = stonks.length >= 10 ? stonks.slice(0,10) : stonks
+        res.json(hypest)
+    })
+    
 })
 
 
