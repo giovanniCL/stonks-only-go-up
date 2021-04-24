@@ -55,23 +55,74 @@ app.get('/setup/confirm', cors(), async (req,res) => {
 
 app.get('/single-stonk/:name', (req, res) => {
 
+    //DB Collection
+    const stonks = db.collection("stonks");
+
     var stonkName = req.params.name;
-    stonkName = stonkName.toUpperCase(); 
-    finnhubClient.quote(stonkName, (error, data, response) => {
-        let stonk = data
-        const stonkData = {
+    stonkName = stonkName.toUpperCase();
 
-            "stonkName" : stonkName, 
-            "openPrice" : stonk.o,
-            "highPrice" : stonk.h,
-            "lowPrice" : stonk.l,
-            "currentPrice" : stonk.c
-        }
+    const query = {symbol: stonkName}
 
-        res.send(stonkData);
-    });
+    var stonkInDatabase;
+    const stonkData = {
+        "name" : stonkName,
+        //Name and Symbol equivlent right now, doesn't seem like we need the real name of the stonk just what finnhub codiers a symbol.
+        "symbol" : stonkName,
+        "stonkometer" : 0,
+        "openPrice": 0,
+        "highPrice": 0,
+        "lowPrice" : 0,
+        "currentPrice" : 0
+    }
     
+
+    stonks.findOne(query, function (err, stonk){
+        if(stonk != null ){
+            stonkInDatabase = true;
+            stonkData.symbol = stonk.symbol;
+            stonkData.stonkometer = stonk.stonkometer;
+            stonkData.openPrice = stonk.openPrice;
+            stonkData.highPrice = stonk.highPrice;
+            stonkData.lowPrice = stonk.lowPrice;
+            stonkData.currentPrice = stonk.currentPrice;
+            res.send(stonkData);
+
+        }
+        else
+            stonkInDatabase = false;
+        if(!stonkInDatabase){
+            finnhubClient.quote(stonkName, (error, data, response) => {
+                let stonk = response.body
+                stonkData.name = stonkName
+                stonkData.openPrice = stonk.o;
+                stonkData.highPrice = stonk.h;
+                stonkData.lowPrice = stonk.l;
+                stonkData.currentPrice = stonk.c;
+
+                const stonkToDB = new Stonk({
+                    name: stonkData.name,
+                    symbol: stonkData.symbol,
+                    stonkometer: stonkData.stonkometer,
+                    openPrice: stonkData.openPrice,
+                    highPrice: stonkData.highPrice,
+                    lowPrice: stonkData.lowPrice,
+                    currentPrice: stonkData.currentPrice
+                    })
+                stonkToDB.save().then(() => console.log("Stonk Saved to DB"));
+                    res.send(stonkData);
+                });
+            
+          
+            }
+                
+    })
+
+
+
+
 })
+
+
 
 
 //add user information to mongodb
@@ -133,6 +184,8 @@ app.get('/tweet-schema-test',(req,res)=>{
     })
     newTweet.save().then(()=>res.send(`${newTweet.id} saved to database`))
 })
+
+//This endpoint is only for 
 
 app.get('/dashboard', cors(), async (req,res) => {
     let response = await axios("https://my.api.mockaroo.com/stonks.json?key=7d2830f0")
