@@ -6,6 +6,7 @@ const mongoose = require('mongoose')
 const UserController = require('./user/UserController');
 const AuthController = require('./auth/AuthController');
 const FollowController = require('./follow/FollowController')
+const HypeController = require('./hype/HypeController')
 const {Stonk, Tweet} = require('./schemas')
 const User = require('./user/User');
 
@@ -24,6 +25,7 @@ app.use(express.json())
 app.use('/users', UserController);
 app.use('/api/auth', AuthController);
 app.use('/follow',FollowController)
+app.use('/hype', HypeController)
 
 
 
