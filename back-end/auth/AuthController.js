@@ -1,15 +1,20 @@
-var express = require('express');
-var router = express.Router();
-var bodyParser = require('body-parser');
+const express = require('express');
+const bodyParser = require('body-parser');
+const User = require('../user/User');
+const jwt = require('jsonwebtoken');
+const cors = require('cors')
+
+const bcrypt = require('bcryptjs');
+const config = require('../config');
+const router = express.Router();
+
+router.use(cors())
 router.use(express.urlencoded({ extended: false }));
 router.use(express.json());
-var User = require('../user/User');
 
-var jwt = require('jsonwebtoken');
-var bcrypt = require('bcryptjs');
-var config = require('../config');
 
-var VerifyToken = require('./VerifyToken');
+const VerifyToken = require('./VerifyToken');
+
 
 router.post('/login', function(req, res) {
     //console.log(req.body)
@@ -62,7 +67,7 @@ router.post('/login', function(req, res) {
   });
 
   router.get('/me', function(req, res) {
-    var token = req.headers['x-access-token'];
+    const token = req.headers['x-access-token'];
     if (!token) return res.status(401).send({ auth: false, message: 'No token provided.' });
     
     jwt.verify(token, config.secret, function(err, decoded) {
