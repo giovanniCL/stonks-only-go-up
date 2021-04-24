@@ -68,7 +68,7 @@ app.get('/single-stonk/:name', (req, res) => {
         "name" : stonkName,
         //Name and Symbol equivlent right now, doesn't seem like we need the real name of the stonk just what finnhub codiers a symbol.
         "symbol" : stonkName,
-        "stonkometer" : "n/a",
+        "stonkometer" : 0,
         "openPrice": 0,
         "highPrice": 0,
         "lowPrice" : 0,
@@ -85,36 +85,41 @@ app.get('/single-stonk/:name', (req, res) => {
             stonkData.highPrice = stonk.highPrice;
             stonkData.lowPrice = stonk.lowPrice;
             stonkData.currentPrice = stonk.currentPrice;
+            res.send(stonkData);
+
         }
         else
             stonkInDatabase = false;
+        if(!stonkInDatabase){
+            finnhubClient.quote(stonkName, (error, data, response) => {
+                let stonk = response.body
+                stonkData.name = stonkName
+                stonkData.openPrice = stonk.o;
+                stonkData.highPrice = stonk.h;
+                stonkData.lowPrice = stonk.l;
+                stonkData.currentPrice = stonk.c;
+
+                const stonkToDB = new Stonk({
+                    name: stonkData.name,
+                    symbol: stonkData.symbol,
+                    stonkometer: stonkData.stonkometer,
+                    openPrice: stonkData.openPrice,
+                    highPrice: stonkData.highPrice,
+                    lowPrice: stonkData.lowPrice,
+                    currentPrice: stonkData.currentPrice
+                    })
+                stonkToDB.save().then(() => console.log("Stonk Saved to DB"));
+                    res.send(stonkData);
+                });
+            
+          
+            }
+                
     })
 
 
 
-    if(!stonkInDatabase){
-    finnhubClient.quote(stonkName, (error, data, response) => {
-        let stonk = data
-        stonkData.name = stonkName
-        stonkData.openPrice = stonk.o;
-        stonkData.highPrice = stonk.h;
-        stonkData.lowPrice = stonk.l;
-        stonkData.currentPrice = stonk.c;
-      });
 
-        const stonkToDB = new Stonk({
-            name: stonkData.name,
-            symbol: stonkData.symbol,
-            stonkometer: stonkData.stonkometer,
-            openPrice: stonkData.openPrice,
-            highPrice: stonkData.highPrice,
-            lowPrice: stonkData.lowPrice,
-            currentPrice: stonkData.currentPrice
-        })
-        stonkToDB.save().then(() => console.log("Stonk Saved to DB"));
-    }
-      res.send(stonkData);
-    
 })
 
 
