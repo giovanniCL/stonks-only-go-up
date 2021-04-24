@@ -26,7 +26,7 @@ app.use('/api/auth', AuthController);
 app.use('/follow',FollowController)
 
 
-require('./stonk/singleStonk')(app);
+require('./stonk/singleStonkBackend')(app);
 
 //ROUTES GO HERE
 app.get('/', (req,res)=>{

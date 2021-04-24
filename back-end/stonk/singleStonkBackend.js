@@ -52,6 +52,77 @@ module.exports = function (app) {
             } catch (error) { console.log(error) }
         }
 
+        // Grabs the company graph data
+        async function grabGraphData() {
+            function niceTimestampFormat(stringToFormat) {
+                let bigTimestamp = stringToFormat.split(' ')[0]
+                let smallTimestamp = stringToFormat.split(' ')[1]
+                if (!!smallTimestamp) { // If intraday
+                    const dropEndTime = smallTimestamp.split(":").slice(0, 2).join(":")
+                    let hourTime = dropEndTime.split(":")[0]
+                    if (parseInt(hourTime) > 12) {
+                        return [parseInt(hourTime) - 12, dropEndTime.split(":")[1]].join(":")
+                    } else {
+                        return dropEndTime
+                    }
+                } else { // If counted by days (anything besides 24 hr)
+                    return bigTimestamp.split('-').slice(1, 3).join('/')
+                }
+            }
+            async function processAPICall(apiCall, time) {
+                try {
+                    let stonkData = await axios.get(apiCall)
+                    let timeSeriesRawData = stonkData.data[`Time Series (${time})`]
+                    let graphYDataRaw = []
+                    let graphXDataRaw = []
+                    if (!!stonkData.data.Note) { // if api calls be wildin
+                        throw Error(stonkData.data.Note)
+                    }
+                    Object.keys(timeSeriesRawData).forEach((eachTimeSeriesData) => {
+                        let pointTimestamp = niceTimestampFormat(eachTimeSeriesData)
+                        let pointPriceOpening = timeSeriesRawData[eachTimeSeriesData]['1. open']
+                        graphYDataRaw.push(pointPriceOpening)
+                        graphXDataRaw.push(pointTimestamp)
+                    })
+                    graphYDataRaw = graphYDataRaw.reverse()
+                    graphXDataRaw = graphXDataRaw.reverse()
+                    return { YData: [...graphYDataRaw], XData: [...graphXDataRaw] }
+                } catch (error) { console.log(error); }
+            }
+            /////
+
+            const graphicalData = {
+                masterYData: null,
+                masterXData: null,
+                todayTimeseriesYData: null,
+                todayTimeseriesXData: null,
+            }
+
+            const masterCall = await processAPICall(
+                `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${tickerSymbol}&outputsize=full&apikey=${process.env.ALPHA_VANTAGE_KEY}`,
+                "Daily",
+            )
+
+            graphicalData.masterYData = masterCall.YData
+            graphicalData.masterXData = masterCall.XData
+
+            //////
+            const todayCall = await processAPICall(
+                `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${tickerSymbol}&interval=5min&apikey=${process.env.ALPHA_VANTAGE_KEY}`,
+                "5min"
+            )
+            const startTimeIndex = todayCall.XData.findIndex(o => o === "09:30")
+            const endTimeIndex = todayCall.XData.findIndex(o => o === "4:00")
+
+            graphicalData.todayTimeseriesYData = [...todayCall.YData.slice(startTimeIndex !== -1 ? startTimeIndex : 0, endTimeIndex + 1)]
+            graphicalData.todayTimeseriesXData = [...todayCall.XData.slice(startTimeIndex !== -1 ? startTimeIndex : 0, endTimeIndex + 1)]
+
+            ////
+            fullCompanyInfo.graph = graphicalData
+            return
+
+        }
+
         // Final Response
         const fullCompanyInfo = {
             companyInfo: {
@@ -75,6 +146,7 @@ module.exports = function (app) {
                 "Dividend Yield": "--",
                 "Dividend Per Share": "--",
             },
+            graph: {},
             tickerSymbol: req.body.ticker,
             executionTime: null
         }
@@ -90,10 +162,13 @@ module.exports = function (app) {
         let companyQuotePromise = grabCompanyQuote(fullCompanyInfo.stonkQuote)
         let additionalCompanyPromise = grabCompanyAdditionalData(fullCompanyInfo.companyInfo, fullCompanyInfo.stonkQuote)
 
+        let graphicalDataPromise = grabGraphData(fullCompanyInfo)
+
         await Promise.all([ // Promise to wait for all to finish
             companyInfoPromise,
             companyQuotePromise,
-            additionalCompanyPromise
+            additionalCompanyPromise,
+            graphicalDataPromise
         ])
 
         // End Timer
