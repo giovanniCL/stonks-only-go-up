@@ -60,6 +60,7 @@ function SingleStonk(props) {
             console.log("execution time... ", expressRes.data.executionTime)
             setCompanyInfo(expressRes.data.companyInfo)
             setStonkQuote(expressRes.data.stonkQuote)
+            setGraph(expressRes.data.graph)
             setLoadingStonkData(false)
         }
         grabFullStonkData()
@@ -87,6 +88,7 @@ function SingleStonk(props) {
         "Dividend Yield": "--",
         "Dividend Per Share": "--",
     })
+    const [graph, setGraph] = useState(null)
 
     const [hypeScore, setHypeScore] = useState(89)
 
@@ -108,6 +110,7 @@ function SingleStonk(props) {
                     </div>
                     <div className="stonk-graph-outer-wrapper">
                         <SingleStonkGraph
+                            graph={graph}
                             stonkName={companyInfo.name}
                             logo={companyInfo.logo}
                             ticker={tickerSymbol}
