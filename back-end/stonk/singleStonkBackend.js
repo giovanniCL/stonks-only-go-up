@@ -176,7 +176,7 @@ module.exports = function (app) {
 
         // Total Time of Execution
         const totalTimeTaken = (endTime - startTime.toFixed(3)).toFixed(3)
-        console.log("Total execution time... ", totalTimeTaken, "  milliseconds!")
+        //console.log("Total execution time... ", totalTimeTaken, "  milliseconds!")
         fullCompanyInfo.executionTime = totalTimeTaken
 
         // Final Sendoff Data

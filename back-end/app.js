@@ -25,13 +25,16 @@ app.use('/users', UserController);
 app.use('/api/auth', AuthController);
 app.use('/follow',FollowController)
 
-
 require('./stonk/singleStonkBackend')(app);
 
 //ROUTES GO HERE
 app.get('/', (req,res)=>{
     
 })
+
+app.get('/get', function(req, res) {
+    res.send("Madison");
+  });
 
 app.get('/login', (req, res) => {
     //Nothing here yet
