@@ -2,13 +2,35 @@ const express = require('express');
 const router = express.Router();
 const axios = require('axios')
 const db = require('../db')
-const cors = require('cors')
+const cors = require('cors');
+const { Stonk } = require('../schemas');
 
 router.use(cors())
 
 router.get('/stonks', async (req,res) => {
-    let response = await axios("https://my.api.mockaroo.com/stonks.json?key=7d2830f0")
-    res.json(response.data)
+
+    let token = req.headers["x-access-token"]
+    if(!token) return res.send("No token provided")
+    let response = await axios.get('http://localhost:8080/api/auth/me',{
+        headers: {
+            "x-access-token": token
+        }
+    })
+    let user = response.data
+    if(user.auth == false) return res.send("Failed to authenticate")
+
+    let followed = user.followed ? user.followed : []
+    Stonk.find({
+        symbol:{
+            $in: followed
+        }
+    },(err, stonks) =>{
+        if(err) res.send("error")
+        res.json(stonks)
+
+    })
+
+
 })
 
 router.get('/:stonk', async (req, res) => {
