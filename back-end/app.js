@@ -32,10 +32,6 @@ app.get('/', (req,res)=>{
     
 })
 
-app.get('/get', function(req, res) {
-    res.send("Madison");
-  });
-
 app.get('/login', (req, res) => {
     //Nothing here yet
     //waiting for account database

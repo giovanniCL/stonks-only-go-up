@@ -7,8 +7,8 @@ var expect = chai.expect;
 
 chai.use(chaiHttp);
 
-describe('get basic company informaiton', function () {
-    it('responds with status 200', function (done) {
+describe('testing company info', function () {
+    it('has company info, stonk quote, and graph data', function (done) {
         this.timeout(10000);
         chai.request(app)
             .post('/single-stonk/:name')
