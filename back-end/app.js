@@ -20,6 +20,7 @@ const api_key = finnhub.ApiClient.instance.authentications['api_key'];
 api_key.apiKey = process.env.FINNHUB_KEY;
 const finnhubClient = new finnhub.DefaultApi();
 const db = require('./db');
+const { Test } = require('mocha')
 
 app.use(cors())
 app.use(express.static('public'))
@@ -208,8 +209,18 @@ app.get('/dashboard', cors(), async (req,res) => {
     res.json(response.data)
 })
 app.get('/hype', async (req,res) => {
-    let response = await axios("https://my.api.mockaroo.com/stonks.json?key=7d2830f0")
-    res.json(response.data)
+    
+    //let response = await axios("https://my.api.mockaroo.com/stonks.json?key=7d2830f0")
+    
+    res.json([
+        {
+            name: "TEST",
+            stonkometer: 100,
+            price: 100
+
+        }
+    ])
+
 })
 
 
