@@ -162,8 +162,6 @@ function SingleStonk(props) {
 
                 </article>
             )}
-
-
         </>
     )
 }
