@@ -16,8 +16,7 @@ function SingleStonk(props) {
     //SIGNING IN USER TO TEST FOLLOW BUTTON
     const [auth, setAuth] = useState()
     const [following, setFollowing] = useState(false)
-
-    /*
+    
     useEffect(() => {
         async function authPost() {
             let authentication = await axios.post('http://localhost:8080/api/auth/login', {
@@ -41,7 +40,7 @@ function SingleStonk(props) {
         }
         authHeaders()
     }, [auth])
- */
+ 
 
     async function follow_unfollow() {
         await axios.get(`http://localhost:8080/follow/${tickerSymbol}`, {
