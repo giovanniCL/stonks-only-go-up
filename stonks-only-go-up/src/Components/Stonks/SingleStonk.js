@@ -12,6 +12,39 @@ function SingleStonk(props) {
     console.log(props)
 
     const [loadingStonkData, setLoadingStonkData] = useState(true)
+
+    //SIGNING IN USER TO TEST FOLLOW BUTTON
+    const [auth, setAuth] = useState()
+    const [following, setFollowing] = useState(false)
+    useEffect(async()=>{
+        let authentication = await axios.post('http://localhost:8080/api/auth/login',{
+            user_name : "Stonk_Guy_420",
+            password : "PASSWORD"
+        })
+        setAuth(authentication.data.token)
+
+    },[])
+
+    useEffect(async () => {
+        if(!auth) return
+        let user = await axios.get('http://localhost:8080/api/auth/me',{
+            headers:{
+                "x-access-token" : auth
+            }
+        })
+        setFollowing(user.data.followed ? user.data.followed.includes(tickerSymbol) : false)
+    },[auth])
+
+    async function follow_unfollow(){
+        await axios.get(`http://localhost:8080/follow/${tickerSymbol}`,{
+            headers:{
+            "x-access-token" : auth
+            }
+        })
+        setFollowing(!following)
+    }
+
+
     useEffect(async () => {
         
         const finnhubAPI = 'c1rp9kaad3ifb04k9aa0'
@@ -153,7 +186,7 @@ function SingleStonk(props) {
                                     <HypeMeter score={hypeScore} />
                                 </div>
                             </div>
-                            <button id="follow-unfollow-button-single-viewer">Follow</button>
+                            <button id="follow-unfollow-button-single-viewer" onClick = {()=>follow_unfollow()}>{following ? "Unfollow" : "Follow"}</button> 
                         </section>
 
                     </article>

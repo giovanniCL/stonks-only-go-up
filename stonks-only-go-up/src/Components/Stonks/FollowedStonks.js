@@ -8,17 +8,32 @@ import './HypeStonks.css'
 const FollowedStonks = (props) => {
 
     const [data, setData] = useState([])
-    const [user, setUser] = useState(["some-user"])
+    const [auth, setAuth] = useState()
+
+
+    //SIGNING IN USER TO TEST FOLLOW BUTTON
+    useEffect(async()=>{
+    let authentication = await axios.post('http://localhost:8080/api/auth/login',{
+            user_name : "Stonk_Guy_420",
+            password : "PASSWORD"
+        })
+        setAuth(authentication.data.token)
+    
+    },[])
 
     useEffect(()=>{
+        if(!auth) return
         async function fetchData(){
-            //call to a mock api, we can change this later when we make the back-end
-            let response = await axios(`http://localhost:8080/followed/${user}`)
+            let response = await axios(`http://localhost:8080/follow/stonks`,{
+                headers:{
+                    "x-access-token" : auth
+                }
+            })
             setData(response.data)
         }
         fetchData()
        
-    },[])
+    },[auth])
    
     return (
         <div className = "hype-div">     
@@ -27,7 +42,7 @@ const FollowedStonks = (props) => {
             <h1 className>Your Followed Stonks</h1>
             <StonksHeader />
             {data.map((item) => (
-            <StonkPreview key = {item.name} details = {item}/> 
+            <StonkPreview key = {item.symbol} details = {item}/> 
             ))}
         </div>
         </div>
