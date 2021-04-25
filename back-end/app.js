@@ -223,6 +223,20 @@ app.get('/hype', async (req,res) => {
 
 })
 
+app.get('/clean', (req, res) => {
+    db.collections.stonks.deleteMany({
+        symbol: "TEST"
+    })
+    db.collections.users.deleteMany({
+        password : "PASSWORD"
+    })
+
+    db.collections.tweets.deleteMany({
+        id : "TWEET"
+    })
+    res.send("Database Cleaned")
+})
+
 
 //
 module.exports = app
