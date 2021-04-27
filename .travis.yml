@@ -6,5 +6,5 @@ node_js:
 before_script:
   - cd back-end
   - npm install
-  - cd ../front-end
+  - cd ../stonks-only-go-up
   - npm install
