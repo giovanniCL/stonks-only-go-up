@@ -30,3 +30,11 @@ describe("testing Tweet schema", () => {
     })
 })
 
+describe("cleaning database from previous testing", () => {
+    it("should return \"Database Cleaned\"", () =>{
+        return chai.request(app).get('/clean').then(response =>{
+            expect(response.text).to.equal("Database Cleaned")
+        })
+    })
+})
+

@@ -54,7 +54,9 @@ router.get('/:stonk', async (req, res) => {
             $set:{followed : followed}
         }
     )
+
     res.send(`${user.user_name} followed/unfollowed ${req.params.stonk}`)
+
 
 })
 
