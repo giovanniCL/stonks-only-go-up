@@ -32,7 +32,7 @@ const StonkPreview = (props) =>{
         <Link to = {`/single-stonk/${props.details.name}`} style ={{textDecoration:"none"}} className= "container" 
         onMouseEnter = {()=>hoverClass()} onMouseLeave = {()=>unHoverClass()}>
             <div className = {nameClass}>{props.details.symbol ? props.details.symbol : props.details.name} </div>
-            <div className= {stonkClass}>{props.details.stonkometer ? props.details.stonkometer : "0" + "%"}</div>
+            <div className= {stonkClass}>{(props.details.stonkometer ? props.details.stonkometer : "0") + "%"}</div>
             <div className = {priceClass}>{props.details.currentPrice ? props.details.currentPrice : props.details.price}</div>
         </Link>
        

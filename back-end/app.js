@@ -10,6 +10,7 @@ const bcrypt = require('bcryptjs');
 const UserController = require('./user/UserController');
 const AuthController = require('./auth/AuthController');
 const FollowController = require('./follow/FollowController')
+const HypeController = require('./hype/HypeController')
 const {Stonk, Tweet} = require('./schemas')
 const User = require('./user/User');
 
@@ -28,6 +29,7 @@ app.use(express.json())
 app.use('/users', UserController);
 app.use('/api/auth', AuthController);
 app.use('/follow',FollowController)
+app.use('/hype', HypeController)
 
 require('./stonk/singleStonkBackend')(app);
 
@@ -207,20 +209,6 @@ app.get('/tweet-schema-test',(req,res)=>{
 app.get('/dashboard', cors(), async (req,res) => {
     let response = await axios("https://my.api.mockaroo.com/stonks.json?key=7d2830f0")
     res.json(response.data)
-})
-app.get('/hype', async (req,res) => {
-    
-    //let response = await axios("https://my.api.mockaroo.com/stonks.json?key=7d2830f0")
-    
-    res.json([
-        {
-            name: "TEST",
-            stonkometer: 100,
-            price: 100
-
-        }
-    ])
-
 })
 
 app.get('/clean', (req, res) => {
