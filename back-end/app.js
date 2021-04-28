@@ -22,6 +22,8 @@ const finnhubClient = new finnhub.DefaultApi();
 const db = require('./db');
 const { Test } = require('mocha')
 
+
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors())
 app.use(express.static('public'))
 app.use(express.json())
@@ -131,6 +133,7 @@ app.get('/single-stonk/:name', (req, res) => {
 
 //add user information to mongodb
 app.post('/add-user',(req,res)=>{
+    console.log(req.body.firstName)
     User.findOne({email:req.body.email}).then(user=>{
         if(user){
             console.log("email already exists")
@@ -144,9 +147,9 @@ app.post('/add-user',(req,res)=>{
         res.send('<script>alert("Your confirmation password does not match"); window.location.href = "http://localhost:3000/signup"; </script>');
     }else{
         const newUser = new User({
-            firstname: req.body.firstName,
-            lastname : req.body.lastName,
-            username : req.body.userName,
+            first_name: req.body.firstName,
+            last_name : req.body.lastName,
+            user_name : req.body.userName,
             email : req.body.email,
             password : hashedPassword
         })
