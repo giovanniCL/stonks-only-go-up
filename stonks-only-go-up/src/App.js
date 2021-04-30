@@ -1,11 +1,10 @@
 // General Imports
-import React, { createContext, useState, useEffect } from "react"
+import React from "react"
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Switch, Route } from "react-router-dom"
 
 // Scenes & Pages (Should import all pages here)
-import TestComponent from "./Components/TestComponent"
 import SignUp from './Components/Signup/SignUp'
 import LogInPage from './Components/Login/LogInPage';
 import ResetPage from './Components/Reset/ResetPage';
@@ -42,7 +41,7 @@ function App() {
         <AuthProvider>
           <Navbar />
           <Switch>
-            <Route exact path="/" component={TestComponent} /> {/* Each PAGE should follow this format */}
+            <Route exact path="/" component={LogInPage} /> {/* Each PAGE should follow this format */}
             <Route exact path="/signup" component={SignUp} />
             <SetupRoute exact path="/setup/initial" component={SetupInitialPage} />
             <SetupRoute exact path="/setup/personal-info" component={SetupPersonalInfoPage} />
