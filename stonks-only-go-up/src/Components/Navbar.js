@@ -10,9 +10,8 @@ import '../App.css'
 
 function Navbar(props) {
 
-    const { authData, setAuthData } = useContext(Authentication);
+    const { authData, authLogout } = useContext(Authentication);
 
-    console.log(authData)
     // Need to replace '#' with page links'
     //Stonk Search Bar on Right Side WIP
     const [showLinks, setShowLinks] = useState(false);
@@ -20,6 +19,7 @@ function Navbar(props) {
         <div className="Navbar">
             <div className="leftSide">
                 <h1>SOGU</h1>
+                
             </div>
             <div className="centerSide">
                 <div className="links" id={showLinks ? "hidden" : ""}>
@@ -29,7 +29,7 @@ function Navbar(props) {
                 </div>
             </div>
             <div className="rightSide">
-                {!authData.loggedIn ? (
+                {!authData.token ? (
                     <div className="nonloggedLinks">
                         <Link className="navLink" to="/login">Login</Link>
                         <Link className="navLink" to="/signup">Sign Up</Link>
@@ -50,14 +50,12 @@ function Navbar(props) {
                             <Link className="navLink" to="/settings">
                                 <Dropdown.Item href="/settings">Settings</Dropdown.Item>
                             </Link>
-                            <Dropdown.Item>Log Out</Dropdown.Item>
+                            <Dropdown.Item onClick={() => authLogout()}>Log Out</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
-                )
-                }
-
-            </div >
-        </div >
+                )}
+            </div>
+        </div>
 
     )
 }

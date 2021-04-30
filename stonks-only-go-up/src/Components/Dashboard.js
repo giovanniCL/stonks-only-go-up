@@ -10,6 +10,7 @@ const Dashboard = (props) => {
 
     const { authData, setAuthData } = useContext(Authentication);
     console.log(authData)
+    console.log(localStorage.getItem('authToken'))
 
     const [data, setData] = useState([])
 

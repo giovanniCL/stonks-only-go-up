@@ -1,8 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import "./signup.css"
 import axios from "axios"
+import { Authentication } from "../../AuthContext";
 
 const SignUp = (props) => {
+
+    const { authData, setAuthData } = useContext(Authentication);
+    console.log(authData)
+
+
     function check(input) {
         if (input.value != document.getElementById('password').value) {
             input.setCustomValidity('Password Must be Matching.');
@@ -35,6 +41,10 @@ const SignUp = (props) => {
         const userResponse = await axios.post('/api/auth/signup', signUpData)
         console.log(userResponse)
         if (userResponse.data.success) {
+            setAuthData({
+                token: userResponse.data.token,
+                lastFetched: new Date(),
+            })
             props.history.push('/setup/initial')
         } else {
             setErrorMessage(userResponse.data.message)
