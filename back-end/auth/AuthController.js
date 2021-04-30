@@ -18,28 +18,37 @@ const VerifyToken = require('./VerifyToken');
 
 router.post('/login', function (req, res) {
   //console.log(req.body)
-  User.findOne({ user_name: req.body.user_name }, function (err, user) {
-    if (err) return res.status(500).send('Error on the server.');
-    if (!user) return res.status(404).send('No user found.');
+  try {
+    User.findOne({ user_name: req.body.user_name }, function (err, user) {
+      if (err) {
+        res.send({ success: false, message: "Error with server! Maybe try again later?" })
+        return
+      }
+      if (!user) {
+        res.send({ success: false, message: "No user found!" })
+        return
+      }
 
-    // check if the password is valid
-    var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
-    if (!passwordIsValid) return res.status(401).send({ auth: false, token: null });
+      // check if the password is valid
+      var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
+      if (!passwordIsValid) return res.status(401).send({ auth: false, token: null });
 
-    // if user is found and password is valid
-    // create a token
-    var token = jwt.sign({ id: user._id }, config.secret, {
-      expiresIn: 86400 // expires in 24 hours
+      // if user is found and password is valid
+      // create a token
+      var token = jwt.sign({ id: user._id }, config.secret, {
+        expiresIn: 86400 // expires in 24 hours
+      });
+
+      // return the information including token as JSON
+      res.status(200).send({ success: true, auth: true, token: token });
     });
-
-    // return the information including token as JSON
-    res.status(200).send({ auth: true, token: token });
-  });
-
+  } catch (error) {
+    res.send({ success: false, message: "No user found!" })
+  }
 });
 
 router.get('/logout', function (req, res) {
-  res.status(200).send({ auth: false, token: null });
+  res.status(200).send({ success: true, auth: false, token: null });
 });
 
 router.post('/signup', async function (req, res) {
