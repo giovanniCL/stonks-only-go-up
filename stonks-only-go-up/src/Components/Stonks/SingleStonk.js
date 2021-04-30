@@ -93,7 +93,6 @@ function SingleStonk(props) {
 
     return (
         <>
-            <Navbar />
             {loadingStonkData ? (
                 <div id="loading-full-empty-single-stonk">
                     <h2 className="basic-loading-header">Loading...</h2>

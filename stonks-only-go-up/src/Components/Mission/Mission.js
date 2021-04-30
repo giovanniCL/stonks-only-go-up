@@ -6,7 +6,6 @@ import Navbar from "../Navbar"
 const MissionPage = () => {
     return (
         <>
-        <Navbar />
         <div className = "Mission">
             <img src= {mission} alt="background" width="1920" height="932" />
             <h1 className = "MissionTitle">Our Mission</h1>

@@ -1,5 +1,5 @@
 // General Imports
-import React, { useEffect, useContext } from "react"
+import React, { useEffect, useContext, useState } from "react"
 import "../Login/login.css"
 import { Authentication } from "../../AuthContext";
 
@@ -11,55 +11,96 @@ import axios from "axios"
     Page is the first step of the process in logging into account. This will appear
     right after the user clicks the log in button (username, password)
 */
-// <button onClick={() => props.history.push('/setup/personal-info')}>Begin Account Setup</button>
 const LogInPage = (props) => {
 
     const { authData, setAuthData } = useContext(Authentication);
     console.log(authData)
 
-    useEffect(() => {
-        console.log("hellp")
-        /*
-        async function authPost() {
-            let expressRes = await axios.post('/api/auth/login',
-                {
-                    user_name: "Stonk_Guy_420",
-                    password: "PASSWORD",
-                })
-            console.log(expressRes)
-            console.log(expressRes.data)
-        }
-       
-        authPost()
-         */
-        //setAuthData({ dad: "Rawr" })
-    }, [])
+    const [loginErrorMessage, setErrorMessage] = useState("")
 
     async function handleLogin(e) {
         e.preventDefault()
-        console.log(e)
+
+        const usernameInput = e.target.username.value
+        const passwordInput = e.target.password.value
+
+        if (usernameInput.length === 0) {
+            setErrorMessage("Your username input is empty!")
+            return
+        }
+        if (passwordInput.length === 0) {
+            setErrorMessage("Your password input is empty!")
+            return
+        }
+        const loginForm = {
+            user_name: usernameInput,
+            password: passwordInput
+        }
+        //
+        const authResponse = await authPost(loginForm)
+        if (authResponse.success) {
+            console.log("We got the user!")
+            setAuthData({
+                loggedIn: true,
+                token: authResponse.data.token,
+                lastFetched: new Date(),
+            })
+            props.history.push('/dashboard')
+        } else {
+            setErrorMessage(authResponse.message)
+        }
     }
+
+    async function authPost(loginForm) {
+        try {
+            let expressRes = await axios.post('/api/auth/login', loginForm)
+            console.log(expressRes)
+            console.log(expressRes.data)
+            if (expressRes.data.success) {
+                return { success: true, data: expressRes.data }
+            } else {
+                return { success: false, message: expressRes.data.message }
+            }
+
+        } catch (error) {
+            return { success: false, message: "There was a problem connecting you to the server. Maybe try again later?" }
+        }
+    }
+
+    /*
+
+    Stonk_Guy_420
+    PASSWORD
+    
+    */
 
     return (
         <div className="loginBody">
             <div className="loginBox">
                 <div className="loginH">Log In</div>
+                <button onClick={() => props.history.push('/signup')}>
+                    New User? Sign Up Here
+                </button>
                 <form onSubmit={handleLogin}>
                     <input
                         type="text"
                         name="username"
-                        placeholder="Username"
-                        required
+                        placeholder="Username..."
+                        autoComplete="off"
+                        onChange={() => setErrorMessage("")}
                     />
                     <input
                         type="password"
                         name="password"
-                        placeholder="Password"
-                        required />
+                        placeholder="Password..."
+                        autoComplete="off"
+                        onChange={() => setErrorMessage("")}
+                    />
+                    <div style={{ 'color': 'red' }}>{loginErrorMessage}</div>
+                    <button type="submit">Log In</button>
                 </form>
 
 
-                <button type="submit" value="Login" onClick={() => props.history.push('/dashboard')}>Log In</button>
                 <button onClick={() => props.history.push('/reset/initial')}>Forget Password</button>
 
 

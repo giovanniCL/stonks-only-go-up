@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import "./signup.css"
-import Navbar from '../Navbar'
 import axios from "axios"
 
 const SignUp = (props) => {
@@ -44,11 +43,13 @@ const SignUp = (props) => {
     }
     return (
         <>
-            <div> <Navbar /> </div>
 
             <div className="signUpBody">
                 <div className="signUpBox">
                     <h1>Sign Up</h1>
+                    <button onClick={() => props.history.push('/login')}>
+                        Already Have an Account? Login Here
+                </button>
                     <form className="signUpBox" onSubmit={handleSignup}>
                         <input type="text" name="firstName" placeholder="First Name" required></input>
                         <input type="text" name="lastName" placeholder="Last Name" required></input>

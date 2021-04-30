@@ -1,6 +1,7 @@
 // General Imports
 import React, { createContext, useState, useEffect } from "react"
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Switch, Route } from "react-router-dom"
 
 // Scenes & Pages (Should import all pages here)
@@ -26,6 +27,7 @@ import SetupConfirmPage from './Components/Setup/SetupConfirmPage'
 import SetupRoute from "./Components/Setup/SetupRoute"
 
 import AuthProvider from "./AuthContext";
+import Navbar from './Components/Navbar'
 
 
 // App Component
@@ -33,14 +35,14 @@ import AuthProvider from "./AuthContext";
 // as the parent of all components/pages within this app
 function App() {
   console.warn = console.error = () => { }; // Stops all yellow warning errors
-  
+
   return (
     <div className="App">
       <BrowserRouter>
         <AuthProvider>
+          <Navbar />
           <Switch>
             <Route exact path="/" component={TestComponent} /> {/* Each PAGE should follow this format */}
-
             <Route exact path="/signup" component={SignUp} />
             <SetupRoute exact path="/setup/initial" component={SetupInitialPage} />
             <SetupRoute exact path="/setup/personal-info" component={SetupPersonalInfoPage} />
@@ -48,8 +50,8 @@ function App() {
             <SetupRoute exact path="/setup/stonk-suggest" component={SetupStonkPage} />
             <SetupRoute exact path="/setup/profile-picture" component={SetupProfilePicturePage} />
             <SetupRoute exact path="/setup/confirm" component={SetupConfirmPage} />
-            <Route exact path="/login/initial" component={LogInPage} />
-            <Route exact path="/reset/initial" component={ResetPage} />
+            <Route exact path="/login" component={LogInPage} />
+            <Route exact path="/reset" component={ResetPage} />
             <Route exact path="/hype-stonks" component={HypeStonks} />
             <Route exact path="/followed-stonks" component={FollowedStonks} />
             <Route exact path="/single-stonk/:name" component={SingleStonk} />
