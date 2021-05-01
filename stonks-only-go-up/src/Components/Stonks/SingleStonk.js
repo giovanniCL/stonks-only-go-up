@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import SingleStonkGraph from "./SingleStonkGraph"
 import Navbar from '../Navbar'
 import './SingleStonk.css'
 import { ArrowLeft } from 'react-feather'
 import HypeMeter from "../HypeMeter"
 import axios from "axios"
+import {Authentication} from '../../AuthContext'
 
 function SingleStonk(props) {
     // Note. ticker should be passed down from props.match.params.name
@@ -14,9 +15,10 @@ function SingleStonk(props) {
     const [loadingStonkData, setLoadingStonkData] = useState(true)
 
     //SIGNING IN USER TO TEST FOLLOW BUTTON
-    const [auth, setAuth] = useState()
+    const {authData, setAuthData} = useContext(Authentication)
+    console.log(authData)
     const [following, setFollowing] = useState(false)
-    
+    /*
     useEffect(() => {
         async function authPost() {
             let authentication = await axios.post('http://localhost:8080/api/auth/login', {
@@ -27,25 +29,27 @@ function SingleStonk(props) {
         }
         authPost()
     }, [])
+    */
 
     useEffect(() => {
         async function authHeaders() {
-            if (!auth) return
+            if (!authData) return
             let user = await axios.get('http://localhost:8080/api/auth/me', {
                 headers: {
-                    "x-access-token": auth
+                    "x-access-token": authData.token
                 }
             })
             setFollowing(user.data.followed ? user.data.followed.includes(tickerSymbol) : false)
         }
         authHeaders()
-    }, [auth])
+    }, [authData])
  
 
     async function follow_unfollow() {
+        if(!authData) return
         await axios.get(`http://localhost:8080/follow/${tickerSymbol}`, {
             headers: {
-                "x-access-token": auth
+                "x-access-token": authData.token
             }
         })
         setFollowing(!following)
