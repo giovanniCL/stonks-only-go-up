@@ -23,6 +23,8 @@ const finnhubClient = new finnhub.DefaultApi();
 const db = require('./db');
 const { Test } = require('mocha')
 
+
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors())
 app.use(express.static('public'))
 app.use(express.json())
@@ -123,50 +125,7 @@ app.get('/single-stonk/:name', (req, res) => {
 
     })
 
-
-
-
 })
-
-
-
-/*
-//add user information to mongodb
-app.post('/add-user', (req, res) => {
-    User.findOne({ email: req.body.email }).then(user => {
-        if (user) {
-            console.log("email already exists")
-            res.send('<script>alert("This email already has already been registered"); window.location.href = "http://localhost:3000/signup"; </script>');
-        } else {
-            const salt = bcrypt.genSaltSync(8)
-            var hashedPassword = bcrypt.hashSync(req.body.password, salt);
-            console.log(req.body.firstName)
-            if (req.body.password != req.body.confirmPassword) {
-                console.log("confirm does not match")
-                res.send('<script>alert("Your confirmation password does not match"); window.location.href = "http://localhost:3000/signup"; </script>');
-            } else {
-                const newUser = new User({
-                    firstname: req.body.firstName,
-                    lastname: req.body.lastName,
-                    username: req.body.userName,
-                    email: req.body.email,
-                    password: hashedPassword
-                })
-                newUser.save()
-                    .then((result) => {
-                        console.log(result);
-                        res.redirect("http://localhost:3000/setup/initial")
-
-                    })
-                    .catch((err) => {
-                        console.log(err);
-                    })
-            }
-        }
-    })
-
-})
-*/
 
 //This endpoint is only for testing the stonk schema
 app.get('/stonk-schema-test', (req, res) => {
