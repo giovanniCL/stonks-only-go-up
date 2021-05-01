@@ -7,7 +7,6 @@ import { Authentication } from "../AuthContext";
 import LordAndSaviorDefaultPicture from "../Assets/LordAndSaviorProfile.png"
 import { Link } from 'react-router-dom';
 
-import '../App.css'
 
 function Navbar(props) {
 
