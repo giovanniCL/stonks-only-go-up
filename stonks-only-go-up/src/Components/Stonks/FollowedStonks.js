@@ -11,18 +11,6 @@ const FollowedStonks = (props) => {
     const {authData, setAuthData} = useContext(Authentication)
 
 
-    //SIGNING IN USER TO TEST FOLLOW BUTTON
-    /*
-    useEffect(async()=>{
-    let authentication = await axios.post('http://localhost:8080/api/auth/login',{
-            user_name : "Stonk_Guy_420",
-            password : "PASSWORD"
-        })
-        setAuth(authentication.data.token)
-    
-    },[])
-    */
-
     useEffect(()=>{
         if(!authData) return
         async function fetchData(){

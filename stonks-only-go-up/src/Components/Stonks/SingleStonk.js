@@ -14,23 +14,9 @@ function SingleStonk(props) {
 
     const [loadingStonkData, setLoadingStonkData] = useState(true)
 
-    //SIGNING IN USER TO TEST FOLLOW BUTTON
     const {authData, setAuthData} = useContext(Authentication)
-    console.log(authData)
     const [following, setFollowing] = useState(false)
-    /*
-    useEffect(() => {
-        async function authPost() {
-            let authentication = await axios.post('http://localhost:8080/api/auth/login', {
-                user_name: "Stonk_Guy_420",
-                password: "PASSWORD"
-            })
-            setAuth(authentication.data.token)
-        }
-        authPost()
-    }, [])
-    */
-
+ 
     useEffect(() => {
         async function authHeaders() {
             if (!authData) return
