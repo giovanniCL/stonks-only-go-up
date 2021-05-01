@@ -14,13 +14,17 @@
         overflow: scroll;
         padding: 0px 12px;
 
+        .emoji-article-wrapper {
+            font-style: normal;
+        }
+
         .each-article {
             position: relative;
             padding: 6px 24px;
             background: rgb(247, 247, 247);
             margin: 12px auto;
             border-radius: 16px;
-            border-top: 8px solid #FFDD47;
+            border-top: 8px solid #ffdd47;
         }
         .article-title {
             font-size: 32px;
