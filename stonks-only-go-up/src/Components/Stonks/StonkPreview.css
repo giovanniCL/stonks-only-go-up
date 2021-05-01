@@ -2,7 +2,7 @@
 body{
     font-family: 'Ubuntu', sans-serif;
 }
-.container {
+.preview-container {
     display: flex;
     width: 50%;
     text-align: center;
@@ -14,7 +14,7 @@ body{
 
 }
   
-.container div{
+.preview-container div{
     width: 33.3%;
     text-align: center;
     padding-top: 10px;
