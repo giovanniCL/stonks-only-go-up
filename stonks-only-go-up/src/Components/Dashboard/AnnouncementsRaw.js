@@ -22,14 +22,16 @@ const announceSchema = [
 
     {
         title: "Important Stonk Terminology",
-        timestamp: moment("Sunday, 2 May 2021 15:00:00").format('MMMM Do YYYY, h:mm:ss a'),
+        timestamp: moment("Sunday, 2 May 2021 15:00:00").format('MMMM Do, YYYY'),
         image: diamondHandPicture,
+        imageDesc: "An accurate depiction of diamond hands",
         description: null
     },
     {
         title: "Welcome!",
-        timestamp: moment("Fri, 30 April 2021 13:00:00").format('MMMM Do YYYY, h:mm:ss a'),
+        timestamp: moment("Fri, 30 April 2021 13:00:00").format('MMMM Do, YYYY'),
         image: welcomePicture,
+        imageDesc: "Our full team-wide photoshoot",
         description: null
     },
 ]

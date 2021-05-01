@@ -9,7 +9,7 @@ const Announcements = (props) => {
 
     return (
         <div id="announce-wrapper">
-            <h1>Announcements</h1>
+
             <section id="article-wrapper">
                 {announceSchema.map((eachArticle, articleIndex) => {
                     return (
@@ -17,6 +17,7 @@ const Announcements = (props) => {
                             <h2 className="article-title">{eachArticle.title}</h2>
                             <h2 className="article-timestamp">{eachArticle.timestamp.toString()}</h2>
                             <img className="article-image" src={eachArticle.image} alt="" />
+                            <p className="article-image-desc">{eachArticle.imageDesc}</p>
                             <div className="article-body">
                                 {eachArticle.description}
                             </div>
