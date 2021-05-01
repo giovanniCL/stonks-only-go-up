@@ -19,16 +19,23 @@
             margin: 12px auto;
             border-radius: 16px;
         }
-
         .article-title {
             font-size: 24px;
             font-weight: bold;
+        }
+        .article-image {
+            margin: auto auto 12px;
         }
         .article-timestamp {
             font-size: 18px;
             position: absolute;
             top: 10px;
             right: 24px;
+        }
+        .article-sign {
+            padding-left: 24px;
+            font-style: italic;
+            font-weight: bold;
         }
     }
     #article2 {

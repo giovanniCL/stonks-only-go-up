@@ -3,8 +3,23 @@ import diamondHandPicture from "../../Assets/diamond-hand.jpg"
 import welcomePicture from "../../Assets/welcome.jpg"
 import moment from "moment"
 
+export function emojiGen(emoji) {
+    switch (emoji) {
+        case "rocket":
+            return <span>&#128640;</span>
+        case "moon":
+            return <span>&#127765;</span>
+        case "diamond":
+            return <span>&#128142;</span>
+        case "hands":
+            return <span>&#129330;</span>
+        default:
+            return <span></span>
+    }
+}
+
 const announceSchema = [
-    
+
     {
         title: "Important Stonk Terminology",
         timestamp: moment("Sunday, 2 May 2021 15:00:00").format('MMMM Do YYYY, h:mm:ss a'),
@@ -25,7 +40,7 @@ const article1 = (
             Welcome to Stonks Only Go Up! We are pleased to finally release this app after months of hard work and focus! We aim to simplify the process of understanding Stonks in this new age of following trends and making gains! Please take a look at our mission page to see more about the team and our holy crusade.
         </p>
         <p>Remember, stonks only go up.</p>
-        <p> - SOGU Team</p>
+        <p className="article-sign"> - SOGU Team</p>
     </div>
 )
 const article2 = (
@@ -39,7 +54,7 @@ const article2 = (
                 <p className="article-example">I bought a BTC and now we be making those tendies.</p>
             </li>
             <li>
-                <span className="heavy-article-name">Diamond Hands</span> - when an investor holds onto a stonk for a long term, usually even when the stonk price is dropping rapidly.
+                <span className="heavy-article-name">Diamond Hands {emojiGen("diamond")}{emojiGen("hands")}</span> - when an investor holds onto a stonk for a long term, usually even when the stonk price is dropping rapidly.
                 <p className="article-example">Gamestop is going down, but remember lads</p>
             </li>
             <li>
@@ -59,16 +74,16 @@ const article2 = (
                 <p className="article-example">I don’t want to continue investing, I’m just a bagholder at this point.</p>
             </li>
             <li>
-                <span className="heavy-article-name">Mooning</span> - when a particular stonk or crypto is believed to have reached its peak.
+                <span className="heavy-article-name">Mooning {emojiGen("moon")}{emojiGen("moon")}{emojiGen("moon")}</span> - when a particular stonk or crypto is believed to have reached its peak.
                 <p className="article-example">Some say that Dogecoin is mooning, but I think its about to go Mars.</p>
             </li>
             <li>
-                <span className="heavy-article-name">Rockets</span> - indicates high growth potential, usually at high risk
-                <p className="article-example">GME</p>
+                <span className="heavy-article-name">Rockets {emojiGen("rocket")}</span> - indicates high growth potential, usually at high risk
+                <p className="article-example">GME {emojiGen("rocket")}{emojiGen("rocket")}{emojiGen("rocket")}</p>
             </li>
             <li>
                 <span className="heavy-article-name">To the Moon</span> - expression that a stonk will rapidly rise all the way up
-                <p className="article-example">GME TO THE MOON BOYS</p>
+                <p className="article-example">GME TO THE MOON BOYS {emojiGen("rocket")}{emojiGen("rocket")}{emojiGen("rocket")}{emojiGen("moon")}{emojiGen("moon")}</p>
             </li>
             <li>
                 <span className="heavy-article-name">Stonks</span> - Stonks.
@@ -77,7 +92,7 @@ const article2 = (
         <p>
             Now that you know all the new stonk lingo, go out in the world and ensure that the rest of the public understand it! Remember, with great power comes great responsibility!
         </p>
-        <p> - SOGU Team</p>
+        <p className="article-sign"> - SOGU Team</p>
     </div>
 )
 

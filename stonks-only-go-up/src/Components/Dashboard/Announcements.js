@@ -7,10 +7,6 @@ import { announceSchema } from './AnnouncementsRaw';
 
 const Announcements = (props) => {
 
-    const { authData, setAuthData } = useContext(Authentication);
-
-    console.log(announceSchema)
-
     return (
         <div id="announce-wrapper">
             <h1>Announcements</h1>
