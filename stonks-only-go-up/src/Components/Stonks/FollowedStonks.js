@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import StonkPreview from './StonkPreview'
 import StonksHeader from './StonksHeader'
-import Navbar from '../Navbar'
 import './HypeStonks.css'
 
 const FollowedStonks = (props) => {
@@ -36,8 +35,7 @@ const FollowedStonks = (props) => {
     },[auth])
    
     return (
-        <div className = "hype-div">     
-        <div> <Navbar /> </div>
+        <div className = "hype-div">
         <div className = "hype-content">
             <h1 className>Your Followed Stonks</h1>
             <StonksHeader />
