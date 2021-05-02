@@ -44,9 +44,15 @@ router.get('/update', async (req, res) => {
             }
         }
         let stonk_count = {}
+        let stonk_tweet_replies = {}
+        let stonk_tweet_favorites = {}
+        let stonk_tweet_retweets = {}
         for(d in data){ // For each tweet, look for each of the symbols. Whenever they match, increase its count
             let tweet = data[d]
             let text = tweet.text
+            let favorites = tweet.favorite_count
+            let replies = tweet.reply_count
+            let retweets = tweet.retweet_count
             for(s in stonk_symbols){
                 let symbol = stonk_symbols[s]
                 let regex_string = ".*" + symbol
@@ -55,15 +61,32 @@ router.get('/update', async (req, res) => {
                 if(match > -1){
                     if(stonk_count[symbol]) stonk_count[symbol]++
                     else stonk_count[symbol] = 1
+                    if(favorites && stonk_tweet_favorites[symbol]) stonk_tweet_favorites[symbol] = stonk_tweet_favorites[symbol] + favorites
+                    else stonk_tweet_favorites[symbol] = favorites
+                    if(replies && stonk_tweet_replies[symbol]) stonk_tweet_replies[symbol] = stonk_tweet_replies[symbol] + replies
+                    else stonk_tweet_replies = replies
+                    if(retweets && stonk_tweet_retweets[symbol]) stonk_tweet_retweets[symbol] = stonk_tweet_retweets[symbol] + retweets
+                    
                 }
             }
         }
         stonk_symbols.forEach(symbol=>{ //update stonks in database
+            let favorites = stonk_tweet_retweets[symbol]
+            let repllies = stonk_tweet_replies[symbol]
+            let retweets = stonk_tweet_retweets[symbol]
             let stonkometer = stonk_count[symbol] ? stonk_count[symbol] * 10  : 0// For now the stonkometer will just be the word count times 10
             stonkometer = stonkometer > 100? 100 : stonkometer // It will not go past 100
             db.collections.stonks.updateOne({symbol : symbol},{
                 $set: {stonkometer : stonkometer}
             })
+            db.collecitions.tweets.updateOne({symbol: symbol}, {
+                $set: {mentions: stonk_count[symbol]},
+                $set: {symbol: symbol},
+                $set: {likes : likes},
+                $set: {favorites: favorites},
+                $set: {retweets: retweets}
+            },
+            {upsert: true})
         })
        
         res.send(stonk_count)

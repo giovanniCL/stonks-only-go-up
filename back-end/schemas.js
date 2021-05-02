@@ -30,16 +30,16 @@ const Stonk = mongoose.model('Stonk',{
 })
 
 const Tweet = mongoose.model('Tweet',{
-    id:{
+    symbol:{
         type: String,
         required: true
     },
-    username:{
-        type: String,
+    mentions:{
+        type: Number,
         required: true
     },
-    content:{
-        type: String,
+    favorites:{
+        type: Number,
         required: true
     },
     likes:{
