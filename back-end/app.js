@@ -155,9 +155,9 @@ app.get('/user-schema-test', (req, res) => {
 //This endpoint is only for testing tweet schema
 app.get('/tweet-schema-test', (req, res) => {
     const newTweet = new Tweet({
-        id: 'TWEET',
-        username: "stonk_guy_420",
-        content: "Hello World",
+        symbol: 'TSLA',
+        mentions: 5,
+        favorites: 5,
         likes: 10,
         retweets: 5
     })
