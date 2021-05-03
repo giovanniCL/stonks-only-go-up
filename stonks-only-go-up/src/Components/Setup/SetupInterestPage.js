@@ -1,6 +1,7 @@
 // General Imports
 import { React, useState } from "react"
 import { interestsList } from "../Lists/InterestsList"
+import { recommendedList } from "../Lists/RecommendedList"
 // Setup Interest Page
 /*
     This page is the THIRD step of the setting up account
@@ -30,16 +31,16 @@ const SetupInterestPage = (props) => {
             <h1 className="setup-header">Interest Page</h1>
             <p className="setup-description">Select the following interests that you enjoy the most:</p>
             <ul className="interest-list">
-                {interestsList.map((eachInterest, eachInterestIndex) => {
+                {recommendedList.map((eachInterest, eachInterestIndex) => {
                     return (
                         <li className="each-interest-item" key={eachInterestIndex}>
                             <button
-                                className={interestsSelected.includes(eachInterest) ?
+                                className={interestsSelected.includes(eachInterest.interest) ?
                                     "interest-bttn interest-selected" :
                                     "interest-bttn interest-not-selected"
                                 }
-                                onClick={() => interestClicked(eachInterest)}>
-                                {eachInterest}
+                                onClick={() => interestClicked(eachInterest.interest)}>
+                                {eachInterest.interest}
                             </button>
                         </li>
                     )
