@@ -2,6 +2,7 @@
 @import "./Components/Stonks/SingleStonkGraph.css";
 @import "./Components/HypeMeter.css";
 @import './Components/Navbar.css';
+@import "./Components/Dashboard/Announcements.scss";
 
 @import url(https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap); 
 body {
@@ -31,8 +32,6 @@ input:focus {
   background: rgb(229, 244, 255);
 }
 
-.App {
-}
 
 .App-logo {
   height: 40vmin;
@@ -60,9 +59,8 @@ input:focus {
   color: #61dafb;
 }
 body{
-  font-family: 'Ubuntu', sans-serif;
-  background-color: rgb(2, 2, 87);
-  color: white;
+  font-family: 'Ubuntu', sans-serif !important;;
+  background-color: rgb(154, 154, 255) !important;;
 
 }
 

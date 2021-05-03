@@ -1,0 +1,70 @@
+// Announcements for Dashboard
+
+#announce-wrapper {
+    background: white;
+    margin: 48px auto;
+    min-width: 400px;
+    width: 80%;
+    max-width: 900px;
+    box-shadow: #32325d40 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    border-radius: 12px;
+
+    #article-wrapper {
+        height: 600px;
+        overflow: scroll;
+        padding: 0px 12px;
+
+        .emoji-article-wrapper {
+            font-style: normal;
+        }
+
+        .each-article {
+            position: relative;
+            padding: 6px 24px;
+            background: rgb(247, 247, 247);
+            margin: 12px auto;
+            border-radius: 16px;
+            border-top: 8px solid #ffdd47;
+        }
+        .article-title {
+            font-size: 32px;
+            font-weight: bold;
+            padding-top: 6px;
+            font-family: "Ubuntu", sans-serif;
+            border-bottom: 1px solid rgb(207, 204, 204);
+        }
+        .article-image {
+            margin: auto auto 12px;
+        }
+        .article-image-desc {
+            font-style: italic;
+            padding-right: 8px;
+            margin-top: -12px;
+            font-size: 12px;
+            text-align: right;
+        }
+        .article-timestamp {
+            font-size: 12px;
+            position: absolute;
+            top: 10px;
+            right: 24px;
+        }
+        .article-sign {
+            padding-left: 24px;
+            font-style: italic;
+            font-weight: bold;
+        }
+    }
+    #article2 {
+        li {
+            margin: 12px auto;
+        }
+        .heavy-article-name {
+            font-weight: bold;
+        }
+        .article-example {
+            font-style: italic;
+            padding-left: 24px;
+        }
+    }
+}

@@ -1,10 +1,12 @@
-import Navbar from './Navbar'
+import Navbar from '../Navbar'
 import React, { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
-import StonkPreview from './Stonks/StonkPreview'
-import StonksHeader from './Stonks/StonksHeader'
+import StonkPreview from '../Stonks/StonkPreview'
+import StonksHeader from '../Stonks/StonksHeader'
 import './Dashboard.css'
-import { Authentication } from "../AuthContext";
+import { Authentication } from "../../AuthContext";
+
+import Announcements from "./Announcements"
 
 const Dashboard = (props) => {
 
@@ -31,6 +33,8 @@ const Dashboard = (props) => {
 
 
             <body>
+
+                
 
                 <div className="dashboard_wrapper">
 
@@ -77,6 +81,10 @@ const Dashboard = (props) => {
                         <StonkPreview key={item.name} details={item} />
                     ))}
                 </div>
+
+                <Announcements />
+
+
 
 
             </body>
