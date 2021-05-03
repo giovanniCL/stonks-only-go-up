@@ -7,17 +7,32 @@ import LordAndSaviorDefaultPicture from "../../Assets/LordAndSaviorProfile.png"
 const SetupRoute = ({ component: RouteComponent, ...rest }) => {
 
     const [setupForm, changeSetupForm] = useState({
-        personalInfo: {},
+        personalInfo: {
+            personalName: "",
+            age: "",
+            gender: "",
+            location: "",
+            educationLevel: "",
+        },
         interests: [],
         stonks: [],
         profilePicture: LordAndSaviorDefaultPicture,
     })
 
+    const [deepInterestList, setDeepInterestList] = useState([])
+
     function handleMainFormChange(key, value) {
         console.log(key, value)
         const setupFormWorking = { ...setupForm }
-        setupFormWorking[key] = value
-        changeSetupForm(setupFormWorking)
+        if (key === "interests") {
+            setDeepInterestList(value)
+            const workingInterests = value.map(o => o.interest)
+            setupFormWorking[key] = workingInterests
+            changeSetupForm(setupFormWorking)
+        } else {
+            setupFormWorking[key] = value
+            changeSetupForm(setupFormWorking)
+        }
     }
 
     return (
@@ -34,6 +49,8 @@ const SetupRoute = ({ component: RouteComponent, ...rest }) => {
                             {...routeProps}
                             setupForm={setupForm}
                             handleMainFormChange={handleMainFormChange}
+                            deepInterestList={deepInterestList}
+                            setDeepInterestList={setDeepInterestList}
                         />
                     </div>
                 </section>

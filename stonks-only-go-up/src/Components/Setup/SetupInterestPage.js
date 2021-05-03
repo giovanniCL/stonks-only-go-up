@@ -12,7 +12,7 @@ const SetupInterestPage = (props) => {
         if (props.setupForm.interests.length === 0) {
             return []
         } else {
-            return props.setupForm.interests
+            return props.deepInterestList
         }
     })
 
@@ -26,6 +26,7 @@ const SetupInterestPage = (props) => {
             selectInterest(interestsSelectedWorking)
         }
     }
+    console.log(interestsSelected)
     return (
         <div>
             <h1 className="setup-header">Interest Page</h1>
@@ -35,11 +36,11 @@ const SetupInterestPage = (props) => {
                     return (
                         <li className="each-interest-item" key={eachInterestIndex}>
                             <button
-                                className={interestsSelected.includes(eachInterest.interest) ?
+                                className={interestsSelected.includes(eachInterest) ?
                                     "interest-bttn interest-selected" :
                                     "interest-bttn interest-not-selected"
                                 }
-                                onClick={() => interestClicked(eachInterest.interest)}>
+                                onClick={() => interestClicked(eachInterest)}>
                                 {eachInterest.interest}
                             </button>
                         </li>

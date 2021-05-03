@@ -1,6 +1,8 @@
 // General Imports
 import { React, useEffect, useState } from "react"
 import axios from 'axios'
+import { ageList } from "../Lists/AgeList"
+import { recommendedList } from "../Lists/RecommendedList"
 
 // Setup Stonk Page
 /*
@@ -31,21 +33,46 @@ const SetupStonkPage = (props) => {
         }
     }
 
+    function getNewStonks(parentArray) {
+        return [].concat.apply([], [...parentArray].map(o => o.newStonk))
+    }
+    function getOldStonks(parentArray) {
+        return [].concat.apply([], [...parentArray].map(o => o.oldStonk))
+    }
+
+    const [notSuggestedStonks, setNotSuggestedStonks] = useState([])
+
     useEffect(() => {
-        async function getStonkData() {
-            let stonkData = await axios.get("https://my.api.mockaroo.com/stonk-list.json?key=1031c360")
-            setStonkFullList(stonkData.data)
+
+        const userAge = props.setupForm.personalInfo.age
+        const ageIndex = ageList.findIndex(o => o === userAge)
+        let stonkSuggests = []
+
+        if (ageIndex >= 2) {
+            stonkSuggests = getOldStonks(props.deepInterestList)
+        } else if (ageIndex < 2) {
+            stonkSuggests = getNewStonks(props.deepInterestList)
+        } else {
+            stonkSuggests = getNewStonks(props.deepInterestList).concat(getOldStonks(props.deepInterestList))
         }
-        getStonkData()
-    }, [])
+        if (stonkSuggests.length === 0) {
+            stonkSuggests = getNewStonks(recommendedList).concat(getOldStonks(recommendedList))
+        }
+
+        const notSuggestedLocal = recommendedList.filter(x => !props.deepInterestList.includes(x))
+        setNotSuggestedStonks(getNewStonks(notSuggestedLocal).concat(getOldStonks(notSuggestedLocal)))
+
+        setStonkFullList(stonkSuggests)
+    }, [props.deepInterestList, props.setupForm])
 
     return (
         <div>
             <h1 className="setup-header">Stonk Page</h1>
             <p className="setup-description">Please select the following stonks you wish to start following:</p>
-            {stonkFullList.length === 0 ? (
-                <p>Loading...</p>
-            ) : (
+
+
+            <div>
+                <h3>Suggested Stonks</h3>
                 <ul className="stonk-list">
                     {stonkFullList.map((eachStonk, eachInterestIndex) => {
                         return (
@@ -56,13 +83,34 @@ const SetupStonkPage = (props) => {
                                         "stonk-bttn stonk-not-selected"
                                     }
                                     onClick={() => stonkClicked(eachStonk)}>
-                                    {eachStonk.stonk}
+                                    {eachStonk.label}
                                 </button>
                             </li>
                         )
                     })}
                 </ul>
-            )}
+            </div>
+            <div>
+                <h3>Other Stonks</h3>
+                <ul className="stonk-list">
+                    {notSuggestedStonks.map((eachStonk, eachInterestIndex) => {
+                        return (
+                            <li className="each-stonk-item" key={eachInterestIndex}>
+                                <button
+                                    className={stonksSelected.includes(eachStonk) ?
+                                        "stonk-bttn stonk-selected" :
+                                        "stonk-bttn stonk-not-selected"
+                                    }
+                                    onClick={() => stonkClicked(eachStonk)}>
+                                    {eachStonk.label}
+                                </button>
+                            </li>
+                        )
+                    })}
+                </ul>
+            </div>
+
+
             <div className="setup-directory">
                 <button
                     className="back-setup-path-button"

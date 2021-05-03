@@ -71,7 +71,7 @@ const SetupConfirmPage = (props) => {
                         {props.setupForm.stonks.map((eachStonk, stonkIndex) => {
                             return (
                                 <li key={stonkIndex} className="each-stonk-item-confirm">
-                                    {eachStonk.stonk}
+                                    {eachStonk.label}
                                 </li>
                             )
                         })}

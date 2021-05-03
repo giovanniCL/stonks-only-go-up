@@ -26,12 +26,6 @@ export const recommendedList = [
         ],
     },
     {
-        interest: "Construction",
-        oldStonk: [
-            { label: "Caterpillar", ticker: "CAT" },
-        ],
-    },
-    {
         interest: "Reading",
         oldStonk: [
             { label: "K12", ticker: "LRN" }
@@ -132,6 +126,100 @@ export const recommendedList = [
         newStonk: [
             { label: "Tinder", ticker: "MTCH" },
             { label: "Bumble", ticker: "BMBL" },
+        ],
+    },
+    {
+        interest: "Finances",
+        oldStonk: [
+            { label: "Visa", ticker: "V" },
+            { label: "JPMorgan Chase & Co.", ticker: "JPM" },
+        ],
+        newStonk: [
+            { label: "Goldman Sachs", ticker: "GS" },
+            { label: "American Express", ticker: "AXP" },
+        ],
+    },
+    {
+        interest: "Healthcare",
+        oldStonk: [
+            { label: "United Health", ticker: "UNH" },
+            { label: "Pfzier", ticker: "PFE" },
+        ],
+        newStonk: [
+            { label: "Teledoc", ticker: "TDOC" },
+            { label: "CVS", ticker: "CVS" },
+        ],
+    },
+    {
+        interest: "Home Repair",
+        oldStonk: [
+            { label: "Home Depot", ticker: "HD" },
+            { label: "Lowe's", ticker: "LOW" },
+        ],
+        newStonk: [
+            { label: "D.R. Horton", ticker: "DHI" },
+            { label: "Tractor Supply Co.", ticker: "TSCO" },
+        ],
+    },
+    {
+        interest: "Internet Browsing",
+        oldStonk: [
+            { label: "Comcast Corp", ticker: "CMCSA" },
+            { label: "Cisco Systems", ticker: "CSCO" },
+        ],
+        newStonk: [
+            { label: "Alibaba", ticker: "BABA" },
+            { label: "Verizon", ticker: "VZ" },
+        ],
+    },
+    {
+        interest: "Grocery Shopping",
+        oldStonk: [
+            { label: "Target", ticker: "TGT" },
+            { label: "Weis", ticker: "WMK" },
+        ],
+        newStonk: [
+            { label: "Costco", ticker: "COST" },
+            { label: "Dollar Tree", ticker: "DLTR" },
+        ],
+    },
+    {
+        interest: "Traveling",
+        oldStonk: [
+            { label: "United Airlines", ticker: "UAL" },
+        ],
+        newStonk: [
+            { label: "Delta Airlines", ticker: "DE" },
+            { label: "Expedia", ticker: "EXPE" },
+        ],
+    },
+    {
+        interest: "Gardening",
+        oldStonk: [
+            { label: "Deere & Co.", ticker: "DE" },
+        ],
+        newStonk: [
+            { label: "Tyson", ticker: "TSN" },
+        ],
+    },
+    {
+        interest: "Social Media",
+        oldStonk: [
+            { label: "Facebook", ticker: "FB" },
+            { label: "Pinterest", ticker: "PINS" },
+        ],
+        newStonk: [
+            { label: "Snapchat", ticker: "SNAP" },
+            { label: "Twitter", ticker: "TWTR" },
+        ],
+    },
+    {
+        interest: "House Tours",
+        oldStonk: [
+            { label: "Berkshire Hathaway", ticker: "BRK.A" },
+        ],
+        newStonk: [
+            { label: "Equity Residential", ticker: "EQR" },
         ],
     },
 
