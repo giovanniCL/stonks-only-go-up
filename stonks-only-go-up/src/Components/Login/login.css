@@ -80,14 +80,18 @@ Font-family: https://fonts.google.com/specimen/Ubuntu?preview.text_type=custom#s
     border-radius: 5px;
     width: 250px;
     height: 40px;
+    background-color: rgb(84, 130, 230);
 }
 .loginButton2 {
+    background-color: rgb(207, 221, 252);
     border-radius: 5px;
     width: 250px;
     height: 40px;
 }
 
 .loginInputTexts {
+    background-color: white;
+    border-bottom: 2px solid rgb(64, 77, 255);
     border-radius: 5px;
     width: 250px;
     height: 40px;
