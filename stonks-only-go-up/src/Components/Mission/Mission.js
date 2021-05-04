@@ -1,5 +1,7 @@
-// General Imports
-import { React } from "react";
+import {React} from "react";
+import mission from "./mission.jpg";
+import Navbar from "../Navbar"
+
 
 // Simple Render of the Mission Page
 const MissionPage = () => {

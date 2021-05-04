@@ -50,6 +50,7 @@ const SignUp = (props) => {
         console.log(userResponse)
         if (userResponse.data.success) {
             setAuthData({
+                user_name: formTarget.userName.value,
                 token: userResponse.data.token,
                 lastFetched: new Date(),
             })

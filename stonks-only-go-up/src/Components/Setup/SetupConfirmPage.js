@@ -1,5 +1,7 @@
 // General Imports
-import { React } from "react"
+import { React, useContext } from "react"
+
+import { Authentication } from "../../AuthContext";
 
 // Setup Confirm Page
 /*
@@ -19,6 +21,8 @@ const SetupConfirmPage = (props) => {
     console.log("le props", props)
     console.log(props.setupForm)
     */
+    const { authData } = useContext(Authentication);
+    console.log(authData)
 
     return (
         <div>

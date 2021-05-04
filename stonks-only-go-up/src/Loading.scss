@@ -1,0 +1,21 @@
+#big-loading-wrapper {
+    width: 110px;
+    height: 110px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid #2828b3;
+    background: white;
+    border-radius: 12px;
+}
+
+#small-loading-wrapper {
+    width: 60px;
+    height: 60px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid #2828b3;
+    background: white;
+    border-radius: 12px;
+}
