@@ -98,6 +98,7 @@ const LogInPage = (props) => {
                     <div style={{ 'color': 'red' }}>{loginErrorMessage}</div>
                     <button className = "loginButton" type="submit">Log In</button>
                     </div>
+                    <div> - or - </div>
                     <div className = "loginFormBot">
                         
                         <button className = "loginButton2" onClick={() => props.history.push('/reset/initial')}>Forget Password</button>

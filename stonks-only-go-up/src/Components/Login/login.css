@@ -107,7 +107,7 @@ Font-family: https://fonts.google.com/specimen/Ubuntu?preview.text_type=custom#s
 .loginFormTop{
     display: flex;
     flex-direction: column;
-    height: 150px;
+    height: 170px;
     justify-content: space-around;
 }
 
