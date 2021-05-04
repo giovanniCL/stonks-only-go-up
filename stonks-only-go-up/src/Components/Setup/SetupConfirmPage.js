@@ -1,5 +1,5 @@
 // General Imports
-import { React, useState } from "react"
+import { React } from "react"
 
 // Setup Confirm Page
 /*
@@ -15,8 +15,10 @@ const NotCorrectEdit = (props) => {
     )
 }
 const SetupConfirmPage = (props) => {
+    /*
     console.log("le props", props)
     console.log(props.setupForm)
+    */
 
     return (
         <div>

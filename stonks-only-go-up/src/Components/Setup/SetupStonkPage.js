@@ -13,8 +13,6 @@ const SetupStonkPage = (props) => {
     let [stonkFullList, setStonkFullList] = useState([])
 
     let [stonksSelected, setStonkSelected] = useState(() => {
-        // Note. for this is will always be different because of the api call we make,
-        // but once we finalize the stonk calls, it will be saved
         if (props.setupForm.stonks.length === 0) {
             return []
         } else {
@@ -43,24 +41,35 @@ const SetupStonkPage = (props) => {
     const [notSuggestedStonks, setNotSuggestedStonks] = useState([])
 
     useEffect(() => {
-
+        // Gets the user age and index
         const userAge = props.setupForm.personalInfo.age
         const ageIndex = ageList.findIndex(o => o === userAge)
+
+        // Basic Setup Init
         let stonkSuggests = []
+        let notSuggestedLocal = []
+        let getAllRest = []
+        const deepCopyDeepInterestList = [...props.deepInterestList]
 
-        if (ageIndex >= 2) {
-            stonkSuggests = getOldStonks(props.deepInterestList)
-        } else if (ageIndex < 2) {
-            stonkSuggests = getNewStonks(props.deepInterestList)
-        } else {
-            stonkSuggests = getNewStonks(props.deepInterestList).concat(getOldStonks(props.deepInterestList))
+        // You have no idea how long this took...
+        if (ageIndex >= 2) { // handles for old age
+            stonkSuggests = [...getOldStonks(deepCopyDeepInterestList)]
+            notSuggestedLocal = recommendedList.filter(x => !deepCopyDeepInterestList.includes(x))
+            getAllRest = [...getNewStonks([...notSuggestedLocal]).concat(getOldStonks([...notSuggestedLocal]))]
+            const leftover = getNewStonks(deepCopyDeepInterestList)
+            setNotSuggestedStonks(getAllRest.concat(leftover))
+        } else if (ageIndex > -1) { // handles for young age
+            stonkSuggests = [...getNewStonks(deepCopyDeepInterestList)]
+            notSuggestedLocal = recommendedList.filter(x => !deepCopyDeepInterestList.includes(x))
+            getAllRest = [...getOldStonks([...notSuggestedLocal]).concat(getNewStonks([...notSuggestedLocal]))]
+            const leftover = getOldStonks(deepCopyDeepInterestList)
+            setNotSuggestedStonks(getAllRest.concat(leftover))
+        } else {  // handles not specified age
+            stonkSuggests = [...getNewStonks(deepCopyDeepInterestList).concat(getOldStonks(deepCopyDeepInterestList))]
+            notSuggestedLocal = recommendedList.filter(x => !deepCopyDeepInterestList.includes(x))
+            getAllRest = [...getNewStonks([...notSuggestedLocal]).concat(getOldStonks([...notSuggestedLocal]))]
+            setNotSuggestedStonks(getAllRest)
         }
-        if (stonkSuggests.length === 0) {
-            stonkSuggests = getNewStonks(recommendedList).concat(getOldStonks(recommendedList))
-        }
-
-        const notSuggestedLocal = recommendedList.filter(x => !props.deepInterestList.includes(x))
-        setNotSuggestedStonks(getNewStonks(notSuggestedLocal).concat(getOldStonks(notSuggestedLocal)))
 
         setStonkFullList(stonkSuggests)
     }, [props.deepInterestList, props.setupForm])

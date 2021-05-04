@@ -22,8 +22,8 @@ const SetupRoute = ({ component: RouteComponent, ...rest }) => {
     const [deepInterestList, setDeepInterestList] = useState([])
 
     function handleMainFormChange(key, value) {
-        console.log(key, value)
         const setupFormWorking = { ...setupForm }
+
         if (key === "interests") {
             setDeepInterestList(value)
             const workingInterests = value.map(o => o.interest)
