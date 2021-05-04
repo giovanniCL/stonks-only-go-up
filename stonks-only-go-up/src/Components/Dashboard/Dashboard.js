@@ -6,6 +6,8 @@ import StonksHeader from '../Stonks/StonksHeader'
 import './Dashboard.css'
 import { Authentication } from "../../AuthContext";
 
+import Diamond from "../../Assets/diamond.jpg"
+
 import Announcements from "./Announcements"
 
 const Dashboard = (props) => {
@@ -31,10 +33,7 @@ const Dashboard = (props) => {
     return (
         <>
 
-
             <body>
-
-                
 
                 <div className="dashboard_wrapper">
 

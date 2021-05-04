@@ -41,6 +41,7 @@ const LogInPage = (props) => {
         if (authResponse.success) {
             console.log("We got the user!")
             setAuthData({
+                user_name: usernameInput,
                 token: authResponse.data.token,
                 lastFetched: new Date(),
             })

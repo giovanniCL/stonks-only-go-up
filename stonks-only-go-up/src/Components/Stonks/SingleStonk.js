@@ -5,7 +5,8 @@ import './SingleStonk.css'
 import { ArrowLeft } from 'react-feather'
 import HypeMeter from "../HypeMeter"
 import axios from "axios"
-import {Authentication} from '../../AuthContext'
+import { Authentication } from '../../AuthContext'
+import { BigLoading } from "../Loading"
 
 function SingleStonk(props) {
     // Note. ticker should be passed down from props.match.params.name
@@ -14,9 +15,9 @@ function SingleStonk(props) {
 
     const [loadingStonkData, setLoadingStonkData] = useState(true)
 
-    const {authData, setAuthData} = useContext(Authentication)
+    const { authData, setAuthData } = useContext(Authentication)
     const [following, setFollowing] = useState(false)
- 
+
     useEffect(() => {
         async function authHeaders() {
             if (!authData) return
@@ -29,10 +30,10 @@ function SingleStonk(props) {
         }
         authHeaders()
     }, [authData])
- 
+
 
     async function follow_unfollow() {
-        if(!authData) return
+        if (!authData) return
         await axios.get(`http://localhost:8080/follow/${tickerSymbol}`, {
             headers: {
                 "x-access-token": authData.token
@@ -85,7 +86,7 @@ function SingleStonk(props) {
         <>
             {loadingStonkData ? (
                 <div id="loading-full-empty-single-stonk">
-                    <h2 className="basic-loading-header">Loading...</h2>
+                    <h2 className="basic-loading-header"><BigLoading /></h2>
                 </div>
             ) : (
                 <article id="single-stonk-viewer-page">
