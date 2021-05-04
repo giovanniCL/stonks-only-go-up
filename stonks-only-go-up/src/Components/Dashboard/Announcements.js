@@ -6,8 +6,10 @@ import { announceSchema } from './AnnouncementsRaw';
 const Announcements = () => {
     return (
         <div id="announce-wrapper">
+            
             <section id="article-wrapper">
                 {announceSchema.map((eachArticle, articleIndex) => {
+                    console.log(eachArticle.image)
                     return (
                         <article className="each-article" index={articleIndex}>
                             <h2 className="article-title">{eachArticle.title}</h2>

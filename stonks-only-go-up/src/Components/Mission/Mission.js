@@ -1,5 +1,4 @@
 import {React} from "react";
-import './Mission1.css'
 import mission from "./mission.jpg";
 import Navbar from "../Navbar"
 
