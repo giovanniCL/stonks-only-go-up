@@ -63,7 +63,7 @@ const SignUp = (props) => {
     function handleCaptchaChange(e) {
         if (!!e) { setCaptchaVerified(true) }
     }
-    
+
     return (
         <>
 
@@ -74,16 +74,16 @@ const SignUp = (props) => {
                         Already Have an Account? Login Here
                 </button>
                     <form className="signUpBox" onSubmit={handleSignup}>
-                        <input type="text" name="firstName" placeholder="First Name" required></input>
-                        <input type="text" name="lastName" placeholder="Last Name" required></input>
-                        <input type="text" name="userName" placeholder="User Name" required></input>
-                        <input type="email" name="email" placeholder="Email" required></input>
+                        <input type="text" name="firstName" placeholder="First Name" required autoComplete="off" />
+                        <input type="text" name="lastName" placeholder="Last Name" required autoComplete="off" />
+                        <input type="text" name="userName" placeholder="User Name" required autoComplete="off" />
+                        <input type="email" name="email" placeholder="Email" required autoComplete="off" />
                         <input
                             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-                            type="password" id="password" className="password" name="password" placeholder="Password" required></input>
+                            type="password" id="password" className="password" name="password" placeholder="Password" autoComplete="off" />
                         <input
                             title="Confirmation password must match"
-                            type="password" className="password" name="confirmPassword" placeholder="Confirm Password" required></input>
+                            type="password" className="password" name="confirmPassword" placeholder="Confirm Password" autoComplete="off" />
                         <ReCAPTCHA
                             sitekey="6Ldss8MaAAAAAFET_Bz-q-1UbkHET6nLFW8zTdsa"
                             onChange={handleCaptchaChange}
