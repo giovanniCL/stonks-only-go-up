@@ -1,6 +1,6 @@
 // General Imports
 import React from "react"
-import './App.css';
+import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Switch, Route } from "react-router-dom"
 
@@ -14,7 +14,7 @@ import HypeStonks from './Components/Stonks/HypeStonks'
 import FollowedStonks from './Components/Stonks/FollowedStonks'
 
 import MissionPage from './Components/Mission/Mission'
-import Dashboard from './Components/Dashboard'
+import Dashboard from './Components/Dashboard/Dashboard'
 
 import SetupInitialPage from "./Components/Setup/SetupInitialPage"
 import SetupPersonalInfoPage from './Components/Setup/SetupPersonalInfoPage'
