@@ -77,11 +77,10 @@ const LogInPage = (props) => {
         <div className="loginBody">
             <div className="loginBox">
                 <div className="loginH">Log In</div>
-                <button onClick={() => props.history.push('/signup')}>
-                    New User? Sign Up Here
-                </button>
-                <form onSubmit={handleLogin}>
+                <form  className = "loginForm"onSubmit={handleLogin}>
+                    <div className = "loginFormTop">
                     <input
+                        className = "loginInputTexts"
                         type="text"
                         name="username"
                         placeholder="Username..."
@@ -89,6 +88,7 @@ const LogInPage = (props) => {
                         onChange={() => setErrorMessage("")}
                     />
                     <input
+                        className = "loginInputTexts"
                         type="password"
                         name="password"
                         placeholder="Password..."
@@ -96,15 +96,21 @@ const LogInPage = (props) => {
                         onChange={() => setErrorMessage("")}
                     />
                     <div style={{ 'color': 'red' }}>{loginErrorMessage}</div>
-                    <button type="submit">Log In</button>
+                    <button className = "loginButton" type="submit">Log In</button>
+                    </div>
+                    <div className = "loginFormBot">
+                        
+                        <button className = "loginButton2" onClick={() => props.history.push('/reset/initial')}>Forget Password</button>
+
+                        <button className = "loginButton2" onClick={() => props.history.push('/signup')}>
+                            New User? Sign Up Here
+                        </button>
+
+                    </div>
+                    
                 </form>
 
 
-                <button onClick={() => props.history.push('/reset/initial')}>Forget Password</button>
-
-                <button onClick={() => props.history.push('/signup')}>
-                    New User? Sign Up Here
-                </button>
             </div>
         </div>
     )
