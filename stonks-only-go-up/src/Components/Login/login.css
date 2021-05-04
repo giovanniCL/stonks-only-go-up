@@ -77,6 +77,9 @@ Font-family: https://fonts.google.com/specimen/Ubuntu?preview.text_type=custom#s
 
 
 }
+.loginButton {
+    border-radius: 12px;
+}
 
 @keyframes fadein {
     from { opacity: 0; }

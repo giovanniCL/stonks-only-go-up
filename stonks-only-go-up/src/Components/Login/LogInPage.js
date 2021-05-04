@@ -102,7 +102,9 @@ const LogInPage = (props) => {
 
                 <button onClick={() => props.history.push('/reset/initial')}>Forget Password</button>
 
-
+                <button onClick={() => props.history.push('/signup')}>
+                    New User? Sign Up Here
+                </button>
             </div>
         </div>
     )
