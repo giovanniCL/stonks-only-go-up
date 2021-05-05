@@ -4,7 +4,7 @@ import "../Login/login.css"
 import { Authentication } from "../../AuthContext";
 
 import axios from "axios"
-
+require('dotenv').config()
 
 // Log In Page
 /*
@@ -53,7 +53,7 @@ const LogInPage = (props) => {
 
     async function authPost(loginForm) {
         try {
-            let expressRes = await axios.post('/api/auth/login', loginForm)
+            let expressRes = await axios.post(`${process.env.REACT_APP_SERVER}/api/auth/login`, loginForm)
             console.log(expressRes)
             console.log(expressRes.data)
             if (expressRes.data.success) {

@@ -2,6 +2,7 @@
 import { React, useContext } from "react"
 import { Authentication } from "../../AuthContext";
 const axios = require('axios')
+require('dotenv').config()
 // Setup Confirm Page
 /*
     This page is the SIXTH step of the setting up account
@@ -38,7 +39,7 @@ const SetupConfirmPage = (props) => {
         }
         try {
 
-            await axios.post('/setup/confirm', info)
+            await axios.post(`${process.env.REACT_APP_SERVER}/setup/confirm`, info)
         } catch (error) { console.log(error) }
         props.history.push('/')
 

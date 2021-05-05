@@ -7,6 +7,7 @@ import './HypeStonks.css'
 import { Authentication } from '../../AuthContext'
 
 import MustBeSignedAction from "./MustBeSignedAction"
+require('dotenv').config()
 
 const HypeStonks = (props) => {
 
@@ -16,7 +17,7 @@ const HypeStonks = (props) => {
 
     useEffect(() => {
         async function fetchData() {
-            let response = await axios("http://localhost:8080/hype/stonks")
+            let response = await axios(`${process.env.REACT_APP_SERVER}/hype/stonks`)
             setData(response.data)
         }
         fetchData()
