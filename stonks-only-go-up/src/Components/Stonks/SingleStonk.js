@@ -7,6 +7,7 @@ import HypeMeter from "../HypeMeter"
 import axios from "axios"
 import { Authentication } from '../../AuthContext'
 import MustBeSignedAction from "./MustBeSignedAction"
+import { BigLoading } from "../Loading"
 
 function SingleStonk(props) {
     // Note. ticker should be passed down from props.match.params.name
@@ -93,7 +94,7 @@ function SingleStonk(props) {
         <>
             {loadingStonkData ? (
                 <div id="loading-full-empty-single-stonk">
-                    <h2 className="basic-loading-header">Loading...</h2>
+                    <h2 className="basic-loading-header"><BigLoading /></h2>
                 </div>
             ) : (
                 <article id="single-stonk-viewer-page">

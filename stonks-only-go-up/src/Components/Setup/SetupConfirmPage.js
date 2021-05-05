@@ -1,6 +1,7 @@
 // General Imports
-import { React } from "react"
-
+import { React, useContext } from "react"
+import { Authentication } from "../../AuthContext";
+const axios = require('axios')
 // Setup Confirm Page
 /*
     This page is the SIXTH step of the setting up account
@@ -14,12 +15,29 @@ const NotCorrectEdit = (props) => {
         >Edit</button>
     )
 }
+
 const SetupConfirmPage = (props) => {
     /*
     console.log("le props", props)
     console.log(props.setupForm)
     */
+    const { authData } = useContext(Authentication);
+    console.log(authData)
+    console.log(props.setupForm)
 
+    
+async function saveDB(flops){
+    const info = {
+        stonks: flops.setupForm.stonks,
+        age: flops.setupForm.personalInfo.age,
+        gender: flops.setupForm.personalInfo.gender,
+        location: flops.setupForm.personalInfo.location,
+        education_level: flops.setupForm.personalInfo.educationLevel,
+        user_name: authData.user_name
+    }
+
+   return await axios.post('/setup/confirm', info)
+}
     return (
         <div>
             <h1 className="setup-header">Confirm Page</h1>
@@ -93,7 +111,10 @@ const SetupConfirmPage = (props) => {
 
             <div id="confirm-directory" className="setup-directory">
                 <button className="back-setup-path-button" onClick={() => props.history.push('/setup/profile-picture')}>Back</button>
-                <button className="go-setup-path-button" onClick={() => props.history.push('/')}>Finish Setup</button>
+                <button className="go-setup-path-button" onClick={() => {
+                    saveDB(props);
+                    props.history.push('/')
+                }}>Finish Setup</button>
             </div>
         </div >
     )

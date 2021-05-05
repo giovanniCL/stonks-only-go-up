@@ -1,5 +1,5 @@
 // Announcements Raw to be used for dashboard
-import diamondHandPicture from "../../Assets/diamond-hand.jpg"
+import diamondHandPicture from "../../Assets/diamond.jpg"
 import welcomePicture from "../../Assets/welcome.jpg"
 import moment from "moment"
 

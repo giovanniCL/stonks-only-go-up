@@ -41,6 +41,7 @@ const LogInPage = (props) => {
         if (authResponse.success) {
             console.log("We got the user!")
             setAuthData({
+                user_name: usernameInput,
                 token: authResponse.data.token,
                 lastFetched: new Date(),
             })
@@ -77,11 +78,10 @@ const LogInPage = (props) => {
         <div className="loginBody">
             <div className="loginBox">
                 <div className="loginH">Log In</div>
-                <button onClick={() => props.history.push('/signup')}>
-                    New User? Sign Up Here
-                </button>
-                <form onSubmit={handleLogin}>
+                <form  className = "loginForm"onSubmit={handleLogin}>
+                    <div className = "loginFormTop">
                     <input
+                        className = "loginInputTexts"
                         type="text"
                         name="username"
                         placeholder="Username..."
@@ -89,6 +89,7 @@ const LogInPage = (props) => {
                         onChange={() => setErrorMessage("")}
                     />
                     <input
+                        className = "loginInputTexts"
                         type="password"
                         name="password"
                         placeholder="Password..."
@@ -96,11 +97,20 @@ const LogInPage = (props) => {
                         onChange={() => setErrorMessage("")}
                     />
                     <div style={{ 'color': 'red' }}>{loginErrorMessage}</div>
-                    <button type="submit">Log In</button>
+                    <button className = "loginButton" type="submit">Log In</button>
+                    </div>
+                    <div> - or - </div>
+                    <div className = "loginFormBot">
+                        
+                        <button className = "loginButton2" onClick={() => props.history.push('/reset/initial')}>Forget Password</button>
+
+                        <button className = "loginButton2" onClick={() => props.history.push('/signup')}>
+                            New User? Sign Up Here
+                        </button>
+
+                    </div>
+                    
                 </form>
-
-
-                <button onClick={() => props.history.push('/reset/initial')}>Forget Password</button>
 
 
             </div>

@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react'
 import axios from "axios"
 import { Line } from 'react-chartjs-2';
 import { niceTimestampFormat } from "../../FunctionBucket"
+import ClimbingBoxLoader from "react-spinners/ClimbingBoxLoader";
+import { SmallLoading } from '../Loading';
+
 require('dotenv').config()
 
 function SingleStonkGraph(props) {
@@ -177,7 +180,7 @@ function SingleStonkGraph(props) {
                                 </div>
                             </>
                         ) : (
-                            <h3 className="empty-graph-header">Loading...</h3>
+                            <h3 className="empty-graph-header"><SmallLoading /></h3>
                         )}
                 </>
             )}
