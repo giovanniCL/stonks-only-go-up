@@ -56,9 +56,9 @@ function SingleStonk(props) {
         if (!authData.token) return
 
         async function grabStonkometer(){
-            let response = await axios.post('/get-stonkometer', props.match.params.name)
+            let response = await axios.post('/get-stonkometer', props.match.params)
 
-        setHypeScore(response)
+        setHypeScore(response.data.stonkometer)
 
         }
         async function grabFullStonkData() {
