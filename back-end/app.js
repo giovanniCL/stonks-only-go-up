@@ -112,6 +112,7 @@ app.post('/setup/confirm', (req,res) => {
                     db.collections.stonks.insertOne({
                         name: stonkData.name,
                         symbol: stonkData.symbol,
+                        stonkometer: stonkData.stonkometer,
                         openPrice: rawComapnyInfo.data.o,
                         highPrice: rawComapnyInfo.data.h,
                         lowPrice: rawComapnyInfo.data.l,

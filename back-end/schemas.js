@@ -10,6 +10,7 @@ const Stonk = mongoose.model('Stonk',{
     },
     stonkometer:{
         type: Number,
+        required: true
     },
     openPrice:{
         type: Number,
