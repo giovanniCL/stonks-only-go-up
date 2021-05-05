@@ -1,0 +1,128 @@
+/* <--- Single Stonk Graph ---> */
+
+.stonk-graph-outer-wrapper {
+    width: 100%;
+    display: inline-flex;
+    justify-content: center;
+}
+#empty-graph-wrapper {
+    min-height: 400px;
+    background-color: rgb(21, 21, 122);
+    width: 80%;
+    position: relative;
+    padding-bottom: 6px;
+
+    .empty-graph-header {
+        text-align: center;
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        width: 80%;
+        left: 10%;
+    }
+}
+
+////
+#graph-wrapper {
+    background-color: rgb(192, 192, 241);
+    width: 80%;
+    position: relative;
+    padding-bottom: 6px;
+    padding: 4px;
+    border-radius: 12px;
+    border: 1px solid black;
+}
+
+.upper-graph-header {
+    background: white;
+    margin: 0;
+    display: inline-flex;
+    justify-content: space-between;
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    align-items: center;
+    padding: 16px 24px;
+}
+.left-upper-graph {
+    display: inline-flex;
+    align-items: center;
+}
+.left-upper-graph-logo {
+    width: 46px;
+    height: 46px;
+}
+.left-upper-graph-subheader,
+.right-upper-graph-subheader {
+    font-size: 24px;
+    margin: 0;
+    padding: 4px 24px 4px 12px;
+    font-weight: bold;
+    font-family: "Ubuntu", sans-serif;
+    color: black;
+}
+
+////
+.top-graph-time-directory {
+    padding: 12px 12px 0px;
+    background: rgb(52, 52, 104);
+    overflow-y: scroll;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    #selected-time-series {
+        background: #6e2dd8;
+    }
+}
+#graph-wrapper-real {
+    color: black;
+}
+
+.top-graph-time-inner-list {
+    list-style: none;
+    padding: 0;
+    display: inline-flex;
+    justify-content: flex-start;
+    li {
+        margin: 0 12px;
+        button {
+            border: 1px solid black;
+            border: none;
+            background: rgb(63, 63, 117);
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            text-align: center;
+            color: white;
+            &:hover {
+                background: #7926ff;
+                cursor: pointer;
+            }
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    #graph-wrapper {
+        width: 95%;
+        .top-graph-time-inner-list {
+            li {
+                margin: 0 6px;
+                button {
+                    width: 42px;
+                    height: 42px;
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+    .upper-graph-header {
+        align-items: center;
+    }
+    .left-upper-graph-subheader,
+    .right-upper-graph-subheader {
+        font-size: 16px;
+    }
+}

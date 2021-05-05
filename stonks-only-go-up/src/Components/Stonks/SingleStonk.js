@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
 import SingleStonkGraph from "./SingleStonkGraph"
-import Navbar from '../Navbar'
-import './SingleStonk.css'
 import { ArrowLeft } from 'react-feather'
 import HypeMeter from "../HypeMeter"
 import axios from "axios"
@@ -50,11 +48,13 @@ function SingleStonk(props) {
     useEffect(() => {
         if (!authData.token) return
         async function grabFullStonkData() {
-            let expressRes = await axios.post('/single-stonk/:name', { ticker: "SBUX" })
-            setCompanyInfo(expressRes.data.companyInfo)
-            setStonkQuote(expressRes.data.stonkQuote)
-            setGraph(expressRes.data.graph)
-            setLoadingStonkData(false)
+            try {
+                let expressRes = await axios.post('/single-stonk/:name', { ticker: "SBUX" })
+                setCompanyInfo(expressRes.data.companyInfo)
+                setStonkQuote(expressRes.data.stonkQuote)
+                setGraph(expressRes.data.graph)
+                setLoadingStonkData(false)
+            } catch (_) { return }
         }
         grabFullStonkData()
     }, [authData.token])

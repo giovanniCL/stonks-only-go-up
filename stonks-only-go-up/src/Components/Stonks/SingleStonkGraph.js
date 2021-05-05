@@ -106,7 +106,7 @@ function SingleStonkGraph(props) {
                                             return (
                                                 <li key={timeSeriesIndex}>
                                                     <button
-                                                        className={currentTimeSeries === timeSir.label ? "selected-time-series" : ""}
+                                                        id={currentTimeSeries.label === timeSir.label ? "selected-time-series" : ""}
                                                         onClick={() => {
                                                             handleTimeSeriesClick(timeSir)
                                                         }}
@@ -120,7 +120,7 @@ function SingleStonkGraph(props) {
                                 </div>
                                 <div>
                                     <Line
-                                        id="graph-wrapper"
+                                        id="graph-wrapper-real"
                                         legend={{
                                             display: false,
                                         }}
@@ -141,7 +141,7 @@ function SingleStonkGraph(props) {
                                         }}
                                         options={{
                                             title: {
-                                                fontColor: 'white',
+                                                fontColor: 'black',
                                                 display: true,
                                             },
 
@@ -156,21 +156,21 @@ function SingleStonkGraph(props) {
                                             scales: {
                                                 xAxes: [{
                                                     display: true,
-                                                    ticks: { fontColor: 'white' },
+                                                    ticks: { fontColor: "black" },
                                                     scaleLabel: {
                                                         display: true,
                                                         labelString: currentTimeSeries.label === "1D" ? "Time" : 'Date',
-                                                        fontColor: 'white',
+                                                        fontColor: 'black',
                                                         fontStyle: 'bold'
                                                     },
                                                 }],
                                                 yAxes: [{
                                                     display: true,
-                                                    ticks: { fontColor: 'white' },
+                                                    ticks: { fontColor: 'black' },
                                                     scaleLabel: {
                                                         display: true,
                                                         labelString: 'Price (USD $)',
-                                                        fontColor: 'white',
+                                                        fontColor: 'black',
                                                         fontStyle: 'bold'
                                                     }
                                                 }]
