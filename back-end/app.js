@@ -61,6 +61,37 @@ app.get('/setup/confirm', cors(), async (req, res) => {
     res.json("hello!")
 })
 
+app.post('/settings', (req, res) => {
+    //DB Collection
+    const users = db.collection("users");
+    const query = { user_name: req.body.user_name }
+
+    users.findOne(query, function (err, userDoc) {
+        if (userDoc != null) {
+            res.send(userDoc);
+        }
+    })
+
+})
+
+app.post("/settings-save", (req, res) => {
+
+    //
+    db.collections.users.updateOne({user_name: req.body.user_name}, {
+        $set: {
+            age: req.body.age,
+            gender: req.body.gender,
+            location: req.body.location,
+            education_level: req.body.education_level,
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+        }
+    }, {}).then(response => res.send(response))
+
+
+    //
+})
+
 app.get('/single-stonk/:name', (req, res) => {
 
     //DB Collection

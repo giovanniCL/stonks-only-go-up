@@ -15,6 +15,7 @@ import FollowedStonks from './Components/Stonks/FollowedStonks'
 
 import MissionPage from './Components/Mission/Mission'
 import Dashboard from './Components/Dashboard/Dashboard'
+import SettingsPage from "./Components/SettingsPage"
 
 import SetupInitialPage from "./Components/Setup/SetupInitialPage"
 import SetupPersonalInfoPage from './Components/Setup/SetupPersonalInfoPage'
@@ -56,6 +57,7 @@ function App() {
             <Route exact path="/single-stonk/:name" component={SingleStonk} />
             <Route exact path="/mission" component={MissionPage} />
             <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/settings" component={SettingsPage} />
 
           </Switch>
         </AuthProvider>
