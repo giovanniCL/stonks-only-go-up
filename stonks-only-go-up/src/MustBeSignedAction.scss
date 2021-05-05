@@ -1,0 +1,27 @@
+
+#must-signed-action {
+    margin: 12px 24px;
+    background: white;
+    padding: 16px 12px 2px;
+    border-radius: 12px;
+
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    .top-must-signed {
+        position: relative;
+        h2 {
+            font-size: 20px;
+            text-align: center;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+        p {
+            text-align: center;
+            color: #967d0e;
+            font-size: 14px;
+        }
+      
+    }
+    .bottom-must-signed {
+
+    }
+}

@@ -5,7 +5,8 @@ import './SingleStonk.css'
 import { ArrowLeft } from 'react-feather'
 import HypeMeter from "../HypeMeter"
 import axios from "axios"
-import {Authentication} from '../../AuthContext'
+import { Authentication } from '../../AuthContext'
+import MustBeSignedAction from "./MustBeSignedAction"
 
 function SingleStonk(props) {
     // Note. ticker should be passed down from props.match.params.name
@@ -14,46 +15,48 @@ function SingleStonk(props) {
 
     const [loadingStonkData, setLoadingStonkData] = useState(true)
 
-    const {authData, setAuthData} = useContext(Authentication)
+    const { authData, setAuthData } = useContext(Authentication)
     const [following, setFollowing] = useState(false)
- 
+
     useEffect(() => {
         async function authHeaders() {
-            if (!authData) return
-            let user = await axios.get('http://localhost:8080/api/auth/me', {
+            try {
+                if (!authData.token) return
+                let user = await axios.get('/api/auth/me', {
+                    headers: {
+                        "x-access-token": authData.token
+                    }
+                })
+                setFollowing(user.data.followed ? user.data.followed.includes(tickerSymbol) : false)
+            } catch (_) { return }
+        }
+        authHeaders()
+    }, [authData])
+
+
+    async function follow_unfollow() {
+        try {
+            if (!authData.token) return
+            await axios.get(`/follow/${tickerSymbol}`, {
                 headers: {
                     "x-access-token": authData.token
                 }
             })
-            setFollowing(user.data.followed ? user.data.followed.includes(tickerSymbol) : false)
-        }
-        authHeaders()
-    }, [authData])
- 
-
-    async function follow_unfollow() {
-        if(!authData) return
-        await axios.get(`http://localhost:8080/follow/${tickerSymbol}`, {
-            headers: {
-                "x-access-token": authData.token
-            }
-        })
-        setFollowing(!following)
+            setFollowing(!following)
+        } catch (_) { return }
     }
 
     useEffect(() => {
-
+        if (!authData.token) return
         async function grabFullStonkData() {
             let expressRes = await axios.post('/single-stonk/:name', { ticker: "SBUX" })
-            console.log(expressRes)
-            console.log("execution time... ", expressRes.data.executionTime)
             setCompanyInfo(expressRes.data.companyInfo)
             setStonkQuote(expressRes.data.stonkQuote)
             setGraph(expressRes.data.graph)
             setLoadingStonkData(false)
         }
         grabFullStonkData()
-    }, [])
+    }, [authData.token])
 
     const [companyInfo, setCompanyInfo] = useState({
         name: "",
@@ -81,6 +84,11 @@ function SingleStonk(props) {
 
     const [hypeScore, setHypeScore] = useState(89)
 
+    if (!authData.token) {
+        return (
+            <MustBeSignedAction />
+        )
+    }
     return (
         <>
             {loadingStonkData ? (
