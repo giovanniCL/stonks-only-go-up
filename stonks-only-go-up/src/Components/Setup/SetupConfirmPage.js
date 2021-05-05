@@ -36,10 +36,11 @@ async function saveDB(flops){
         user_name: authData.user_name
     }
 
-   return await axios.post('/setup/confirm', info)
+   await axios.post('/setup/confirm', info)
+   props.history.push('/dashboard')
 }
     return (
-        <div>
+        <div className="setup-inner-scroll-confirm">
             <h1 className="setup-header">Confirm Page</h1>
             <p>Before finishing up your account creation, please confirm the following inputs are correct and accurate:</p>
             <div className="confirm-input-divider" />
@@ -113,7 +114,6 @@ async function saveDB(flops){
                 <button className="back-setup-path-button" onClick={() => props.history.push('/setup/profile-picture')}>Back</button>
                 <button className="go-setup-path-button" onClick={() => {
                     saveDB(props);
-                    props.history.push('/')
                 }}>Finish Setup</button>
             </div>
         </div >

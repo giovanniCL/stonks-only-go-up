@@ -4,5 +4,13 @@
 // from within our profile setup page
 export const genderList = [
     "Male",
-    "Female"
+    "Female",
+    "Transgender",
+    "Two-Spirit",
+    "Cisgender",
+    "Genderqueer",
+    "Gender Expression",
+    "Gender Fluid",
+    "Gender Neutral",
+    "Other"
 ]

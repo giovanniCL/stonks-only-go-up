@@ -4,6 +4,7 @@ import { checkObjectNoProperties } from "../../FunctionBucket"
 import { genderList } from "../Lists/GenderList"
 import { educationLevelList } from "../Lists/EducationLevelList"
 import { ageList } from "../Lists/AgeList"
+import { locationList } from "../Lists/LocationList"
 import { reactSelectInputTheme, reactSelectInputStyles } from "../InlineDesignElements"
 import Select from 'react-select';
 
@@ -26,13 +27,7 @@ const SetupPersonalInfoPage = (props) => {
             return props.setupForm.personalInfo
         }
     })
-
-    function handleInputChange(e) {
-        let inputPersonalFormWorking = { ...inputPersonalForm }
-        inputPersonalFormWorking[e.target.name] = e.target.value
-        setPersonalForm(inputPersonalFormWorking)
-    }
-
+    
     function handleDropdownChange(key, value) {
         let inputPersonalFormWorking = { ...inputPersonalForm }
         inputPersonalFormWorking[key] = value.value
@@ -44,14 +39,6 @@ const SetupPersonalInfoPage = (props) => {
             <h1 className="setup-header">Personal Info Page</h1>
             <p className="setup-description">Please input your personal information:</p>
             <div className="setup-personal-info-inputs">
-                <input
-                    name="personalName"
-                    autoComplete="off"
-                    value={inputPersonalForm.personalName}
-                    onChange={handleInputChange}
-                    placeholder="Personal Name"
-                    type="text"
-                />
                 <Select
                     className="react-select-input"
                     theme={reactSelectInputTheme}
@@ -72,13 +59,15 @@ const SetupPersonalInfoPage = (props) => {
                     maxMenuHeight={160}
                     options={genderList.map(gender => { return { label: gender, value: gender } })}
                 />
-                <input
-                    name="location"
-                    autoComplete="off"
-                    value={inputPersonalForm.location}
-                    onChange={handleInputChange}
+                <Select
+                    className="react-select-input"
+                    theme={reactSelectInputTheme}
+                    onChange={(value) => handleDropdownChange("location", value)}
+                    value={!!inputPersonalForm.location && { label: inputPersonalForm.location, value: inputPersonalForm.location }}
+                    styles={reactSelectInputStyles}
                     placeholder="Location"
-                    type="text"
+                    maxMenuHeight={160}
+                    options={locationList.map(locationVal => { return { label: locationVal, value: locationVal} })}
                 />
                 <Select
                     className="react-select-input"

@@ -1,6 +1,5 @@
 // General Imports
 import { React, useEffect, useState } from "react"
-import axios from 'axios'
 import { ageList } from "../Lists/AgeList"
 import { recommendedList } from "../Lists/RecommendedList"
 
@@ -75,51 +74,56 @@ const SetupStonkPage = (props) => {
     }, [props.deepInterestList, props.setupForm])
 
     return (
-        <div>
-            <h1 className="setup-header">Stonk Page</h1>
-            <p className="setup-description">Please select the following stonks you wish to start following:</p>
+        <>
+            <div className="setup-inner-scroll">
+                <h1 className="setup-header">Stonk Page</h1>
+                <p className="setup-description">Please select the following stonks you wish to start following:</p>
 
 
-            <div>
-                <h3>Suggested Stonks</h3>
-                <ul className="stonk-list">
-                    {stonkFullList.map((eachStonk, eachInterestIndex) => {
-                        return (
-                            <li className="each-stonk-item" key={eachInterestIndex}>
-                                <button
-                                    className={stonksSelected.includes(eachStonk) ?
-                                        "stonk-bttn stonk-selected" :
-                                        "stonk-bttn stonk-not-selected"
-                                    }
-                                    onClick={() => stonkClicked(eachStonk)}>
-                                    {eachStonk.label}
-                                </button>
-                            </li>
-                        )
-                    })}
-                </ul>
+                <div>
+                    <h3 className="stonk-subheader">Suggested Stonks...</h3>
+                    <ul className="stonk-list">
+                        {stonkFullList.map((eachStonk, eachInterestIndex) => {
+                            return (
+                                <li className="each-stonk-item" key={eachInterestIndex}>
+                                    <button
+                                        className={stonksSelected.includes(eachStonk) ?
+                                            "stonk-bttn stonk-selected" :
+                                            "stonk-bttn stonk-not-selected"
+                                        }
+                                        onClick={() => stonkClicked(eachStonk)}>
+                                        {eachStonk.label}
+                                    </button>
+                                </li>
+                            )
+                        })}
+                    </ul>
+                </div>
+                <div>
+                    <h3 className="stonk-subheader">Other Stonks...</h3>
+                    <ul className="stonk-list">
+                        {notSuggestedStonks.map((eachStonk, eachInterestIndex) => {
+                            return (
+                                <li className="each-stonk-item" key={eachInterestIndex}>
+                                    <button
+                                        className={stonksSelected.includes(eachStonk) ?
+                                            "stonk-bttn stonk-selected" :
+                                            "stonk-bttn stonk-not-selected"
+                                        }
+                                        onClick={() => stonkClicked(eachStonk)}>
+                                        {eachStonk.label}
+                                    </button>
+                                </li>
+                            )
+                        })}
+                    </ul>
+                </div>
+
+
+                
             </div>
-            <div>
-                <h3>Other Stonks</h3>
-                <ul className="stonk-list">
-                    {notSuggestedStonks.map((eachStonk, eachInterestIndex) => {
-                        return (
-                            <li className="each-stonk-item" key={eachInterestIndex}>
-                                <button
-                                    className={stonksSelected.includes(eachStonk) ?
-                                        "stonk-bttn stonk-selected" :
-                                        "stonk-bttn stonk-not-selected"
-                                    }
-                                    onClick={() => stonkClicked(eachStonk)}>
-                                    {eachStonk.label}
-                                </button>
-                            </li>
-                        )
-                    })}
-                </ul>
-            </div>
 
-
+            <div className="fade-design"></div>
             <div className="setup-directory">
                 <button
                     className="back-setup-path-button"
@@ -140,7 +144,7 @@ const SetupStonkPage = (props) => {
                     Continue
                 </button>
             </div>
-        </div>
+        </>
     )
 }
 export default SetupStonkPage

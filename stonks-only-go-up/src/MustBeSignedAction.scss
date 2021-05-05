@@ -35,6 +35,7 @@
     $faded-background: rgb(141, 141, 238);
     $light-faded-background: rgb(153, 153, 245);
     .bottom-must-signed {
+        position: relative;
         .full-row-empty {
             width: calc(100% - 24px);
             background: $light-faded-background;
@@ -61,10 +62,13 @@
             border-radius: 12px;
 
             position: relative;
+            overflow: hidden;
             #empty-graph-img {
                 z-index: 9999;
+                
                 padding: 32px;
                 opacity: .1;
+                height: 100%;
             }
             #fake-vertical {
                 height: calc(100% - 48px);
