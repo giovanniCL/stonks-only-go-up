@@ -102,8 +102,8 @@ const LogInPage = (props) => {
                     <div> - or - </div>
                     <div className = "loginFormBot">
                         
-                        <button className = "loginButton2" onClick={() => props.history.push('/reset/initial')}>Forget Password</button>
-
+                        {/* <button className = "loginButton2" onClick={() => props.history.push('/reset/initial')}>Forget Password</button> */}
+                        
                         <button className = "loginButton2" onClick={() => props.history.push('/signup')}>
                             New User? Sign Up Here
                         </button>

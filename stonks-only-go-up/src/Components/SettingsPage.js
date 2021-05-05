@@ -2,6 +2,8 @@
 import { React, useContext, useEffect, useState } from "react"
 import axios from "axios"
 import { Authentication } from '../AuthContext'
+require('dotenv').config()
+console.log(process.env.REACT_APP_SERVER)
 
 // Settings Page
 /*
@@ -30,7 +32,7 @@ const SettingsPage = (props) => {
         console.log("we out here")
         console.log(authData)
         async function getSettingsInfo() {
-            let expressRes = await axios.post('/settings', { user_name: authData.user_name })
+            let expressRes = await axios.post(`${process.env.REACT_APP_SERVER}/settings`, { user_name: authData.user_name })
             console.log(expressRes)
             const resParsed = {
                 user_name: expressRes.data.user_name,
@@ -78,7 +80,7 @@ const SettingsPage = (props) => {
     async function saveToDB() {
         console.log("Saving...")
         try {
-            await axios.post('/settings-save', profileData).then(res => {
+            await axios.post(`${process.env.REACT_APP_SERVER}/settings-save`, profileData).then(res => {
                 console.log("finisehd!")
                 setEndMessage("Successfully saved information!")
                 setProfileData({ ...profileData })

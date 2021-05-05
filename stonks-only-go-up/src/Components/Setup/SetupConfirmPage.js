@@ -52,9 +52,6 @@ const SetupConfirmPage = (props) => {
                 <h4 className="confirm-info-title">Personal Info</h4>
                 <NotCorrectEdit history={props.history} direction="/setup/personal-info" />
                 <div className="confirm-personal-single">
-                    <h6>Name: </h6><input value={props.setupForm.personalInfo.personalName} disabled={true} />
-                </div>
-                <div className="confirm-personal-single">
                     <h6>Age: </h6><input value={props.setupForm.personalInfo.age} disabled={true} />
                 </div>
                 <div className="confirm-personal-single">
@@ -116,7 +113,10 @@ const SetupConfirmPage = (props) => {
 
             <div id="confirm-directory" className="setup-directory">
                 <button className="back-setup-path-button" onClick={() => props.history.push('/setup/profile-picture')}>Back</button>
-                <button className="go-setup-path-button" onClick={() => { saveDB(props) }}>Finish Setup</button>
+                <button className="go-setup-path-button" onClick={() => { 
+                    saveDB(props) 
+                    props.history.push('/dashboard')
+                    }}>Finish Setup</button>
             </div>
         </div >
     )

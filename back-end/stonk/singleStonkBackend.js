@@ -1,6 +1,7 @@
 const cors = require('cors')
 const axios = require('axios')
 const now = require("performance-now")
+const db = require('../db')
 
 module.exports = function (app) {
     app.post('/single-stonk/:name', cors(), async (req, res) => {
@@ -179,6 +180,40 @@ module.exports = function (app) {
         //console.log("Total execution time... ", totalTimeTaken, "  milliseconds!")
         fullCompanyInfo.executionTime = totalTimeTaken
 
+        var stonkExistsInDB
+        db.collections.stonks.findOne({name: fullCompanyInfo.companyInfo.name,}, function(err, stonk){
+
+            if(stonk)
+                stonkExistsInDB = true
+            else
+                stonkExistsInDB = false
+        })
+
+        if(!stonkExistsInDB){
+        db.collections.stonks.updateOne({name: fullCompanyInfo.companyInfo.name}, {
+            $set: {
+                name: fullCompanyInfo.companyInfo.name,
+                symbol: tickerSymbol, 
+                stonkometer: 0,
+                currentPrice: fullCompanyInfo.stonkQuote.Price,
+                lowPrice: fullCompanyInfo.stonkQuote.Low,
+                highPrice: fullCompanyInfo.stonkQuote.High,
+                openPrice: fullCompanyInfo.stonkQuote.Open
+            }
+        }, {upsert: true })
+    }
+
+        else
+        {
+            db.collections.stonks.updateOne({name: fullCompanyInfo.companyInfo.name}, {
+                $set: {
+                    currentPrice: fullCompanyInfo.stonkQuote.Price,
+                    lowPrice: fullCompanyInfo.stonkQuote.Low,
+                    highPrice: fullCompanyInfo.stonkQuote.High,
+                    openPrice: fullCompanyInfo.stonkQuote.Open
+                }
+            }, {upsert: false })
+        }
         // Final Sendoff Data
         res.json(fullCompanyInfo)
     })
