@@ -61,74 +61,9 @@ app.get('/setup/confirm', cors(), async (req, res) => {
     res.json("hello!")
 })
 
-app.get('/single-stonk/:name', (req, res) => {
 
-    //DB Collection
-    const stonks = db.collection("stonks");
-
-    var stonkName = req.params.name;
-    stonkName = stonkName.toUpperCase();
-
-    const query = { symbol: stonkName }
-
-    var stonkInDatabase;
-    const stonkData = {
-        "name": stonkName,
-        //Name and Symbol equivlent right now, doesn't seem like we need the real name of the stonk just what finnhub codiers a symbol.
-        "symbol": stonkName,
-        "stonkometer": 0,
-        "openPrice": 0,
-        "highPrice": 0,
-        "lowPrice": 0,
-        "currentPrice": 0
-    }
-
-
-    stonks.findOne(query, function (err, stonk) {
-        if (stonk != null) {
-            stonkInDatabase = true;
-            stonkData.symbol = stonk.symbol;
-            stonkData.stonkometer = stonk.stonkometer;
-            stonkData.openPrice = stonk.openPrice;
-            stonkData.highPrice = stonk.highPrice;
-            stonkData.lowPrice = stonk.lowPrice;
-            stonkData.currentPrice = stonk.currentPrice;
-            res.send(stonkData);
-
-        }
-        else
-            stonkInDatabase = false;
-        if (!stonkInDatabase) {
-            finnhubClient.quote(stonkName, (error, data, response) => {
-                let stonk = response.body
-                stonkData.name = stonkName
-                stonkData.openPrice = stonk.o;
-                stonkData.highPrice = stonk.h;
-                stonkData.lowPrice = stonk.l;
-                stonkData.currentPrice = stonk.c;
-
-                const stonkToDB = new Stonk({
-                    name: stonkData.name,
-                    symbol: stonkData.symbol,
-                    stonkometer: stonkData.stonkometer,
-                    openPrice: stonkData.openPrice,
-                    highPrice: stonkData.highPrice,
-                    lowPrice: stonkData.lowPrice,
-                    currentPrice: stonkData.currentPrice
-                })
-                stonkToDB.save().then(() => console.log("Stonk Saved to DB"));
-                res.send(stonkData);
-            });
-
-
-        }
-
-    })
-
-})
 
 app.post('/setup/confirm', (req,res) => {
-    console.log(req.body);
     db.collections.users.updateOne({user_name: req.body.user_name}, {
         $set: {
             followed: req.body.stonks.map(o => o.ticker),
@@ -138,6 +73,66 @@ app.post('/setup/confirm', (req,res) => {
             education_level: req.body.education_level
         }
     }, {})
+    req.body.stonks.forEach(stonk => {
+        
+    
+    var stonkName ={
+        label: stonk.label,
+        ticker: stonk.ticker
+    }
+
+    console.log(stonk)
+
+
+
+    db.collections.stonks.findOne({name: stonkName.label}, function(err, stonk){
+
+        
+
+        if(!stonk){
+
+            const stonkData = {
+            "name": stonkName.label,
+            "symbol": stonkName.ticker,
+            "stonkometer": 0,
+            "openPrice": 0,
+            "highPrice": 0,
+            "lowPrice": 0,
+            "currentPrice": 0
+            }
+
+            async function storeCompanyInfo(symbol){
+                console.log(symbol)
+                const companyInfo = `https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${process.env.FINNHUB_KEY}`
+                try{
+                    let rawComapnyInfo = await axios.get(companyInfo)
+                    console.log(rawComapnyInfo)
+                    console.log(rawComapnyInfo.data)
+
+                    db.collections.stonks.insertOne({
+                        name: stonkData.name,
+                        symbol: stonkData.symbol,
+                        openPrice: rawComapnyInfo.data.o,
+                        highPrice: rawComapnyInfo.data.h,
+                        lowPrice: rawComapnyInfo.data.l,
+                        currentPrice: rawComapnyInfo.data.c
+                    })
+                    }
+                     catch (error) {
+                         console.log(error)
+                     }
+            }
+
+            storeCompanyInfo(stonkData.symbol)
+        
+            
+        }
+
+    })
+
+});
+
+    
 })
 
 //This endpoint is only for testing the stonk schema
