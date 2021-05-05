@@ -19,7 +19,12 @@ router.get('/stonks', async (req,res) => {
     let user = response.data
     if(user.auth == false) return res.send("Failed to authenticate")
 
-    let followed = user.followed ? user.followed : []
+    let user_data = db.collections.users.findOne({user_name: req.headers.user_name})
+    var followed;
+    await user_data.then(function(result){
+        followed = result.followed
+    })
+    console.log(followed)
     Stonk.find({
         symbol:{
             $in: followed

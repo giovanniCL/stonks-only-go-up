@@ -137,7 +137,7 @@ app.post('/setup/confirm', (req,res) => {
             location: req.body.location,
             education_level: req.body.education_level
         }
-    }, {upsert: true})
+    }, {})
 })
 
 //This endpoint is only for testing the stonk schema

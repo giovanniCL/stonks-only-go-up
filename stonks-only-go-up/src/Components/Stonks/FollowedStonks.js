@@ -16,7 +16,8 @@ const FollowedStonks = (props) => {
         async function fetchData(){
             let response = await axios(`http://localhost:8080/follow/stonks`,{
                 headers:{
-                    "x-access-token" : authData.token
+                    "x-access-token" : authData.token,
+                    "user_name": authData.user_name
                 }
             })
             setData(response.data)
