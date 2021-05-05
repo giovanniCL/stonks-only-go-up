@@ -2,13 +2,17 @@ import React, { useEffect, useState, useContext } from 'react'
 import axios from 'axios'
 import StonkPreview from './StonkPreview'
 import StonksHeader from './StonksHeader'
-import {Authentication} from '../../AuthContext'
+import { Authentication } from '../../AuthContext'
 import './HypeStonks.css'
+
+import MustBeSignedAction from "./MustBeSignedAction"
 
 const FollowedStonks = (props) => {
 
     const [data, setData] = useState([])
-    const {authData, setAuthData} = useContext(Authentication)
+    const { authData } = useContext(Authentication)
+
+    console.log(!authData)
 
 
     useEffect(()=>{
@@ -23,21 +27,27 @@ const FollowedStonks = (props) => {
             setData(response.data)
         }
         fetchData()
-       
-    },[authData])
-   
-    return (
-        <div className = "hype-div">
-        <div className = "hype-content">
-            <h1 className>Your Followed Stonks</h1>
-            <StonksHeader />
-            {data.map((item) => (
-            <StonkPreview key = {item.symbol} details = {item}/> 
-            ))}
-        </div>
-        </div>
-      
-    )
+
+    }, [authData])
+
+    if (!authData.token) {
+        return (
+            <MustBeSignedAction {...props} />
+        )
+    } else {
+        return (
+            <div className="hype-div">
+                <div className="hype-content">
+                    <h1 className>Your Followed Stonks</h1>
+                    <StonksHeader />
+                    {data.map((item) => (
+                        <StonkPreview key={item.symbol} details={item} />
+                    ))}
+                </div>
+            </div>
+        )
+    }
+
 }
 
 export default FollowedStonks
