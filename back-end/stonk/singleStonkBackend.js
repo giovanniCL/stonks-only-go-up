@@ -185,7 +185,7 @@ module.exports = function (app) {
             fullCompanyInfo.executionTime = totalTimeTaken
 
             var stonkExistsInDB
-            db.collections.stonks.findOne({ name: fullCompanyInfo.companyInfo.name, }, function (err, stonk) {
+            db.collections.stonks.findOne({ symbol: tickerSymbol, }, function (err, stonk) {
 
                 if (stonk)
                     stonkExistsInDB = true
@@ -194,7 +194,7 @@ module.exports = function (app) {
             })
 
             if (!stonkExistsInDB) {
-                db.collections.stonks.updateOne({ name: fullCompanyInfo.companyInfo.name }, {
+                db.collections.stonks.updateOne({symbol: tickerSymbol }, {
                     $set: {
                         name: fullCompanyInfo.companyInfo.name,
                         symbol: tickerSymbol,
@@ -208,7 +208,7 @@ module.exports = function (app) {
             }
 
             else {
-                db.collections.stonks.updateOne({ name: fullCompanyInfo.companyInfo.name }, {
+                db.collections.stonks.updateOne({ symbol: tickerSymbol }, {
                     $set: {
                         currentPrice: fullCompanyInfo.stonkQuote.Price,
                         lowPrice: fullCompanyInfo.stonkQuote.Low,
