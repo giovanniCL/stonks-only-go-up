@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
 import SingleStonkGraph from "./SingleStonkGraph"
-import Navbar from '../Navbar'
-import './SingleStonk.css'
 import { ArrowLeft } from 'react-feather'
 import HypeMeter from "../HypeMeter"
 import axios from "axios"
@@ -19,6 +17,7 @@ function SingleStonk(props) {
     const { authData, setAuthData } = useContext(Authentication)
     const [following, setFollowing] = useState(false)
 
+    /*
     useEffect(() => {
         async function authHeaders() {
             try {
@@ -35,6 +34,7 @@ function SingleStonk(props) {
     }, [authData])
 
 
+    */
     async function follow_unfollow() {
         try {
             if (!authData.token) return
@@ -50,11 +50,13 @@ function SingleStonk(props) {
     useEffect(() => {
         if (!authData.token) return
         async function grabFullStonkData() {
-            let expressRes = await axios.post('/single-stonk/:name', { ticker: "SBUX" })
-            setCompanyInfo(expressRes.data.companyInfo)
-            setStonkQuote(expressRes.data.stonkQuote)
-            setGraph(expressRes.data.graph)
-            setLoadingStonkData(false)
+            try {
+                let expressRes = await axios.post('/single-stonk/:name', { ticker: "SBUX" })
+                setCompanyInfo(expressRes.data.companyInfo)
+                setStonkQuote(expressRes.data.stonkQuote)
+                setGraph(expressRes.data.graph)
+                setLoadingStonkData(false)
+            } catch (_) { return }
         }
         grabFullStonkData()
     }, [authData.token])
@@ -133,7 +135,7 @@ function SingleStonk(props) {
                                     </tr>
                                     <tr className="each-stonk-table-row">
                                         <td className="each-stonk-table-row-start">Website</td>
-                                        <td className="each-stonk-table-row-end"><a href={companyInfo.website} target="_blank">{companyInfo.website}</a></td>
+                                        <td className="each-stonk-table-row-end"><a href={companyInfo.website} target="_blank" rel="noreferrer">{companyInfo.website}</a></td>
                                     </tr>
                                 </tbody>
                             </table>
