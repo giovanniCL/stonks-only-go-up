@@ -71,9 +71,7 @@ const SignUp = (props) => {
             <div className="signUpBody">
                 <div className="signUpBox">
                     <h1>Sign Up</h1>
-                    <button onClick={() => props.history.push('/login')}>
-                        Already Have an Account? Login Here
-                </button>
+                    
                     <form className="signUpBox" onSubmit={handleSignup}>
                         <input type="text" name="firstName" placeholder="First Name" required autoComplete="off" />
                         <input type="text" name="lastName" placeholder="Last Name" required autoComplete="off" />
@@ -90,11 +88,14 @@ const SignUp = (props) => {
                             onChange={handleCaptchaChange}
                         />,
                         <button type="submit">Create Account</button>
-                    </form>
-                    <div>
+                        <div>
                         <h2>{errorMessage}</h2>
                     </div>
-
+                    </form>
+                    
+                    <button onClick={() => props.history.push('/login')}>
+                        Already Have an Account? Login Here
+                    </button>
                 </div>
             </div>
         </>
