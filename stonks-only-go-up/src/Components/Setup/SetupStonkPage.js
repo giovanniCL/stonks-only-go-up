@@ -1,6 +1,5 @@
 // General Imports
 import { React, useEffect, useState } from "react"
-import axios from 'axios'
 import { ageList } from "../Lists/AgeList"
 import { recommendedList } from "../Lists/RecommendedList"
 
