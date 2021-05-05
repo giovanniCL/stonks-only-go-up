@@ -3,6 +3,7 @@ import "./signup.css"
 import axios from "axios"
 import { Authentication } from "../../AuthContext";
 import ReCAPTCHA from "react-google-recaptcha";
+require('dotenv').config()
 
 const SignUp = (props) => {
 
@@ -46,7 +47,7 @@ const SignUp = (props) => {
         }
         console.log(signUpData)
 
-        const userResponse = await axios.post('/api/auth/signup', signUpData)
+        const userResponse = await axios.post(`${process.env.REACT_APP_SERVER}/api/auth/signup`, signUpData)
         console.log(userResponse)
         if (userResponse.data.success) {
             setAuthData({
