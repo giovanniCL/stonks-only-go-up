@@ -1,0 +1,25 @@
+.stonks-header{
+    display: flex;
+    width: 100%;
+    text-align: left;
+    
+    border-bottom: 1px solid black;
+    padding-left: 2px;
+
+    .company-th {
+        width: 40%;
+        
+    }
+    .ticker-th {
+        width: 20%;
+        text-align: center;
+    }
+    .score-th {
+        width: 20%;
+        text-align: center;
+    }
+    .price-th {
+        width: 20%;
+        text-align: center;
+    }
+}
