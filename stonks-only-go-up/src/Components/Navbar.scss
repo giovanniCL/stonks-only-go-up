@@ -4,6 +4,7 @@
     height: 80px;
     display: inline-flex;
 
+    position: relative;
     justify-content: space-between;
 
     #stonk-search-wrapper {
@@ -42,6 +43,9 @@
         width: 240px;
         color: white;
         text-align: center;
+        h1 {
+            margin: 0;
+        }
     }
     .center-side {
         display: inline-flex;
@@ -66,8 +70,8 @@
         display: inline-flex;
         justify-content: flex-end;
         align-items: center;
+        margin-right: 48px;
         width: 240px;
-        padding-right: 12px;
         a {
             text-decoration: none;
             font-size: 18px;
@@ -99,8 +103,14 @@
         font-size: 16px;
         margin: 0;
     }
-    #dropdown-nav-main-wrapper {
+    #dp-nav-main-wrapper {
+        background: red;
+        background: none;
+        border: none;
+        margin-right: 32px;
         #dropdown-toggle {
+            
+            margin: 0;
             background: none;
             border: none;
             &:focus {
@@ -111,13 +121,17 @@
                 box-shadow: none;
             }
         }
+        a {
+            color: black;
+            margin: 0;
+        }
         #dropdown-nav-profile-picture {
             background: #ebebfa;
             width: 64px;
             height: 64px;
-            display: inline-block;
             border-radius: 50%;
             object-fit: cover;
+            margin: 0;
         }
         #dropdown-menu-header {
             text-align: center;
@@ -127,7 +141,7 @@
             width: 50%;
             margin: 0 auto 6px;
         }
-        
+
         .dropdown-item-nav {
             display: inline-flex;
             align-items: center;
@@ -149,12 +163,12 @@
             text-align: center;
             margin: auto 6px auto;
         }
-        #bottom-dropdown-profile-wrapper > .dropDownNavLink {
-            margin: 2px;
-        }
-        #bottom-dropdown-profile-wrapper > .dropDownNavLink:hover {
-            color: black;
-        }
+    }
+    #bottom-dropdown-profile-wrapper > .dropDownNavLink {
+        margin: 2px;
+    }
+    #bottom-dropdown-profile-wrapper > .dropDownNavLink:hover {
+        color: black;
     }
 }
 
@@ -164,7 +178,6 @@
         width: 100%;
         height: 80px;
         display: inline-flex;
-        
 
         justify-content: flex-start;
         .left-side {
@@ -178,7 +191,7 @@
         .right-side {
             position: absolute;
             right: 0;
-            top: 24px;
+            top: 0px;
             
         }
     }

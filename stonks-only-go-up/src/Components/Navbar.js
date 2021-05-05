@@ -17,7 +17,7 @@ const AuthNavbar = (props) => {
             </div>)
     } else {
         return (
-            <Dropdown id="dropdown-nav-main-wrapper">
+            <Dropdown id="dp-nav-main-wrapper">
                 <Dropdown.Toggle
                     variant="success"
                     id="dropdown-toggle"
@@ -30,12 +30,12 @@ const AuthNavbar = (props) => {
 
                 <Dropdown.Menu align="right">
                     <h1 id="dropdown-menu-header">SOGU</h1>
-                    <Link className="navLink" to="/mission">
+                    <Link to="/mission">
                         <Dropdown.Item href="/mission" className="dropdown-item-nav">
                             <Moon size={20} /><p>Mission</p>
                         </Dropdown.Item>
                     </Link>
-                    <Link className="navLink" to="/settings">
+                    <Link to="/settings">
                         <Dropdown.Item href="/settings" className="dropdown-item-nav">
                             <Settings size={20} /><p>Settings</p>
                         </Dropdown.Item>
