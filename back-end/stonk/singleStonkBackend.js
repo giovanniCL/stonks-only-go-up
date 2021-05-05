@@ -179,17 +179,6 @@ module.exports = function (app) {
         const totalTimeTaken = (endTime - startTime.toFixed(3)).toFixed(3)
         //console.log("Total execution time... ", totalTimeTaken, "  milliseconds!")
         fullCompanyInfo.executionTime = totalTimeTaken
-
-        db.collections.stonks.updateOne({name: fullCompanyInfo.companyInfo.name}, {
-            $set: {
-                currentPrice: fullCompanyInfo.stonkQuote.Price,
-                lowPrice: fullCompanyInfo.stonkQuote.Low,
-                highPrice: fullCompanyInfo.stonkQuote.High,
-                openPrice: fullCompanyInfo.stonkQuote.ope
-                
-            }
-        })
-
         // Final Sendoff Data
         res.json(fullCompanyInfo)
     })
