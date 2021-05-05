@@ -26,7 +26,7 @@ const HypeStonks = (props) => {
     console.log('you in hype')
     if (!authData.token) {
         return (
-            <MustBeSignedAction />
+            <MustBeSignedAction {...props} />
         )
     } else {
         return (

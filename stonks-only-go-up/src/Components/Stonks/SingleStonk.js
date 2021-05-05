@@ -86,7 +86,7 @@ function SingleStonk(props) {
 
     if (!authData.token) {
         return (
-            <MustBeSignedAction />
+            <MustBeSignedAction {...props} />
         )
     }
     return (

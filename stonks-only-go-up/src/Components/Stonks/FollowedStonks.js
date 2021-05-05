@@ -31,7 +31,7 @@ const FollowedStonks = (props) => {
 
     if (!authData.token) {
         return (
-            <MustBeSignedAction />
+            <MustBeSignedAction {...props} />
         )
     } else {
         return (
