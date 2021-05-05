@@ -84,7 +84,7 @@ const SignUp = (props) => {
                         <input
                             className = "signupInputTexts"
                             title="Confirmation password must match"
-                            type="password" ame="confirmPassword" placeholder="Confirm Password" autoComplete="off" />
+                            type="password" name="confirmPassword" placeholder="Confirm Password" autoComplete="off" />
                         <ReCAPTCHA
                             sitekey="6Ldss8MaAAAAAFET_Bz-q-1UbkHET6nLFW8zTdsa"
                             onChange={handleCaptchaChange}
