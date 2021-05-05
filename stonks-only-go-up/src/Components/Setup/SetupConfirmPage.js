@@ -25,20 +25,24 @@ const SetupConfirmPage = (props) => {
     console.log(authData)
     console.log(props.setupForm)
 
-    
-async function saveDB(flops){
-    const info = {
-        stonks: flops.setupForm.stonks,
-        age: flops.setupForm.personalInfo.age,
-        gender: flops.setupForm.personalInfo.gender,
-        location: flops.setupForm.personalInfo.location,
-        education_level: flops.setupForm.personalInfo.educationLevel,
-        user_name: authData.user_name
-    }
 
-   await axios.post('/setup/confirm', info)
-   props.history.push('/dashboard')
-}
+    async function saveDB(flops) {
+        console.log('hello')
+        const info = {
+            stonks: flops.setupForm.stonks,
+            age: flops.setupForm.personalInfo.age,
+            gender: flops.setupForm.personalInfo.gender,
+            location: flops.setupForm.personalInfo.location,
+            education_level: flops.setupForm.personalInfo.educationLevel,
+            user_name: authData.user_name
+        }
+        try {
+
+            await axios.post('/setup/confirm', info)
+        } catch (error) { console.log(error) }
+        props.history.push('/')
+
+    }
     return (
         <div className="setup-inner-scroll-confirm">
             <h1 className="setup-header">Confirm Page</h1>
@@ -112,9 +116,7 @@ async function saveDB(flops){
 
             <div id="confirm-directory" className="setup-directory">
                 <button className="back-setup-path-button" onClick={() => props.history.push('/setup/profile-picture')}>Back</button>
-                <button className="go-setup-path-button" onClick={() => {
-                    saveDB(props);
-                }}>Finish Setup</button>
+                <button className="go-setup-path-button" onClick={() => { saveDB(props) }}>Finish Setup</button>
             </div>
         </div >
     )

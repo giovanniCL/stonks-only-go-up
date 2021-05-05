@@ -9,8 +9,8 @@ import { BigLoading } from "../Loading"
 
 function SingleStonk(props) {
     // Note. ticker should be passed down from props.match.params.name
-    const tickerSymbol = "SBUX"
-    console.log(props)
+    const tickerSymbol = props.match.params.name
+    console.log(props.match.params.name)
 
     const [loadingStonkData, setLoadingStonkData] = useState(true)
 
@@ -51,7 +51,7 @@ function SingleStonk(props) {
         if (!authData.token) return
         async function grabFullStonkData() {
             try {
-                let expressRes = await axios.post('/single-stonk/:name', { ticker: "SBUX" })
+                let expressRes = await axios.post('/single-stonk/:name', { ticker: tickerSymbol })
                 setCompanyInfo(expressRes.data.companyInfo)
                 setStonkQuote(expressRes.data.stonkQuote)
                 setGraph(expressRes.data.graph)
