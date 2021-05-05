@@ -85,7 +85,7 @@ app.post('/setup/confirm', (req,res) => {
 
 
 
-    db.collections.stonks.findOne({name: stonkName.label}, function(err, stonk){
+    db.collections.stonks.findOne({symbol: stonkName.ticker}, function(err, stonk){
 
         
 

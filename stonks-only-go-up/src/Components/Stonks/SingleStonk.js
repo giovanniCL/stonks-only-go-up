@@ -6,6 +6,7 @@ import axios from "axios"
 import { Authentication } from '../../AuthContext'
 import MustBeSignedAction from "./MustBeSignedAction"
 import { BigLoading } from "../Loading"
+require('dotenv').config()
 
 function SingleStonk(props) {
     // Note. ticker should be passed down from props.match.params.name
@@ -17,12 +18,12 @@ function SingleStonk(props) {
     const { authData, setAuthData } = useContext(Authentication)
     const [following, setFollowing] = useState(false)
 
-    /*
+    
     useEffect(() => {
         async function authHeaders() {
             try {
                 if (!authData.token) return
-                let user = await axios.get('/api/auth/me', {
+                let user = await axios.get(`${process.env.REACT_APP_SERVER}/api/auth/me`, {
                     headers: {
                         "x-access-token": authData.token
                     }
@@ -34,11 +35,11 @@ function SingleStonk(props) {
     }, [authData])
 
 
-    */
+    
     async function follow_unfollow() {
         try {
             if (!authData.token) return
-            await axios.get(`/follow/${tickerSymbol}`, {
+            await axios.get(`${process.env.REACT_APP_SERVER}/follow/${tickerSymbol}`, {
                 headers: {
                     "x-access-token": authData.token
                 }
@@ -51,7 +52,7 @@ function SingleStonk(props) {
         if (!authData.token) return
         async function grabFullStonkData() {
             try {
-                let expressRes = await axios.post('/single-stonk/:name', { ticker: tickerSymbol })
+                let expressRes = await axios.post(`${process.env.REACT_APP_SERVER}/single-stonk/:name`, { ticker: tickerSymbol })
                 setCompanyInfo(expressRes.data.companyInfo)
                 setStonkQuote(expressRes.data.stonkQuote)
                 setGraph(expressRes.data.graph)

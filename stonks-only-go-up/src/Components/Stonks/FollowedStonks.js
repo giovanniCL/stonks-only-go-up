@@ -6,6 +6,8 @@ import { Authentication } from '../../AuthContext'
 import './HypeStonks.css'
 
 import MustBeSignedAction from "./MustBeSignedAction"
+require('dotenv').config()
+
 
 const FollowedStonks = (props) => {
 
@@ -18,7 +20,7 @@ const FollowedStonks = (props) => {
     useEffect(()=>{
         if(!authData) return
         async function fetchData(){
-            let response = await axios(`http://localhost:8080/follow/stonks`,{
+            let response = await axios(`${process.env.REACT_APP_SERVER}/follow/stonks`,{
                 headers:{
                     "x-access-token" : authData.token,
                     "user_name": authData.user_name
