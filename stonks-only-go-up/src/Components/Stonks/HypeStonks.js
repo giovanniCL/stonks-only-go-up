@@ -32,7 +32,7 @@ const HypeStonks = (props) => {
         return (
             <div className="hype-div">
                 <div className="hype-content">
-                    <h1 className>Your Followed Stonks</h1>
+                    <h1 className>Hype Stonks</h1>
                     <StonksHeader />
                     {data.map((item) => (
                         <StonkPreview key={item.symbol} details={item} />
