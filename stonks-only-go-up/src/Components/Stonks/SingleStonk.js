@@ -14,7 +14,6 @@ function SingleStonk(props) {
     useEffect(() => {
         setPassedTicker(props.match.params.name)
     }, [props.match.params])
-    console.log(props.match.params.name)
 
     const [loadingStonkData, setLoadingStonkData] = useState(true)
 
@@ -57,10 +56,12 @@ function SingleStonk(props) {
         if (!authData.token) return
         async function grabFullStonkData() {
             try {
+                console.log("getting the data...")
                 let expressRes = await axios.post(`${process.env.REACT_APP_SERVER}/single-stonk/:name`, { ticker: props.match.params.name })
                 console.log(expressRes)
                 console.log(expressRes.data)
                 if (!!expressRes.data.failure) { setInvalidStonk(true); setLoadingStonkData(false); return }
+                setInvalidStonk(false);
                 setCompanyInfo({ ...expressRes.data.companyInfo })
                 setStonkQuote({ ...expressRes.data.stonkQuote })
                 setGraph({ ...expressRes.data.graph })
