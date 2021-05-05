@@ -116,7 +116,10 @@ const SetupConfirmPage = (props) => {
 
             <div id="confirm-directory" className="setup-directory">
                 <button className="back-setup-path-button" onClick={() => props.history.push('/setup/profile-picture')}>Back</button>
-                <button className="go-setup-path-button" onClick={() => { saveDB(props) }}>Finish Setup</button>
+                <button className="go-setup-path-button" onClick={() => { 
+                    saveDB(props) 
+                    props.history.push('/dashboard')
+                    }}>Finish Setup</button>
             </div>
         </div >
     )
