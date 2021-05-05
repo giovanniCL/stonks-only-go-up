@@ -17,6 +17,7 @@ function SingleStonk(props) {
     const { authData, setAuthData } = useContext(Authentication)
     const [following, setFollowing] = useState(false)
 
+    /*
     useEffect(() => {
         async function authHeaders() {
             try {
@@ -33,6 +34,7 @@ function SingleStonk(props) {
     }, [authData])
 
 
+    */
     async function follow_unfollow() {
         try {
             if (!authData.token) return
@@ -133,7 +135,7 @@ function SingleStonk(props) {
                                     </tr>
                                     <tr className="each-stonk-table-row">
                                         <td className="each-stonk-table-row-start">Website</td>
-                                        <td className="each-stonk-table-row-end"><a href={companyInfo.website} target="_blank">{companyInfo.website}</a></td>
+                                        <td className="each-stonk-table-row-end"><a href={companyInfo.website} target="_blank" rel="noreferrer">{companyInfo.website}</a></td>
                                     </tr>
                                 </tbody>
                             </table>
