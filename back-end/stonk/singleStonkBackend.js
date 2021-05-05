@@ -185,38 +185,40 @@ module.exports = function (app) {
             fullCompanyInfo.executionTime = totalTimeTaken
 
             var stonkExistsInDB
-            db.collections.stonks.findOne({ name: fullCompanyInfo.companyInfo.name, }, function (err, stonk) {
+            db.collections.stonks.findOne({ symbol: tickerSymbol, }, function (err, stonk) {
 
                 if (stonk)
                     stonkExistsInDB = true
                 else
                     stonkExistsInDB = false
+
+                    if (!stonkExistsInDB) {
+                        db.collections.stonks.updateOne({symbol: tickerSymbol }, {
+                            $set: {
+                                name: fullCompanyInfo.companyInfo.name,
+                                symbol: tickerSymbol,
+                                stonkometer: 0,
+                                currentPrice: fullCompanyInfo.stonkQuote.Price,
+                                lowPrice: fullCompanyInfo.stonkQuote.Low,
+                                highPrice: fullCompanyInfo.stonkQuote.High,
+                                openPrice: fullCompanyInfo.stonkQuote.Open
+                            }
+                        }, { upsert: true })
+                    }
+        
+                    else {
+                        db.collections.stonks.updateOne({ symbol: tickerSymbol }, {
+                            $set: {
+                                currentPrice: fullCompanyInfo.stonkQuote.Price,
+                                lowPrice: fullCompanyInfo.stonkQuote.Low,
+                                highPrice: fullCompanyInfo.stonkQuote.High,
+                                openPrice: fullCompanyInfo.stonkQuote.Open
+                            }
+                        }, { upsert: false })
+                    }
             })
 
-            if (!stonkExistsInDB) {
-                db.collections.stonks.updateOne({ name: fullCompanyInfo.companyInfo.name }, {
-                    $set: {
-                        name: fullCompanyInfo.companyInfo.name,
-                        symbol: tickerSymbol,
-                        stonkometer: 0,
-                        currentPrice: fullCompanyInfo.stonkQuote.Price,
-                        lowPrice: fullCompanyInfo.stonkQuote.Low,
-                        highPrice: fullCompanyInfo.stonkQuote.High,
-                        openPrice: fullCompanyInfo.stonkQuote.Open
-                    }
-                }, { upsert: true })
-            }
-
-            else {
-                db.collections.stonks.updateOne({ name: fullCompanyInfo.companyInfo.name }, {
-                    $set: {
-                        currentPrice: fullCompanyInfo.stonkQuote.Price,
-                        lowPrice: fullCompanyInfo.stonkQuote.Low,
-                        highPrice: fullCompanyInfo.stonkQuote.High,
-                        openPrice: fullCompanyInfo.stonkQuote.Open
-                    }
-                }, { upsert: false })
-            }
+            
             // Final Sendoff Data
             res.json(fullCompanyInfo)
         } catch (error) { console.log(); res.json({ failure: true }) }

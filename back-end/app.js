@@ -62,6 +62,18 @@ app.get('/setup/confirm', cors(), async (req, res) => {
 })
 
 
+app.post('/get-stonkometer', (req,res) =>{
+
+    console.log(req.body.name)
+    let stonkInfo = db.collections.stonks.findOne({symbol: req.body.name}, function(err, stonk){
+
+        console.log(stonk)
+        res.json({stonkometer: stonk.stonkometer})
+    })
+
+    
+
+}) 
 
 app.post('/setup/confirm', (req,res) => {
     db.collections.users.updateOne({user_name: req.body.user_name}, {
