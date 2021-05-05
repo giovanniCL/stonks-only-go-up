@@ -59,7 +59,7 @@ const SearchStonk = (props) => {
                 value={props.stonkSearch}
                 onChange={(e) => props.setStonkSearch(e.target.value)}
             />
-            <Link to={`/single-stonk/${props.stonkSearch}`} query={{ name: props.stonkSearch }}>
+            <Link to={`/single-stonk/${props.stonkSearch.toUpperCase()}`} query={{ name: props.stonkSearch.toUpperCase() }}>
                 <button className="go-search-stonk" onClick={() => props.setShowLinks(false)}><Search size={16} /></button>
             </Link>
         </form>

@@ -17,12 +17,12 @@ const FollowedStonks = (props) => {
     console.log(!authData)
 
 
-    useEffect(()=>{
-        if(!authData) return
-        async function fetchData(){
-            let response = await axios(`${process.env.REACT_APP_SERVER}/follow/stonks`,{
-                headers:{
-                    "x-access-token" : authData.token,
+    useEffect(() => {
+        if (!authData) return
+        async function fetchData() {
+            let response = await axios(`${process.env.REACT_APP_SERVER}/follow/stonks`, {
+                headers: {
+                    "x-access-token": authData.token,
                     "user_name": authData.user_name
                 }
             })
@@ -40,11 +40,13 @@ const FollowedStonks = (props) => {
         return (
             <div className="hype-div">
                 <div className="hype-content">
-                    <h1 className>Your Followed Stonks</h1>
-                    <StonksHeader />
-                    {data.map((item) => (
-                        <StonkPreview key={item.symbol} details={item} />
-                    ))}
+                    <h1 className="list-hype-view-header">Your Followed Stonks</h1>
+                    <div id="table-wrapper">
+                        <StonksHeader />
+                        {data.map((item) => (
+                            <StonkPreview key={item.symbol} details={item} />
+                        ))}
+                    </div>
                 </div>
             </div>
         )

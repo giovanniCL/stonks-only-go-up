@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import './StonkPreview.css'
 
 const StonkPreview = (props) => {
     const [nameClass, setNameClass] = useState("name")
@@ -27,15 +26,18 @@ const StonkPreview = (props) => {
         setPriceClass("price")
     }
 
-    console.log(props)
     return (
-
-        <Link to={`/single-stonk/${props.details.symbol}`} query={{ name: props.details.symbol }} style={{ textDecoration: "none" }} className="preview-container"
+        <Link className="link-wrapper-list" to={`/single-stonk/${props.details.symbol}`} query={{ name: props.details.symbol }} style={{ textDecoration: "none" }} className="preview-container"
             onMouseEnter={() => hoverClass()} onMouseLeave={() => unHoverClass()}>
-            <div className={nameClass}>{props.details.symbol ? props.details.symbol : props.details.name} </div>
-            <div className={stonkClass}>{(props.details.stonkometer ? Math.round(props.details.stonkometer) : "0") + "%"}</div>
-            <div className={priceClass}>{props.details.currentPrice ? props.details.currentPrice : props.details.price}</div>
+            <div className="stonk-preview-row">
+                <div className="company-td">{props.details.name}</div>
+                <div className="ticker-td">{props.details.symbol ? props.details.symbol : props.details.name} </div>
+                <div className={`${stonkClass} score-td`}>{(props.details.stonkometer ? Math.round(props.details.stonkometer) : "0") + "%"}</div>
+                <div className={`${priceClass} price-td`}>{props.details.currentPrice ? props.details.currentPrice : props.details.price}</div>
+            </div>
         </Link>
+
+
 
     )
 }
