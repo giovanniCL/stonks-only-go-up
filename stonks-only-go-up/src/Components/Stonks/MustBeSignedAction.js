@@ -8,9 +8,12 @@ const MustBeSignedAction = (props) => {
                 <p>You unfortunately must be signed in to view this page. Please either login or signup to continue.</p>
             </div>
             <div className="bottom-must-signed">
-                <div></div>
-                <div></div>
-                <div></div>
+                <div id="fake-graph"></div>
+                <div id="wrapper-fake">
+                    <div id="fake-info-1"></div>
+                    <div id="fake-info-2"></div>
+                </div>
+                <div id="fake-info-3"></div>
             </div>
 
         </div>

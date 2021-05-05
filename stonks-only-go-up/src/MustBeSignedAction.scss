@@ -1,13 +1,16 @@
-
 #must-signed-action {
     margin: 12px 24px;
-    background: white;
-    padding: 16px 12px 2px;
-    border-radius: 12px;
-
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     .top-must-signed {
-        position: relative;
+        position: absolute;
+        top: 104px;
+        left: 24px;
+        width: calc(100% - 48px);
+        
+        background: white;
+        padding: 16px 12px 2px;
+        border-radius: 12px;
+    
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
         h2 {
             font-size: 20px;
             text-align: center;
@@ -19,9 +22,41 @@
             color: #967d0e;
             font-size: 14px;
         }
-      
     }
+    $faded-background: rgb(141, 141, 238);
     .bottom-must-signed {
-
+        #fake-graph {
+            margin-top: 12px;
+            background-color:$faded-background;
+            width: 100%;
+            height: 380px;
+            border-radius: 12px;
+        }
+        #wrapper-fake {
+            display: inline-flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 12px;
+            #fake-info-1 {
+                background-color:$faded-background;
+                width: 49%;
+                height: 200px;
+                border-radius: 12px;
+            }
+            #fake-info-2 {
+                background-color: $faded-background;
+                width: 49%;
+                height: 200px;
+                border-radius: 12px;
+            }
+        }
+        #fake-info-3 {
+            margin-top: 8px;
+            background-color: $faded-background;
+            width: 100%;
+            height: 200px;
+            border-radius: 12px;
+        }
+        
     }
 }
