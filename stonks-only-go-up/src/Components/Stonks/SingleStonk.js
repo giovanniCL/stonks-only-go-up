@@ -75,8 +75,8 @@ function SingleStonk(props) {
                 setLoadingStonkData(false)
             } catch (error) { console.log(error); setLoadingStonkData(false); setInvalidStonk(true) }
         }
-        grabFullStonkData()
-        grabStonkometer()
+         grabFullStonkData()
+         grabStonkometer()
     }, [authData.token, props.match.params.name])
 
     const [companyInfo, setCompanyInfo] = useState({
