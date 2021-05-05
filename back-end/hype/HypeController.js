@@ -16,17 +16,11 @@ async function getHypeScores(){
         const reps = 1
         let stonk_count = {}
         for(let i = 0; i < reps; i++){
-            let new_stonk_data = await iterate(stonk_symbols)
-            let new_stonk_count = new_stonk_data.stonk_count
-
-            //We are not using these to calculate store at the moment but we could
-            let new_favorites = new_stonk_data.stonk_tweet_favorites
-            let new_replies = new_stonk_data.stonk_tweet_replies
-            let new_retweets = new_stonk_count.stonk_tweet_retweets
+            let new_stonk_count = await iterate(stonk_symbols)
 
             stonk_symbols.forEach(symbol=>{
                 let old_count = stonk_count[symbol] ? stonk_count[symbol] : 0
-                let new_count = new_stonk_count[symbol] ? new_stonk_count[symbol] : 0
+                let new_count = new_stonk_count[symbol]? new_stonk_count[symbol] : 0
                 stonk_count[symbol] = old_count + new_count
             })
         }
@@ -48,6 +42,7 @@ async function getHypeScores(){
 async function iterate(stonk_symbols){
     let query = ""
     let data = []
+    const batch_size = 2// variable that determines how many symbols to include in each search query
     for(i in stonk_symbols){
         symbol = stonk_symbols[i]
         if(i == 0){ //set the query to the first symbol
@@ -55,7 +50,7 @@ async function iterate(stonk_symbols){
             continue
         }
         let new_symbol = ` OR ${symbol}`
-        if(query.length +  new_symbol.length > 512 ){ //If query has more than 512 characters(the limit), make the api call
+        if((i%batch_size) > 0 ){ 
             let batch = await axios.get(`https://api.twitter.com/2/tweets/search/recent?query=${query}`,{
                 headers:{
                     Authorization: twitter_bearer
@@ -76,16 +71,11 @@ async function iterate(stonk_symbols){
             data.push(...batch.data.data)
         }
     }
+    console.log(data)
     let stonk_count = {}
-    let stonk_tweet_replies = {}
-    let stonk_tweet_favorites = {}
-    let stonk_tweet_retweets = {}
     for(d in data){ // For each tweet, look for each of the symbols. Whenever they match, increase its count
         let tweet = data[d]
         let text = tweet.text
-        let favorites = tweet.favorite_count
-        let replies = tweet.reply_count
-        let retweets = tweet.retweet_count
         for(s in stonk_symbols){
             let symbol = stonk_symbols[s]
             let regex_string = ".*" + symbol
@@ -94,15 +84,10 @@ async function iterate(stonk_symbols){
             if(match > -1){
                 if(stonk_count[symbol]) stonk_count[symbol]++
                 else stonk_count[symbol] = 1
-                if(favorites && stonk_tweet_favorites[symbol]) stonk_tweet_favorites[symbol] = stonk_tweet_favorites[symbol] + favorites
-                else stonk_tweet_favorites[symbol] = favorites
-                if(replies && stonk_tweet_replies[symbol]) stonk_tweet_replies[symbol] = stonk_tweet_replies[symbol] + replies
-                else stonk_tweet_replies = replies
-                if(retweets && stonk_tweet_retweets[symbol]) stonk_tweet_retweets[symbol] = stonk_tweet_retweets[symbol] + retweets
             }
         }
     }
-    return {stonk_count, stonk_tweet_replies, stonk_tweet_favorites, stonk_tweet_retweets} 
+    return stonk_count
 }
 
 setInterval(getHypeScores,600000)
