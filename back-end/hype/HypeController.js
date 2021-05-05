@@ -105,7 +105,7 @@ async function iterate(stonk_symbols){
     return {stonk_count, stonk_tweet_replies, stonk_tweet_favorites, stonk_tweet_retweets} 
 }
 
-setInterval(getHypeScores,60000)
+setInterval(getHypeScores,600000)
 
 router.get('/stonks', (req, res) =>{
     
