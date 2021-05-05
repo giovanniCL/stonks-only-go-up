@@ -73,27 +73,29 @@ const SignUp = (props) => {
                     <h1>Sign Up</h1>
                     
                     <form className="signUpBox" onSubmit={handleSignup}>
-                        <input type="text" name="firstName" placeholder="First Name" required autoComplete="off" />
-                        <input type="text" name="lastName" placeholder="Last Name" required autoComplete="off" />
-                        <input type="text" name="userName" placeholder="User Name" required autoComplete="off" />
-                        <input type="email" name="email" placeholder="Email" required autoComplete="off" />
+                        <input className = "signupInputTexts" type="text" name="firstName" placeholder="First Name" required autoComplete="off" />
+                        <input className = "signupInputTexts" type="text" name="lastName" placeholder="Last Name" required autoComplete="off" />
+                        <input className = "signupInputTexts" type="text" name="userName" placeholder="User Name" required autoComplete="off" />
+                        <input className = "signupInputTexts" type="email" name="email" placeholder="Email" required autoComplete="off" />
                         <input
+                            className = "signupInputTexts"
                             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-                            type="password" id="password" className="password" name="password" placeholder="Password" autoComplete="off" />
+                            type="password" id="password" name="password" placeholder="Password" autoComplete="off" />
                         <input
+                            className = "signupInputTexts"
                             title="Confirmation password must match"
-                            type="password" className="password" name="confirmPassword" placeholder="Confirm Password" autoComplete="off" />
+                            type="password" ame="confirmPassword" placeholder="Confirm Password" autoComplete="off" />
                         <ReCAPTCHA
                             sitekey="6Ldss8MaAAAAAFET_Bz-q-1UbkHET6nLFW8zTdsa"
                             onChange={handleCaptchaChange}
                         />,
-                        <button type="submit">Create Account</button>
+                        <button className = "signupButtons" type="submit">Create Account</button>
                         <div>
                         <h2>{errorMessage}</h2>
                     </div>
                     </form>
                     
-                    <button onClick={() => props.history.push('/login')}>
+                    <button class = "signupButtons2" onClick={() => props.history.push('/login')}>
                         Already Have an Account? Login Here
                     </button>
                 </div>
