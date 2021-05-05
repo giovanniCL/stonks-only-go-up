@@ -6,29 +6,42 @@ import { Dropdown } from 'react-bootstrap'
 import { Authentication } from "../AuthContext";
 import LordAndSaviorDefaultPicture from "../Assets/LordAndSaviorProfile.png"
 import { Link } from 'react-router-dom';
+import { Search } from 'react-feather'
 
 
 function Navbar(props) {
 
     const { authData, authLogout } = useContext(Authentication);
 
+    const [stonkSearch, setStonkSearch] = useState("")
     // Need to replace '#' with page links'
     //Stonk Search Bar on Right Side WIP
     const [showLinks, setShowLinks] = useState(false);
     return (
-        <div className="Navbar">
-            <div className="leftSide">
+        <div className="nav-bar-wrapper">
+            <div className="left-side">
                 <h1>SOGU</h1>
 
             </div>
-            <div className="centerSide">
+            <div className="center-side">
                 <div className="links" id={showLinks ? "hidden" : ""}>
                     <Link className="navLink" to="/dashboard">Home</Link>
                     <Link className="navLink" to="/followed-stonks">Your Stonks</Link>
                     <Link className="navLink" to="/hype-stonks">Hype Stonks</Link>
                 </div>
             </div>
-            <div className="rightSide">
+            <div className="right-side">
+                <form id="stonk-search-wrapper">
+                    <input
+                        id="search-input"
+                        placeholder="Search a Stonk Symbol..."
+                        value={stonkSearch}
+                        onChange={(e) => setStonkSearch(e.target.value)}
+                    />
+                    <Link to={`/single-stonk/${stonkSearch}`} query={{ name: stonkSearch }}>
+                        <button className="go-search-stonk"><Search size={16} /></button>
+                    </Link>
+                </form>
                 {!authData.token ? (
                     <div className="nonloggedLinks">
                         <Link className="navLink" to="/login">Login</Link>
@@ -36,11 +49,11 @@ function Navbar(props) {
                     </div>
                 ) : (
 
-                    <Dropdown>
+                    <Dropdown id="dropdown-nav-main-wrapper">
                         <Dropdown.Toggle
                             variant="success"
-                            id="dropdown-nav-main-wrapper"
-                            >
+                            id="dropdown-toggle"
+                        >
                             <img id="dropdown-nav-profile-picture"
                                 src={LordAndSaviorDefaultPicture}
                                 alt=""
@@ -56,21 +69,13 @@ function Navbar(props) {
                             </Link>
                             <Link className="navLink" to="/settings">
                                 <Dropdown.Item href="/settings" className="dropdown-item-nav">
-                                    <Settings  size={20}/><p>Settings</p>
+                                    <Settings size={20} /><p>Settings</p>
                                 </Dropdown.Item>
                             </Link>
                             <Dropdown.Divider />
                             <Dropdown.Item id="logout-menu-bttn" onClick={() => authLogout()}>Log Out</Dropdown.Item>
                             <Dropdown.Divider />
-                            <div id="bottom-dropdown-profile-wrapper">
-                                <Link className="dropDownNavLink" to="/privacy-policy">
-                                    Privacy Policy
-                                </Link>
-                                <Link className="dropDownNavLink" to="/terms-and-conditions">
-                                    Terms & Condition
-                                </Link>
 
-                            </div>
                         </Dropdown.Menu>
                     </Dropdown>
                 )}

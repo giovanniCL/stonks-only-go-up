@@ -1,0 +1,192 @@
+.nav-bar-wrapper {
+    background-color: #282c34;
+    width: 100%;
+    height: 80px;
+    display: inline-flex;
+
+    justify-content: space-between;
+
+    .left-side {
+        display: inline-flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding-left: 24px;
+        width: 240px;
+        color: white;
+        text-align: center;
+    }
+    .center-side {
+        display: inline-flex;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+        .links {
+            a {
+                text-decoration: none;
+                font-size: 18px;
+                color: white;
+                font-weight: bold;
+                margin: auto 12px;
+                &:hover {
+                    background: none;
+                    color: rgb(214, 42, 214);
+                }
+            }
+        }
+    }
+    .right-side {
+        display: inline-flex;
+        justify-content: flex-end;
+        align-items: center;
+        width: 240px;
+        padding-right: 12px;
+        #stonk-search-wrapper {
+            display: inline-flex;
+            align-items: center;
+   
+            padding-right: 12px;
+            #search-input {
+                height: 32px;
+            }
+            a {
+                &:hover {
+                    background: none;
+                }
+            }
+            .go-search-stonk {
+                height: 32px;
+                border: none;
+                width: 32px;
+                border-radius: 4px;
+                margin-left: 4px;
+                &:hover {
+                   filter: brightness(90%);
+                }
+
+            }
+        }
+    }
+
+    #dropdown-nav-main-wrapper {
+        #dropdown-toggle {
+            background: none;
+            border: none;
+            &:focus {
+                outline: none;
+                border-color: #66afe9;
+                outline: 0;
+                -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+                box-shadow: none;
+            }
+        }
+        #dropdown-nav-profile-picture {
+            background: #ebebfa;
+            width: 64px;
+            height: 64px;
+            display: inline-block;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        #dropdown-menu-header {
+            text-align: center;
+            font-size: 18px;
+            background: lightgreen;
+            border-radius: 16px;
+            width: 50%;
+            margin: 0 auto 6px;
+        }
+        .nonloggedLinks > a {
+            color: pink;
+            margin: auto 12px;
+        }
+        .dropdown-item-nav {
+            display: inline-flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .dropdown-item-nav p {
+            margin: 0;
+        }
+        #logout-menu-bttn {
+            text-align: center;
+            color: red;
+        }
+    
+        #bottom-dropdown-profile-wrapper {
+            display: inline-flex;
+            justify-content: space-between;
+            width: calc(100% - 12px);
+            font-size: 9px;
+            text-align: center;
+            margin: auto 6px auto;
+        }
+        #bottom-dropdown-profile-wrapper > .dropDownNavLink {
+            margin: 2px;
+        }
+        #bottom-dropdown-profile-wrapper > .dropDownNavLink:hover {
+            color: black;
+        }
+    }
+}
+
+
+@media only screen and (max-width: 750px) {
+    .Navbar .leftSide .links {
+        font-size: 15px;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .leftSide {
+        h1 {
+            font-size: 20px;
+        }
+    }
+    .Navbar .leftSide button {
+        display: flex;
+        height: 30px;
+        width: 40px;
+        font-size: 30px;
+        align-items: center;
+    }
+    .Navbar .centerSide {
+        display: inline-flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        width: 100%;
+        .navLink {
+        }
+    }
+    .centerSide .links a {
+        font-size: 12px;
+    }
+    .centerSide {
+        display: inline-flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        width: 100%;
+        text-align: center;
+    }
+    .Navbar .centerSide .links {
+        margin: auto 4px;
+        height: 40px;
+        font-size: 8px;
+    }
+
+    .Navbar .leftSide #hidden {
+        position: absolute;
+        left: 0px;
+        top: 80px;
+        max-height: 260px;
+        width: 100%;
+        background-color: #282c34;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .Navbar .leftSide #hidden a {
+        margin: 10px;
+        font-size: 25px;
+    }
+}
