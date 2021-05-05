@@ -127,6 +127,19 @@ app.get('/single-stonk/:name', (req, res) => {
 
 })
 
+app.post('/setup/confirm', (req,res) => {
+    console.log(req.body);
+    db.collections.users.updateOne({user_name: req.body.user_name}, {
+        $set: {
+            followed: req.body.stonks.map(o => o.ticker),
+            age: req.body.age,
+            gender: req.body.gender,
+            location: req.body.location,
+            education_level: req.body.education_level
+        }
+    }, {upsert: true})
+})
+
 //This endpoint is only for testing the stonk schema
 app.get('/stonk-schema-test', (req, res) => {
     const newStonk = new Stonk({
