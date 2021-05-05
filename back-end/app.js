@@ -112,6 +112,7 @@ app.post('/setup/confirm', (req,res) => {
                     db.collections.stonks.insertOne({
                         name: stonkData.name,
                         symbol: stonkData.symbol,
+                        stonkometer: stonkData.stonkometer,
                         openPrice: rawComapnyInfo.data.o,
                         highPrice: rawComapnyInfo.data.h,
                         lowPrice: rawComapnyInfo.data.l,
@@ -131,9 +132,39 @@ app.post('/setup/confirm', (req,res) => {
     })
 
 });
-
     
 })
+
+app.post('/settings', (req, res) => {
+    //DB Collection
+    const users = db.collection("users");
+    const query = { user_name: req.body.user_name }
+    users.findOne(query, function (err, userDoc) {
+        if (userDoc != null) {
+            res.send(userDoc);
+        }
+    })
+
+})
+
+app.post("/settings-save", (req, res) => {
+
+    //
+    db.collections.users.updateOne({user_name: req.body.user_name}, {
+        $set: {
+            age: req.body.age,
+            gender: req.body.gender,
+            location: req.body.location,
+            education_level: req.body.education_level,
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+        }
+    }, {}).then(response => res.send(response))
+
+
+    //
+})
+
 
 //This endpoint is only for testing the stonk schema
 app.get('/stonk-schema-test', (req, res) => {
