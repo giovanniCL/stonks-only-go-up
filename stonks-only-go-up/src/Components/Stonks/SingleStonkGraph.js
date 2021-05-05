@@ -88,7 +88,10 @@ function SingleStonkGraph(props) {
         <section id={graphicalError || loadingGraph ? "empty-graph-wrapper" : "graph-wrapper"}>
             <div className="upper-graph-header">
                 <div className="left-upper-graph">
-                    <img className="left-upper-graph-logo" src={props.logo} alt="" />
+                    {!!props.logo ? (
+                        <img className="left-upper-graph-logo" src={props.logo} alt="" />
+                    ) : ""}
+
                     <h4 className="left-upper-graph-subheader">{props.stonkName}</h4>
                 </div>
                 <h4 className="right-upper-graph-subheader">{props.ticker}</h4>

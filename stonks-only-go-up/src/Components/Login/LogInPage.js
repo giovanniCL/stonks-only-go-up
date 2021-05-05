@@ -38,6 +38,7 @@ const LogInPage = (props) => {
         }
         //
         const authResponse = await authPost(loginForm)
+        console.log(authResponse)
         if (authResponse.success) {
             console.log("We got the user!")
             setAuthData({

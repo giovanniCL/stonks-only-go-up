@@ -6,6 +6,31 @@
     position: absolute;
     top: 40%;
 }
+#invalid-stonk-wrapper{
+    background: white;
+    width: 400px;
+    
+    margin: auto auto;
+    margin-top: 10%;
+    border-radius: 12px;
+    padding: 12px 24px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 8px;
+    text-align: center;
+
+    h1 {
+        font-size: 28px;
+        font-weight: bold;
+        text-decoration: underline;
+    }
+    #error-symbol {
+        color: red;
+        margin: 24px auto;
+    }
+    p {
+        text-align: left;
+    }
+    
+}
 #single-stonk-viewer-page {
     #loading-full-empty-single-stonk > .basic-loading-header {
         text-align: center;
