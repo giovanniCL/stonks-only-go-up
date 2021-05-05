@@ -1,0 +1,81 @@
+@import url(https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap);
+body {
+    font-family: "Ubuntu", sans-serif;
+}
+.preview-container {
+}
+#table-wrapper {
+    background: white;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    border-radius: 12px;
+    width: 100%;
+    min-width: 400px;
+    max-width: 600px;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4px 4px;
+    .link-wrapper-list {
+        margin: 24px;
+        background: green;
+        width: 100%;
+    }
+}
+
+.list-hype-view-header {
+    font-size: 24px;
+    font-weight: bold;
+    background: white;
+    border-radius: 4px;
+    padding: 4px 8px;
+}
+.stonk-preview-row {
+    width: 100%;
+    padding: 4px 12px;
+    position: relative;
+    text-align: left;
+
+    display: inline-flex;
+    justify-content: flex-start;
+    border-top: 1px solid rgb(221, 220, 220);
+    &:hover {
+        background: rgb(231, 214, 253);
+    }
+
+    a:hover {
+        background-color: #ffdd47;
+        color: aliceblue;
+
+    }
+
+    .company-td {
+        width: 40%;
+    }
+    .ticker-td {
+        width: 20%;
+        text-align: center;
+    }
+    .score-td {
+        width: 20%;
+        text-align: center;
+    }
+    .price-td {
+        width: 20%;
+        text-align: center;
+    }
+
+    .hypestonk {
+        color: green;
+    }
+    .mehstonk {
+        color: goldenrod;
+    }
+
+    .unhypestonk {
+        color: red;
+    }
+
+    .hoverClass {
+        color: darkblue;
+    }
+}
