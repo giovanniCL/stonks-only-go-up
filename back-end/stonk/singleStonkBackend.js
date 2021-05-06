@@ -197,7 +197,7 @@ module.exports = function (app) {
                             $set: {
                                 name: fullCompanyInfo.companyInfo.name,
                                 symbol: tickerSymbol,
-                                stonkometer: 0,
+                                stonkometer: 50,
                                 currentPrice: fullCompanyInfo.stonkQuote.Price,
                                 lowPrice: fullCompanyInfo.stonkQuote.Low,
                                 highPrice: fullCompanyInfo.stonkQuote.High,

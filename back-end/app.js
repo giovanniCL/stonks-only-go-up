@@ -64,12 +64,16 @@ app.get('/setup/confirm', cors(), async (req, res) => {
 
 app.post('/get-stonkometer', (req,res) =>{
 
-    console.log(req.body.name)
-    let stonkInfo = db.collections.stonks.findOne({symbol: req.body.name}, function(err, stonk){
+    console.log(req.body)
+    db.collections.stonks.findOne({symbol: req.body.name}, function(err, stonk){
 
+        try{
         console.log(stonk)
-        if(!stonk)res.json({stonkometer : 0})
-        else res.json({stonkometer: stonk.stonkometer})
+        res.json({stonkometer: stonk.stonkometer})
+        }
+        catch(error){
+            console.log(error)
+        }
     })
 
     

@@ -60,17 +60,16 @@ function SingleStonk(props) {
             let response = await axios.post('/get-stonkometer', props.match.params)
 
         setHypeScore(response.data.stonkometer)
+        }
         grabStonkometer()
 
-
-        }
       
     }, [authData.token, props.match.params.name, invalidStonk])
 
     useEffect(() => {
         if (!authData.token) return
         async function grabFullStonkData() {
-            try {
+            try {   
                 console.log("getting the data...")
                 let expressRes = await axios.post(`${process.env.REACT_APP_SERVER}/single-stonk/:name`, { ticker: props.match.params.name })
                 console.log(expressRes)
@@ -83,9 +82,8 @@ function SingleStonk(props) {
                 setLoadingStonkData(false)
             } catch (error) { console.log(error); setLoadingStonkData(false); setInvalidStonk(true) }
         }
-        grabFullStonkData()
-
-    },[authData.token, props.match.params.name])
+         grabFullStonkData()
+    }, [authData.token, props.match.params.name])
 
     const [companyInfo, setCompanyInfo] = useState({
         name: "",
