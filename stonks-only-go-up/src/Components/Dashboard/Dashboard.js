@@ -5,10 +5,12 @@ import StonkPreview from '../Stonks/StonkPreview'
 import StonksHeader from '../Stonks/StonksHeader'
 import './Dashboard.css'
 import { Authentication } from "../../AuthContext";
+import {TwitterTweetEmbed} from 'react-twitter-embed'
 
 import Diamond from "../../Assets/diamond.jpg"
 
 import Announcements from "./Announcements"
+require('dotenv').config()
 
 const Dashboard = (props) => {
 
@@ -20,9 +22,10 @@ const Dashboard = (props) => {
 
     useEffect(() => {
         async function fetchData() {
-            //call to a mock api, we can change this later when we make the back-end
-            let response = await axios("https://my.api.mockaroo.com/stonks.json?key=7d2830f0")
+            let response = await axios(`${process.env.REACT_APP_SERVER}/hype/tweets`)
             setData(response.data)
+            console.log(response.data)
+            console.log(data)
         }
         fetchData()
 
@@ -51,6 +54,11 @@ const Dashboard = (props) => {
 
 
                 <Announcements />
+                <div className = "tweet-container">
+                    {data.map((item)=>{
+                        return <TwitterTweetEmbed key = {item.id} tweetId = {item.id} />
+                    })}
+                </div>
 
 
 

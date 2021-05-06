@@ -23,9 +23,9 @@ describe("testing Stonk schema", () => {
 })
 
 describe("testing Tweet schema", () => {
-    it("should return \"TWEET saved to database\"", () =>{
+    it("should return \"TSLA saved to database\"", () =>{
         return chai.request(app).get('/tweet-schema-test').then(response =>{
-            expect(response.text).to.equal("TWEET saved to database")
+            expect(response.text).to.equal("TSLA saved to database")
         })
     })
 })

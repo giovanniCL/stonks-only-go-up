@@ -10,6 +10,8 @@ const twitter_bearer = process.env.TWITTER_BEARER
 
 router.use(cors())
 
+let tweets = []
+
 async function getHypeScores(){
     Stonk.find(async(err, stonks) =>{
         stonk_symbols = stonks.map(stonk=>stonk.symbol)//get stonk symbols for querying twitter api
@@ -72,6 +74,7 @@ async function iterate(stonk_symbols){
         }
     }
     console.log(data)
+    tweets = data.map(tweet => tweet.id)
     let stonk_count = {}
     for(d in data){ // For each tweet, look for each of the symbols. Whenever they match, increase its count
         let tweet = data[d]
@@ -100,6 +103,12 @@ router.get('/stonks', (req, res) =>{
         res.json(hypest)
     })
     
+})
+
+router.get('/tweets', (req, res)=>{
+    let response = tweets.slice(0,10).map(id => {return {id: id}})
+    console.log(response)
+    res.json(response)
 })
 
 

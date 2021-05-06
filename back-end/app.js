@@ -68,7 +68,8 @@ app.post('/get-stonkometer', (req,res) =>{
     let stonkInfo = db.collections.stonks.findOne({symbol: req.body.name}, function(err, stonk){
 
         console.log(stonk)
-        res.json({stonkometer: stonk.stonkometer})
+        if(!stonk)res.json({stonkometer : 0})
+        else res.json({stonkometer: stonk.stonkometer})
     })
 
     
@@ -181,7 +182,9 @@ app.post("/settings-save", (req, res) => {
 //This endpoint is only for testing the stonk schema
 app.get('/stonk-schema-test', (req, res) => {
     const newStonk = new Stonk({
+        name: "TEST",
         symbol: "TEST",
+        stonkometer: 50,
         openPrice: 10,
         highPrice: 100,
         lowPrice: 0,
@@ -212,7 +215,7 @@ app.get('/tweet-schema-test', (req, res) => {
         likes: 10,
         retweets: 5
     })
-    newTweet.save().then(() => res.send(`${newTweet.id} saved to database`))
+    newTweet.save().then(() => res.send(`${newTweet.symbol} saved to database`))
 })
 
 //This endpoint is only for 
@@ -223,9 +226,11 @@ app.get('/dashboard', cors(), async (req, res) => {
 })
 
 app.get('/clean', (req, res) => {
+    
     db.collections.stonks.deleteMany({
         symbol: "TEST"
     })
+    
     db.collections.users.deleteMany({
         password: "PASSWORD"
     })

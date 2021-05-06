@@ -51,16 +51,24 @@ function SingleStonk(props) {
         } catch (_) { setInvalidStonk(true) }
     }
 
-    const [invalidStonk, setInvalidStonk] = useState(false)
+    const [invalidStonk, setInvalidStonk] = useState(true)
     useEffect(() => {
         if (!authData.token) return
+        if(invalidStonk) return
 
         async function grabStonkometer(){
             let response = await axios.post('/get-stonkometer', props.match.params)
 
         setHypeScore(response.data.stonkometer)
+        grabStonkometer()
+
 
         }
+      
+    }, [authData.token, props.match.params.name, invalidStonk])
+
+    useEffect(() => {
+        if (!authData.token) return
         async function grabFullStonkData() {
             try {
                 console.log("getting the data...")
@@ -76,8 +84,8 @@ function SingleStonk(props) {
             } catch (error) { console.log(error); setLoadingStonkData(false); setInvalidStonk(true) }
         }
         grabFullStonkData()
-        grabStonkometer()
-    }, [authData.token, props.match.params.name])
+
+    },[authData.token, props.match.params.name])
 
     const [companyInfo, setCompanyInfo] = useState({
         name: "",

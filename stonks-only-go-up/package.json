@@ -23,6 +23,7 @@
     "react-scripts": "4.0.3",
     "react-select": "^4.3.0",
     "react-spinners": "^0.10.6",
+    "react-twitter-embed": "^3.0.3",
     "sass": "^1.32.12",
     "web-vitals": "^1.0.1"
   },
