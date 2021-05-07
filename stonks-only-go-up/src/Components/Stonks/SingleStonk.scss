@@ -168,6 +168,7 @@
     }
     .stonk-top-from-bottom-half {
         border-bottom: 2px solid rgb(52, 52, 104);
+        color: black;
         .stonk-name-bottom {
             font-size: 24px;
         }
@@ -178,6 +179,7 @@
         .stonk-table-info {
             width: 50%;
             margin-bottom: 32px;
+
         }
         .each-stonk-table-row {
             height: 32px;
@@ -201,6 +203,7 @@
         .stonk-extra-company-info > .each-stonk-ci {
             width: 50%;
             height: 20%;
+            color: black;
         }
         .stonk-extra-company-info {
             height: 180px;

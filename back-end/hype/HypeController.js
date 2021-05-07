@@ -106,8 +106,15 @@ router.get('/stonks', (req, res) =>{
 })
 
 router.get('/tweets', (req, res)=>{
-    let response = tweets.slice(0,10).map(id => {return {id: id}})
-    console.log(response)
+    if(tweets.length == 0)return res.json([])
+    let response = []
+    for(let i = 0; i < 10; i ++){
+        let index = Math.floor(Math.random() * tweets.length)
+        console.log(index)
+        response.push({id: tweets[index]})
+    }
+    //let response = tweets.slice(0,10).map(id => {return {id: id}})
+    //console.log(tweets)
     res.json(response)
 })
 

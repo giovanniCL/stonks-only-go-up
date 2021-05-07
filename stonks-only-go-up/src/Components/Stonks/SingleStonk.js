@@ -58,7 +58,7 @@ function SingleStonk(props) {
 
         async function grabStonkometer(){
             console.log(props.match.params)
-            let response = await axios.get(`/get-stonkometer/${props.match.params.name}`)
+            let response = await axios.get(`${process.env.REACT_APP_SERVER}/get-stonkometer/${props.match.params.name}`)
 
         setHypeScore(Math.round(response.data.stonkometer))
         }
