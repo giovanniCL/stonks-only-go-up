@@ -62,11 +62,11 @@ app.get('/setup/confirm', cors(), async (req, res) => {
 })
 
 
-app.post('/get-stonkometer', (req,res) =>{
+app.get('/get-stonkometer/:stonk', (req,res) =>{
 
-    console.log(req.body)
-    db.collections.stonks.findOne({symbol: req.body.name}, function(err, stonk){
-
+    console.log(req.params)
+    db.collections.stonks.findOne({symbol: req.params.stonk}, function(err, stonk){
+        console.log(req.params.stonk)
         try{
         console.log(stonk)
         res.json({stonkometer: stonk.stonkometer})
