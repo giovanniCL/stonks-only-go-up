@@ -5,7 +5,7 @@ import StonkPreview from '../Stonks/StonkPreview'
 import StonksHeader from '../Stonks/StonksHeader'
 import './Dashboard.css'
 import { Authentication } from "../../AuthContext";
-import {TwitterTweetEmbed} from 'react-twitter-embed'
+import { TwitterTweetEmbed } from 'react-twitter-embed'
 
 import Diamond from "../../Assets/diamond.jpg"
 
@@ -34,14 +34,15 @@ const Dashboard = (props) => {
 
 
     return (
-        <>
-
-            <body>
 
 
-                <div className = "welcome1">WELCOME TO</div>
-                <div className = "welcome2">S.O.G.U.</div>
-                {/* <div className = "welcome2">
+        <div>
+            <div id="welcome-wrapper">
+                <div className="welcome1">WELCOME TO</div>
+                <div className="welcome2">S.O.G.U.</div>
+            </div>
+
+            {/* <div className = "welcome2">
                     <div className = "bigLetter">S.</div>
                     <div className = "smallLetter">tocks</div>
                     <div className = "bigLetter">O.</div>
@@ -53,19 +54,15 @@ const Dashboard = (props) => {
                 </div> */}
 
 
-                <Announcements />
-                <div className = "tweet-container">
-                    {data.map((item)=>{
-                        return <TwitterTweetEmbed key = {item.id} tweetId = {item.id} />
-                    })}
-                </div>
+            <Announcements />
+            <div className="tweet-container">
+                {data.map((item) => {
+                    return <TwitterTweetEmbed key={item.id} tweetId={item.id} />
+                })}
+            </div>
+        </div>
 
-
-
-
-            </body>
-
-        </>)
+    )
 
 
 }

@@ -6,6 +6,7 @@
 
     position: relative;
     justify-content: space-between;
+    z-index: 999999999999999999999999999;
 
     #stonk-search-wrapper {
         display: inline-flex;
@@ -104,12 +105,10 @@
         margin: 0;
     }
     #dp-nav-main-wrapper {
-        background: red;
         background: none;
         border: none;
         margin-right: 32px;
         #dropdown-toggle {
-            
             margin: 0;
             background: none;
             border: none;
