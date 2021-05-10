@@ -15,6 +15,7 @@ body {
   color: white;
 
   background: rgb(86, 74, 250);
+
 }
 
 .react-select-input {
@@ -66,6 +67,10 @@ input:focus {
 body{
   font-family: 'Ubuntu', sans-serif !important;;
   background-color: rgb(154, 154, 255) !important;;
+  background: url(/Assets/trianglify-lowres.png);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 
 }
 
@@ -81,4 +86,10 @@ body{
 
 botton:hover {
   cursor: pointer;
+}
+
+.rather-generic-error-msg {
+  color: red;
+  font-size: 16px;
+  text-align: center;
 }

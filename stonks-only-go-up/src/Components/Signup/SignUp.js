@@ -81,18 +81,18 @@ const SignUp = (props) => {
                         <input
                             className = "signupInputTexts"
                             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-                            type="password" id="password" name="password" placeholder="Password" autoComplete="off" />
+                            type="password" id="password" name="password" placeholder="Password" required autoComplete="off" />
                         <input
                             className = "signupInputTexts"
                             title="Confirmation password must match"
-                            type="password" name="confirmPassword" placeholder="Confirm Password" autoComplete="off" />
+                            type="password" name="confirmPassword" placeholder="Confirm Password" required autoComplete="off" />
                         <ReCAPTCHA
                             sitekey="6Ldss8MaAAAAAFET_Bz-q-1UbkHET6nLFW8zTdsa"
                             onChange={handleCaptchaChange}
                         />,
                         <button className = "signupButtons" type="submit">Create Account</button>
                         <div>
-                        <h2>{errorMessage}</h2>
+                        <p className="rather-generic-error-msg">{errorMessage}</p>
                     </div>
                     </form>
                     

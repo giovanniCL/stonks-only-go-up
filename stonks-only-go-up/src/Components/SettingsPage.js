@@ -189,42 +189,7 @@ const SettingsPage = (props) => {
 
                 </form>
             </section>
-            <section id="bottom-settings">
-                <form className="settings-form" onSubmit={saveProfileChanges}>
-                    <div className="input-wrapper">
-                        <label>Email</label>
-
-                        <input
-                            type="text"
-                            value={securityProfile.email}
-                            name="email"
-                            onChange={(value) => handleSecondaryInputChange("email", value)}
-                        />
-                    </div>
-
-                    <div className="input-wrapper">
-                        <label>Password</label>
-                        <input
-                            type="text"
-                            value={securityProfile.password}
-                            name="password"
-                            onChange={(value) => handleSecondaryInputChange("email", value)}
-                        />
-                    </div>
-
-                    <div className="error-wrapper">
-                        <p className="error-message">{secondaryErrorMessage}</p>
-                    </div>
-
-                    <div className="bottom-settings-wrapper">
-                        <button
-                            disabled={true} type="submit">Save</button>
-                    </div>
-
-
-                </form>
-
-            </section>
+            
 
         </div>
     )
